@@ -1,0 +1,39 @@
+/* ============================================================
+   motion.css — revelado al hacer scroll
+   El escalonado se controla con --i en el propio elemento.
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+.reveal.is-in { opacity: 1; transform: none; }
+
+/* Las imágenes entran con un ligero acercamiento en vez de desplazarse. */
+.reveal-img {
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+.reveal-img.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .reveal-img { opacity: 1; transform: none; }
+}

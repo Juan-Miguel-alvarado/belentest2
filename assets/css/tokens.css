@@ -1,0 +1,78 @@
+/* ============================================================
+   Gimnasio Cristiano Belén — Design tokens
+   Paleta juvenil: 4 colores + neutros
+     rojo #e24b4a · azul turquesa #3eb8a1
+     mostaza #d99a2b · verde suave #9bc77e
+     gris claro #f1efe8 · gris medio #888780 · blanco #ffffff
+   ============================================================ */
+
+:root {
+  /* --- Marca --------------------------------------------- */
+  --rojo: #e24b4a;
+  --turquesa: #3eb8a1;
+  --mostaza: #d99a2b;
+  --verde: #9bc77e;
+
+  /* Derivados oscurecidos: los cuatro colores puros no alcanzan
+     4.5:1 sobre blanco, así que el texto y los enlaces usan estos. */
+  --rojo-ink: #c2302f;
+  --turquesa-ink: #1f7a68;
+  --mostaza-ink: #96660f;
+  --verde-ink: #4f7d33;
+
+  /* Tintes al 10-14% para fondos de sección y chips */
+  --rojo-tint: #fdeeed;
+  --turquesa-tint: #e8f6f3;
+  --mostaza-tint: #fbf1e1;
+  --verde-tint: #eef6e8;
+
+  /* --- Neutros ------------------------------------------- */
+  --ink: #23221f;            /* titulares */
+  --body: #46443f;           /* cuerpo de texto, 9.2:1 */
+  --muted: #6d6c66;          /* gris medio oscurecido a 4.9:1 */
+  --grey: #888780;           /* gris medio puro, usos decorativos */
+  --surface: #ffffff;
+  --surface-2: #f1efe8;      /* gris claro, secciones alternas */
+  --line: #e2dfd5;
+  --line-soft: #eeebe3;
+
+  /* --- Tipografía ---------------------------------------- */
+  /* Onest sostiene los titulares; Gveret Levin marca la palabra
+     clave de cada título (el rotulado a mano del boceto);
+     Inter queda para texto corrido e interfaz. */
+  --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Onest", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+  --font-hand: "Gveret Levin", "Onest", cursive;
+
+  --step--1: clamp(0.82rem, 0.79rem + 0.14vw, 0.9rem);
+  --step-0:  clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  --step-1:  clamp(1.15rem, 1.08rem + 0.35vw, 1.38rem);
+  --step-2:  clamp(1.45rem, 1.28rem + 0.8vw, 2rem);
+  --step-3:  clamp(1.9rem, 1.55rem + 1.7vw, 2.9rem);
+  --step-4:  clamp(2.4rem, 1.8rem + 2.9vw, 4rem);
+  --step-5:  clamp(2.9rem, 2rem + 4.4vw, 5.2rem);
+
+  /* --- Espacio ------------------------------------------- */
+  --shell: 1240px;
+  --gutter: clamp(1.15rem, 4.5vw, 3rem);
+  --section-y: clamp(4rem, 8vw, 7.5rem);
+
+  /* --- Forma --------------------------------------------- */
+  /* A diferencia del sitio anterior, aquí el redondeo es parte del
+     tono: tarjetas y botones muy suaves, acordes al público joven. */
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-lg: 28px;
+  --r-xl: 36px;
+  --r-full: 999px;
+
+  --shadow-sm: 0 2px 10px -4px rgb(35 34 31 / 0.18);
+  --shadow-md: 0 14px 34px -22px rgb(35 34 31 / 0.45);
+  --shadow-lg: 0 30px 70px -40px rgb(35 34 31 / 0.5);
+
+  /* --- Movimiento ---------------------------------------- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+}

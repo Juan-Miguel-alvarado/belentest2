@@ -1,0 +1,13 @@
+/* ============================================================
+   fonts.css — tipografía del rediseño
+
+   Onest        → titulares
+   Gveret Levin → palabra clave rotulada dentro de los titulares
+   Inter        → texto corrido e interfaz
+
+   Se cargan desde Google Fonts. Para dejar el sitio sin peticiones
+   externas, descarga los woff2 y sustituye este @import por reglas
+   @font-face locales.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Gveret+Levin&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Onest:wght@100..900&display=swap');
