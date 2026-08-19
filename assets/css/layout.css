@@ -327,7 +327,7 @@ a.topbar__item:hover { color: var(--surface); }
   /* El borde inferior ya no va a cero: los botones quedaban pegados al
      final del hero. La foto se difumina antes de llegar abajo, así que
      el aire extra no le rompe el sangrado. */
-  padding-block: clamp(1rem, 3vw, 2.5rem) clamp(2.5rem, 5vw, 4.5rem);
+  padding-block: clamp(2.25rem, 4.5vw, 4rem) clamp(2.5rem, 5vw, 4.5rem);
   background:
     radial-gradient(60% 50% at 0% 0%,    var(--turquesa-tint), transparent 68%),
     radial-gradient(55% 45% at 100% 0%,  var(--rojo-tint),     transparent 68%),
