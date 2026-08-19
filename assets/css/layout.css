@@ -12,7 +12,10 @@
   font-size: var(--step--1);
 }
 
+/* A todo el ancho, igual que la cabecera: así el horario y el teléfono
+   quedan alineados con el logo y los botones de abajo. */
 .topbar__inner {
+  max-width: none;
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -48,7 +51,7 @@ a.topbar__item:hover { color: var(--surface); }
 /* En pantallas estrechas el horario completo empuja al teléfono fuera
    de la barra: se abrevia y deja el número siempre visible. */
 @media (max-width: 620px) {
-  .topbar { font-size: 0.78rem; }
+  .topbar { font-size: 1rem; }
   .topbar__inner { gap: 0.75rem; }
   .topbar__item svg { display: none; }
   .topbar__hours-long { display: none; }
@@ -66,17 +69,23 @@ a.topbar__item:hover { color: var(--surface); }
   position: sticky;
   top: 0;
   z-index: 60;
-  background: var(--surface);
-  transition: box-shadow 0.3s var(--ease);
+  /* El fondo lo pintan las dos franjas internas: así las esquinas
+     inferiores curvadas de la barra de menú dejan ver la página. */
+  background: transparent;
 }
 
-.masthead.is-stuck { box-shadow: var(--shadow-sm); }
+/* La cabecera ocupa todo el ancho: sus franjas no se limitan al shell. */
+.masthead__inner,
+.masthead .navbar {
+  max-width: none;
+}
 
 .masthead__inner {
   display: flex;
   align-items: center;
   gap: 1.25rem;
   padding-block: clamp(0.85rem, 1.6vw, 1.25rem);
+  background: var(--surface);
 }
 
 .brand {
@@ -100,15 +109,15 @@ a.topbar__item:hover { color: var(--surface); }
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
-  color: var(--ink);
+  color: var(--rojo-ink);
 }
 
 .brand__tag {
   display: block;
-  font-family: var(--font-hand);
-  font-size: clamp(0.82rem, 0.75rem + 0.3vw, 1rem);
-  line-height: 1.2;
-  color: var(--rojo-ink);
+  font-family: var(--font);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  line-height: 1.3;
+  color: var(--muted);
 }
 
 .masthead__actions { display: flex; align-items: center; gap: 0.7rem; }
@@ -121,19 +130,24 @@ a.topbar__item:hover { color: var(--surface); }
   .masthead__actions .btn { display: none; }
 }
 
-/* --- Menú en píldora --------------------------------------- */
+/* --- Barra de menú a todo el ancho -------------------------- */
 
-.navbar { padding-bottom: 0.85rem; }
+/* Va pegada al borde inferior de la cabecera: sin margen ni
+   padding lateral propios, la curva solo aparece abajo. */
+.navbar { padding-bottom: 0; padding-inline: 0; }
 
 .navwrap {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: clamp(0.5rem, 2vw, 2rem);
-  padding: 0.5rem clamp(0.75rem, 2vw, 1.75rem);
+  padding: 0.55rem var(--gutter);
   background: var(--surface);
-  border: 2px solid var(--line);
-  border-radius: var(--r-full);
+  /* Una línea gris fina cierra la cabecera; antes era una sombra al
+     hacer scroll, que competía con la curva de las esquinas. El borde
+     superior hace de divisoria con la franja del logo y los botones. */
+  border: 1px solid var(--line);
+  border-radius: 0 0 var(--r-nav) var(--r-nav);
 }
 
 .menu {
@@ -213,7 +227,7 @@ a.topbar__item:hover { color: var(--surface); }
 
 .dropdown__head {
   padding: 0.35rem 0.85rem;
-  font-size: 0.72rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -249,6 +263,8 @@ a.topbar__item:hover { color: var(--surface); }
 @media (max-width: 1080px) {
   .burger { display: flex; }
   .navbar { display: none; }
+  /* Sin barra de menú, la línea de cierre la lleva la franja superior. */
+  .masthead__inner { border-bottom: 1px solid var(--line); }
 }
 
 /* --- Menú móvil -------------------------------------------- */
@@ -301,9 +317,25 @@ a.topbar__item:hover { color: var(--surface); }
    HERO
    ============================================================ */
 
-.hero { position: relative; overflow: hidden; padding-block: clamp(1rem, 3vw, 2.5rem) 0; }
+/* El hero se apoya en un lavado de los tintes de marca en lugar de
+   blanco liso. Los degradados van anclados a las esquinas, no sueltos
+   en mitad del lienzo, y se apagan antes del borde inferior para que
+   no quede un corte contra la sección blanca que sigue. */
+.hero {
+  position: relative;
+  overflow: hidden;
+  /* El borde inferior ya no va a cero: los botones quedaban pegados al
+     final del hero. La foto se difumina antes de llegar abajo, así que
+     el aire extra no le rompe el sangrado. */
+  padding-block: clamp(1rem, 3vw, 2.5rem) clamp(2.5rem, 5vw, 4.5rem);
+  background:
+    radial-gradient(60% 50% at 0% 0%,    var(--turquesa-tint), transparent 68%),
+    radial-gradient(55% 45% at 100% 0%,  var(--rojo-tint),     transparent 68%),
+    radial-gradient(80% 32% at 50% 100%, var(--mostaza-tint),  transparent 76%),
+    var(--surface);
+}
 
-/* Mancha de color detrás de la foto: sustituye al recorte del boceto. */
+/* Manchas de color detrás de la foto: sustituyen al recorte del boceto. */
 .hero__blob {
   position: absolute;
   z-index: 0;
@@ -313,6 +345,7 @@ a.topbar__item:hover { color: var(--surface); }
   pointer-events: none;
 }
 
+/* Izquierda: el par principal, centrado en la foto. */
 .hero__blob--1 {
   width: 42vw; height: 42vw;
   max-width: 520px; max-height: 520px;
@@ -323,16 +356,35 @@ a.topbar__item:hover { color: var(--surface); }
 .hero__blob--2 {
   width: 30vw; height: 30vw;
   max-width: 380px; max-height: 380px;
-  bottom: 6%; left: 18%;
+  bottom: 6%; left: 16%;
   background: var(--mostaza);
-  opacity: 0.35;
+  opacity: 0.4;
+}
+
+/* Derecha: las dos completan la paleta, pero van pegadas al borde y
+   en su mayor parte fuera del lienzo. Así aportan un resplandor de
+   color sin ensuciar el fondo del titular y el texto. */
+.hero__blob--3 {
+  width: 34vw; height: 34vw;
+  max-width: 440px; max-height: 440px;
+  top: -14%; right: -14%;
+  background: var(--rojo);
+  opacity: 0.3;
+}
+
+.hero__blob--4 {
+  width: 24vw; height: 24vw;
+  max-width: 320px; max-height: 320px;
+  bottom: -6%; right: -8%;
+  background: var(--verde);
+  opacity: 0.32;
 }
 
 .hero__inner {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
+  grid-template-columns: 1.3fr 1fr;
   align-items: center;
   gap: clamp(1.5rem, 4vw, 4rem);
 }
@@ -345,7 +397,7 @@ a.topbar__item:hover { color: var(--surface); }
    borde inferior, donde el recorte del original queda a la vista. */
 .hero__media img {
   width: 100%;
-  max-width: 620px;
+  max-width: 740px;
   -webkit-mask-image: linear-gradient(to bottom, #000 92%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 92%, transparent 100%);
 }
@@ -357,6 +409,7 @@ a.topbar__item:hover { color: var(--surface); }
   align-items: center;
   gap: 0.6rem;
   padding: 0.65rem 1.1rem;
+  border: 2px solid transparent;
   background: var(--surface);
   border-radius: var(--r-full);
   box-shadow: var(--shadow-md);
@@ -366,15 +419,23 @@ a.topbar__item:hover { color: var(--surface); }
   white-space: nowrap;
 }
 
-.hero__badge b {
-  font-family: var(--font-display);
-  font-size: 1.35em;
-  line-height: 1;
-  color: var(--rojo-ink);
+/* Cada sello toma un color de la paleta en vez del blanco liso; el
+   texto usa el derivado -ink para mantener el contraste sobre el tinte. */
+.hero__badge--1 {
+  top: 16%; right: -2%;
+  background: var(--turquesa-tint);
+  border-color: var(--turquesa);
+  color: var(--turquesa-ink);
+  animation: float 6s ease-in-out infinite;
 }
 
-.hero__badge--1 { top: 14%; right: -4%; animation: float 6s ease-in-out infinite; }
-.hero__badge--2 { bottom: 16%; left: -6%; animation: float 6s ease-in-out 1.5s infinite; }
+.hero__badge--2 {
+  bottom: 16%; left: -2%;
+  background: var(--mostaza-tint);
+  border-color: var(--mostaza);
+  color: var(--mostaza-ink);
+  animation: float 6s ease-in-out 1.5s infinite;
+}
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -386,6 +447,20 @@ a.topbar__item:hover { color: var(--surface); }
 
 .hero__lede { margin-top: 1.5rem; max-width: 34rem; }
 .hero__chips { margin-top: 2rem; }
+
+/* En el hero los chips van rellenos de su color desde el principio,
+   no solo al pasar el cursor: son el primer golpe de paleta bajo el
+   titular. Se limita a .hero__chips para no tocar los de otras zonas. */
+.hero__chips .chip--rojo     { background: var(--rojo-tint);     border-color: var(--rojo);     color: var(--rojo-ink); }
+.hero__chips .chip--turquesa { background: var(--turquesa-tint); border-color: var(--turquesa); color: var(--turquesa-ink); }
+.hero__chips .chip--mostaza  { background: var(--mostaza-tint);  border-color: var(--mostaza);  color: var(--mostaza-ink); }
+
+/* Al pasar el cursor pasan a color pleno; se usa el derivado -ink
+   porque el color puro no aguanta texto blanco encima. */
+.hero__chips .chip--rojo:hover     { background: var(--rojo-ink);     border-color: var(--rojo-ink);     color: var(--surface); }
+.hero__chips .chip--turquesa:hover { background: var(--turquesa-ink); border-color: var(--turquesa-ink); color: var(--surface); }
+.hero__chips .chip--mostaza:hover  { background: var(--mostaza-ink);  border-color: var(--mostaza-ink);  color: var(--surface); }
+
 .hero__actions { margin-top: 2rem; }
 
 @media (max-width: 940px) {
@@ -401,7 +476,7 @@ a.topbar__item:hover { color: var(--surface); }
 /* En móvil la foto se estrecha y los sellos caerían sobre las caras:
    ambos bajan a la zona de los uniformes, que sí admite taparse. */
 @media (max-width: 560px) {
-  .hero__badge { font-size: 0.78rem; padding: 0.5rem 0.85rem; }
+  .hero__badge { font-size: 1rem; padding: 0.5rem 0.85rem; }
   .hero__badge--1 { top: auto; bottom: 26%; right: 0; }
   .hero__badge--2 { bottom: 4%; left: 0; }
 }
@@ -536,17 +611,34 @@ a.topbar__item:hover { color: var(--surface); }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(1.25rem, 2.5vw, 2rem);
+  /* Hueco para la parte del círculo que sobresale por encima de las
+     tarjetas. Va aquí y no en el margen del encabezado porque ese margen
+     lo comparten todas las secciones. */
+  padding-top: clamp(6rem, 11.5vw, 10rem);
 }
 
 .program {
+  /* El padding y el saliente van en variables porque la figura los
+     necesita para calcular su margen negativo.
+
+     --lift en porcentaje es deliberado: los porcentajes de margen se
+     resuelven contra el ancho del bloque contenedor, que es el ancho de
+     contenido de la tarjeta, y la figura mide el 88% de ese ancho y es
+     cuadrada. El 45% deja el borde de la tarjeta casi en el centro del
+     círculo, que está al 57% de la altura de la figura. */
+  --pad: clamp(1.5rem, 2.5vw, 2rem);
+  --lift: 45%;
+
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: clamp(1.5rem, 2.5vw, 2rem);
+  padding: var(--pad);
   background: var(--surface);
   border: 2px solid var(--line);
   border-radius: var(--r-lg);
-  overflow: hidden;
+  /* overflow visible: el conjunto de disco y retrato asoma por encima
+     del borde superior de la tarjeta. */
+  overflow: visible;
   transition: transform 0.3s var(--ease), border-color 0.3s var(--ease),
     box-shadow 0.3s var(--ease);
 }
@@ -560,27 +652,62 @@ a.topbar__item:hover { color: var(--surface); }
 .program--turquesa:hover { border-color: var(--turquesa); }
 .program--mostaza:hover  { border-color: var(--mostaza); }
 
-/* Círculo de color tras el retrato del estudiante */
+/* Círculo de color tras el retrato del estudiante.
+
+   El disco no llena la caja: ocupa el 86% de abajo, y ese 14% libre de
+   arriba es por donde se desborda el retrato. */
 .program__figure {
   position: relative;
-  align-self: flex-end;
-  width: 100%;
-  margin-bottom: -0.5rem;
+  align-self: center;
+  /* flex: none para que la columna flex de la tarjeta no pueda
+     comprimir la figura en vertical y volver óvalo el círculo. */
+  flex: none;
+  /* La figura es cuadrada, así que su ancho manda sobre su alto: al 88%
+     la tarjeta se acorta sin recortar más la foto, porque la proporción
+     de la caja no cambia y el círculo solo escala. */
+  width: 88%;
+  /* Sube la figura por encima del borde: anula el padding superior y
+     saca --lift fuera de la tarjeta. De paso la acorta en esa misma
+     medida, porque el margen negativo descuenta altura. */
+  margin-top: calc(-1 * (var(--pad) + var(--lift)));
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
   aspect-ratio: 1 / 1;
 }
 
 .program__disc {
   position: absolute;
   inset: auto 0 0;
-  width: 100%;
+  width: 86%;
+  margin-inline: auto;
   aspect-ratio: 1 / 1;
   border-radius: var(--r-full);
+  transition: background 0.3s var(--ease);
 }
 
 .program--rojo     .program__disc { background: var(--rojo-tint); }
 .program--turquesa .program__disc { background: var(--turquesa-tint); }
 .program--mostaza  .program__disc { background: var(--mostaza-tint); }
 
+/* Al pasar el cursor el disco salta del tinte al color pleno. */
+.program--rojo:hover     .program__disc { background: var(--rojo); }
+.program--turquesa:hover .program__disc { background: var(--turquesa); }
+.program--mostaza:hover  .program__disc { background: var(--mostaza); }
+
+/* La foto se enmascara con la unión de dos capas: por debajo, el propio
+   disco, que corta la curva y esconde el corte plano que traen los PNG
+   en su borde inferior; por encima, la imagen sale libre.
+
+   La capa de arriba se apaga del 52% al 57% en vez de cortar en seco: la
+   zona libre es tan ancha como la caja y el disco no llega a tanto, así
+   que un corte duro dejaría un escalón vertical a media altura. El
+   desvanecido arranca muy cerca del 57%, donde el círculo alcanza su
+   máxima anchura, a propósito: más arriba el círculo se estrecha y el
+   degradado se comía los brazos abiertos del niño de preescolar.
+
+   Sobre una figura cuadrada un radio del 43% es un círculo exacto y
+   coincide con el disco del 86%, que va pegado abajo: 100 − 86/2 = 57%
+   para el centro. Si se cambia el tamaño del disco hay que rehacer los
+   tres números (43%, 57% y el arranque del degradado). */
 .program__figure img {
   position: absolute;
   inset: 0;
@@ -588,8 +715,16 @@ a.topbar__item:hover { color: var(--surface); }
   height: 100%;
   object-fit: cover;
   object-position: center 22%;
-  border-radius: var(--r-full);
-  mix-blend-mode: multiply;
+  /* Sin mix-blend-mode: mezclaba la foto con el disco y partía en dos al
+     estudiante, teñido abajo y con su color propio arriba. */
+  -webkit-mask-image:
+    linear-gradient(#000 0 52%, transparent 57%),
+    radial-gradient(ellipse 43% 43% at 50% 57%, #000 99.5%, transparent 100%);
+  mask-image:
+    linear-gradient(#000 0 52%, transparent 57%),
+    radial-gradient(ellipse 43% 43% at 50% 57%, #000 99.5%, transparent 100%);
+  -webkit-mask-composite: source-over;
+  mask-composite: add;
   transition: transform 0.4s var(--ease);
 }
 
@@ -618,7 +753,16 @@ a.topbar__item:hover { color: var(--surface); }
 .program--mostaza  .link { color: var(--mostaza-ink); }
 
 @media (max-width: 900px) {
-  .programs { grid-template-columns: 1fr; max-width: 26rem; margin-inline: auto; }
+  .programs {
+    grid-template-columns: 1fr;
+    max-width: 26rem;
+    margin-inline: auto;
+    padding-top: 7rem;
+  }
+
+  /* Aquí la figura la topa su max-width, no el ancho de la tarjeta, así
+     que el saliente deja de poder ir en porcentaje: 45% de 15rem = 6.75rem. */
+  .program { --lift: 6.75rem; }
   .program__figure { max-width: 15rem; align-self: center; }
 }
 
@@ -643,7 +787,8 @@ a.topbar__item:hover { color: var(--surface); }
   transition: transform 0.3s var(--ease);
 }
 
-.testimonial:hover { transform: translateY(-6px); }
+/* Al pasar el cursor se amplía la tarjeta entera, no la foto de dentro. */
+.testimonial:hover { transform: scale(1.025); }
 
 .testimonial__media { position: relative; aspect-ratio: 3 / 4; background: var(--ink); }
 
@@ -651,17 +796,16 @@ a.topbar__item:hover { color: var(--surface); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s var(--ease);
 }
 
-.testimonial:hover .testimonial__media img { transform: scale(1.05); }
-
+/* Botón de reproducción sin velo: antes llevaba un degradado oscuro
+   encima de toda la foto. */
 .testimonial__play {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
-  background: linear-gradient(180deg, rgb(35 34 31 / 0.1), rgb(35 34 31 / 0.45));
+  background: none;
 }
 
 .testimonial__play span {
@@ -676,6 +820,19 @@ a.topbar__item:hover { color: var(--surface); }
 
 .testimonial__play:hover span { transform: scale(1.12); }
 .testimonial__play svg { width: 40%; height: 40%; fill: var(--rojo); margin-left: 8%; }
+
+/* El video sustituye a la foto dentro de la propia tarjeta: ocupa el
+   mismo hueco y el botón desaparece al arrancar. */
+.testimonial__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--ink);
+}
+
+.testimonial__media.is-playing .testimonial__play { display: none; }
 
 .testimonial__foot {
   display: flex;
@@ -780,104 +937,132 @@ a.topbar__item:hover { color: var(--surface); }
 }
 
 /* ============================================================
-   NOTICIAS Y EVENTOS
+   VIDA BELENISTA — collage
    ============================================================ */
 
-.news {
+/* Mosaico de 4 columnas con filas de altura fija: cada pieza ocupa un
+   número distinto de celdas, que es lo que rompe la retícula y le da el
+   aire de collage en vez de galería. */
+.collage {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.25rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: clamp(7rem, 13vw, 11rem);
+  gap: clamp(0.6rem, 1.4vw, 1rem);
 }
 
-.news__card {
-  display: flex;
-  flex-direction: column;
-  background: var(--surface);
-  border: 2px solid var(--line);
-  border-radius: var(--r-lg);
+.collage__item {
+  position: relative;
+  display: block;
+  padding: 0;
   overflow: hidden;
-  text-decoration: none;
-  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease),
-    border-color 0.3s var(--ease);
+  background: var(--surface-2);
+  border: 0;
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  /* La inclinación de origen la lleva cada pieza; aquí solo se anima. */
+  transition: transform 0.35s var(--ease-back), box-shadow 0.35s var(--ease),
+    opacity 0.35s var(--ease);
 }
 
-.news__card:hover {
-  transform: translateY(-6px);
-  border-color: var(--mostaza);
+/* Reparto de celdas y ligera inclinación alterna. */
+.collage__item--1 { grid-column: span 2; grid-row: span 2; transform: rotate(-1.2deg); }
+.collage__item--2 { grid-column: span 2; grid-row: span 1; transform: rotate(0.9deg); }
+.collage__item--3 { grid-column: span 1; grid-row: span 1; transform: rotate(-0.8deg); }
+.collage__item--4 { grid-column: span 1; grid-row: span 1; transform: rotate(1.4deg); }
+.collage__item--5 { grid-column: span 2; grid-row: span 2; transform: rotate(1deg); }
+.collage__item--6 { grid-column: span 2; grid-row: span 2; transform: rotate(-1deg); }
+
+/* Al pasar el cursor la pieza se endereza y se levanta: el contraste con
+   la inclinación de reposo es lo que da la sensación de collage vivo. */
+.collage__item:hover,
+.collage__item:focus-visible {
+  transform: rotate(0deg) scale(1.03);
   box-shadow: var(--shadow-md);
+  z-index: 2;
 }
 
-.news__media { position: relative; aspect-ratio: 4 / 3; background: var(--surface-2); }
-
-.news__media img {
+.collage__item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s var(--ease);
 }
 
-/* Los comunicados son piezas verticales: recortarlas parte el texto,
-   así que se muestran completas sobre el fondo tenue. */
-.news__media--poster { background: var(--mostaza-tint); }
-.news__media--poster img { object-fit: contain; }
+.collage__item:hover img,
+.collage__item:focus-visible img { transform: scale(1.06); }
 
-.news__card:hover .news__media img { transform: scale(1.05); }
-
-.news__tag {
+/* Rótulo velado: en reposo solo se insinúa desde abajo. */
+.collage__label {
   position: absolute;
-  top: 0.9rem;
-  left: 0.9rem;
-  display: inline-flex;
-  align-items: center;
+  inset: auto 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 0.4rem;
-  padding: 0.3rem 0.8rem;
-  font-size: 0.78rem;
+  padding: 2.5rem 1rem 1rem;
+  text-align: left;
+  background: linear-gradient(to top, rgb(35 34 31 / 0.85), transparent);
+  transform: translateY(38%);
+  opacity: 0;
+  transition: transform 0.35s var(--ease), opacity 0.35s var(--ease);
+}
+
+.collage__item:hover .collage__label,
+.collage__item:focus-visible .collage__label,
+.collage__item.is-open .collage__label {
+  transform: none;
+  opacity: 1;
+}
+
+.collage__tag {
+  display: inline-flex;
+  padding: 0.2rem 0.7rem;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--ink);
-  background: var(--surface);
   border-radius: var(--r-full);
 }
 
-.news__tag svg { width: 0.9rem; height: 0.9rem; }
-.news__tag--video { background: var(--rojo); color: var(--surface); }
+.collage__tag--rojo     { background: var(--rojo); color: var(--surface); }
+.collage__tag--turquesa { background: var(--turquesa); }
+.collage__tag--mostaza  { background: var(--mostaza); }
+.collage__tag--verde    { background: var(--verde); }
 
-.news__body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.25rem 1.4rem 1.5rem;
-  flex: 1;
-}
-
-.news__date {
+.collage__text {
   font-size: var(--step--1);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--mostaza-ink);
+  line-height: 1.4;
+  color: var(--surface);
 }
 
-.news__body h3 { font-size: var(--step-1); }
-.news__body p { font-size: var(--step--1); color: var(--muted); }
-
-.news__more {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: auto;
-  padding-top: 1rem;
-  font-size: var(--step--1);
-  font-weight: 600;
-  color: var(--rojo-ink);
+/* Pieza abierta: crece sobre el propio collage, sin ventana encima ni
+   reflujo de la retícula. Crece con transform, que no toca el layout, así
+   que las demás piezas no se mueven de su sitio. */
+.collage__item.is-open {
+  transform: rotate(0deg) scale(1.32);
+  box-shadow: var(--shadow-lg);
+  z-index: 3;
 }
 
-.news__more svg { width: 1em; height: 1em; transition: transform 0.25s var(--ease-back); }
-.news__card:hover .news__more svg { transform: translateX(4px); }
+.collage.has-open .collage__item:not(.is-open) { opacity: 0.55; }
 
 @media (max-width: 900px) {
-  .news { grid-template-columns: 1fr; max-width: 26rem; margin-inline: auto; }
+  .collage { grid-template-columns: repeat(2, 1fr); }
+  .collage__item--1,
+  .collage__item--2,
+  .collage__item--5,
+  .collage__item--6 { grid-column: span 2; grid-row: span 2; }
+  .collage__item--3,
+  .collage__item--4 { grid-column: span 1; grid-row: span 1; }
+  .collage__item.is-open { transform: rotate(0deg) scale(1.18); }
+}
+
+/* Sin inclinaciones ni crecimiento para quien pide menos movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  .collage__item { transform: none; }
+  .collage__item:hover,
+  .collage__item:focus-visible { transform: none; }
 }
 
 /* ============================================================
@@ -934,7 +1119,7 @@ a.topbar__item:hover { color: var(--surface); }
 }
 
 .footer .brand__name { color: var(--surface); }
-.footer .brand__tag { color: var(--verde); }
+.footer .brand__tag { color: var(--surface); }
 
 .footer__about { margin-top: 1.25rem; font-size: var(--step--1); max-width: 26rem; }
 
@@ -1040,54 +1225,3 @@ a.topbar__item:hover { color: var(--surface); }
 .wa-fab.is-in { opacity: 1; visibility: visible; transform: none; }
 .wa-fab:hover { transform: scale(1.08); }
 .wa-fab svg { width: 1.75rem; height: 1.75rem; }
-
-/* ============================================================
-   MODAL DE VIDEO
-   ============================================================ */
-
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  display: grid;
-  place-items: center;
-  padding: var(--gutter);
-  background: rgb(35 34 31 / 0.88);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.28s var(--ease), visibility 0.28s;
-}
-
-.modal.is-open { opacity: 1; visibility: visible; }
-
-.modal__box {
-  position: relative;
-  width: min(100%, 420px);
-  aspect-ratio: 9 / 16;
-  max-height: 82vh;
-  background: var(--ink);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  transform: scale(0.94);
-  transition: transform 0.32s var(--ease-back);
-}
-
-.modal.is-open .modal__box { transform: none; }
-.modal__box video { width: 100%; height: 100%; object-fit: cover; }
-
-.modal__close {
-  position: absolute;
-  top: calc(-1 * clamp(2.75rem, 5vw, 3.5rem));
-  right: 0;
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  color: var(--surface);
-  border: 2px solid rgb(255 255 255 / 0.35);
-  border-radius: var(--r-full);
-  transition: background 0.2s var(--ease), color 0.2s var(--ease);
-}
-
-.modal__close:hover { background: var(--surface); color: var(--ink); }
-.modal__close svg { width: 1.1rem; height: 1.1rem; }

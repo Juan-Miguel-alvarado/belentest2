@@ -1,6 +1,6 @@
 /* ============================================================
    main.js — comportamiento del sitio
-   Navegación · menú móvil · acordeón · video · modal · utilidades
+   Navegación · menú móvil · acordeón · video · utilidades
    ============================================================ */
 
 (function () {
@@ -135,51 +135,61 @@
     video.addEventListener("play", () => wrap.classList.add("is-playing"));
   }
 
-  /* --- 6. Modal de video (testimonios) ----------------------- */
-  function initModal() {
-    const modal = $("[data-modal]");
-    if (!modal) return;
-
-    const player = $("[data-modal-player]", modal);
-    const triggers = $$("[data-modal-video]");
-    if (!player || !triggers.length) return;
-
-    let lastFocus = null;
-
-    const close = () => {
-      modal.classList.remove("is-open");
-      document.body.classList.remove("is-locked");
-      player.pause();
-      player.removeAttribute("src");
-      player.load();
-      if (lastFocus) lastFocus.focus();
-    };
+  /* --- 6. Video del testimonio, dentro de la propia tarjeta -- */
+  function initInlineVideo() {
+    const triggers = $$("[data-inline-video]");
+    if (!triggers.length) return;
 
     triggers.forEach((btn) => {
       btn.addEventListener("click", () => {
-        lastFocus = btn;
-        player.src = btn.dataset.modalVideo;
-        modal.classList.add("is-open");
-        document.body.classList.add("is-locked");
-        $("[data-modal-close]", modal).focus();
-        const attempt = player.play();
+        const media = btn.closest(".testimonial__media");
+        if (!media || media.querySelector("video")) return;
+
+        const video = document.createElement("video");
+        video.className = "testimonial__video";
+        video.src = btn.dataset.inlineVideo;
+        video.controls = true;
+        video.playsInline = true;
+        media.appendChild(video);
+        media.classList.add("is-playing");
+
+        const attempt = video.play();
         if (attempt && typeof attempt.catch === "function") attempt.catch(() => {});
       });
     });
+  }
 
-    $("[data-modal-close]", modal).addEventListener("click", close);
+  /* --- 7. Collage de vida belenista -------------------------- */
+  /* Al pulsar una pieza crece dentro del propio collage; no se abre
+     ninguna ventana encima. Solo puede haber una abierta a la vez. */
+  function initCollage() {
+    const collage = $(".collage");
+    if (!collage) return;
 
-    // Clic en el fondo, fuera de la caja del video.
-    modal.addEventListener("click", (e) => {
-      if (!e.target.closest(".modal__box")) close();
+    const items = $$(".collage__item", collage);
+    if (!items.length) return;
+
+    const setOpen = (target) => {
+      items.forEach((item) => {
+        const open = item === target;
+        item.classList.toggle("is-open", open);
+        item.setAttribute("aria-expanded", String(open));
+      });
+      collage.classList.toggle("has-open", Boolean(target));
+    };
+
+    items.forEach((item) => {
+      item.addEventListener("click", () => {
+        setOpen(item.classList.contains("is-open") ? null : item);
+      });
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.classList.contains("is-open")) close();
+      if (e.key === "Escape" && collage.classList.contains("has-open")) setOpen(null);
     });
   }
 
-  /* --- 7. Botón flotante de WhatsApp ------------------------- */
+  /* --- 8. Botón flotante de WhatsApp ------------------------- */
   function initFab() {
     const fab = $(".wa-fab");
     if (!fab) return;
@@ -188,7 +198,7 @@
     onScroll();
   }
 
-  /* --- 8. Sección activa en el menú -------------------------- */
+  /* --- 9. Sección activa en el menú -------------------------- */
   /* Resalta el enlace del menú según la sección que se está viendo. */
   function initScrollSpy() {
     const links = $$('.menu__link[href^="#"]');
@@ -218,7 +228,7 @@
     map.forEach((_, section) => io.observe(section));
   }
 
-  /* --- 9. Detalles de utilidad ------------------------------- */
+  /* --- 10. Detalles de utilidad ------------------------------- */
   function initMisc() {
     $$("[data-year]").forEach((el) => {
       el.textContent = String(new Date().getFullYear());
@@ -231,7 +241,8 @@
     initMobileMenu();
     initFaq();
     initPlayer();
-    initModal();
+    initInlineVideo();
+    initCollage();
     initFab();
     initScrollSpy();
     initMisc();
