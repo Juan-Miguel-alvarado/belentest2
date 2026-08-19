@@ -317,17 +317,34 @@ a.topbar__item:hover { color: var(--surface); }
    HERO
    ============================================================ */
 
-/* El hero se apoya en un lavado de los tintes de marca en lugar de
-   blanco liso. Los degradados van anclados a las esquinas, no sueltos
-   en mitad del lienzo, y se apagan antes del borde inferior para que
-   no quede un corte contra la sección blanca que sigue. */
+/* El hero es un carrusel de dos diapositivas. El fondo y las manchas de
+   color pasaron a la primera, para que la segunda pueda tener el suyo. */
 .hero {
   position: relative;
   overflow: hidden;
-  /* El borde inferior ya no va a cero: los botones quedaban pegados al
-     final del hero. La foto se difumina antes de llegar abajo, así que
-     el aire extra no le rompe el sangrado. */
-  padding-block: clamp(2.25rem, 4.5vw, 4rem) clamp(2.5rem, 5vw, 4.5rem);
+}
+
+/* Carril horizontal: las diapositivas van una al lado de otra y el JS
+   desplaza el carril. Al ir en el flujo, la altura la marca la más alta
+   y no hay que medirla desde JS —importante de cara a WordPress—. */
+.hero__track {
+  display: flex;
+  transition: transform 0.6s var(--ease);
+}
+
+.hero__slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 100%;
+  /* El borde inferior no va a cero: los botones quedaban pegados al final. */
+  padding-block: clamp(2.25rem, 4.5vw, 4rem) clamp(4.5rem, 7vw, 6.5rem);
+}
+
+/* Lavado de los tintes de marca en lugar de blanco liso. Los degradados
+   van anclados a las esquinas, no sueltos en mitad del lienzo, y se
+   apagan antes del borde inferior para que no quede un corte contra la
+   sección blanca que sigue. */
+.hero__slide--intro {
   background:
     radial-gradient(60% 50% at 0% 0%,    var(--turquesa-tint), transparent 68%),
     radial-gradient(55% 45% at 100% 0%,  var(--rojo-tint),     transparent 68%),
@@ -462,6 +479,157 @@ a.topbar__item:hover { color: var(--surface); }
 .hero__chips .chip--mostaza:hover  { background: var(--mostaza-ink);  border-color: var(--mostaza-ink);  color: var(--surface); }
 
 .hero__actions { margin-top: 2rem; }
+
+/* --- Diapositiva 2: video de fondo -------------------------- */
+
+/* El video cubre la diapositiva entera; el velo blanco tapa la mitad
+   izquierda y se desvanece hacia el centro, así que a la derecha el
+   video queda a todo color y a la izquierda el texto se lee sobre
+   blanco limpio. Sin recortes ni máscaras: es un solo degradado. */
+.hero__slide--film { background: var(--surface); }
+
+.hero__film {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* El velo lleva el color: dos tintes de marca sobre la mitad blanca, que
+   se apagan justo en la zona de transición y tiñen el borde del video sin
+   llegar a lavar la mitad de la derecha. */
+.hero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(55% 78% at 4% 18%, var(--turquesa-tint), transparent 66%),
+    radial-gradient(48% 58% at 0% 98%, var(--mostaza-tint),  transparent 68%),
+    linear-gradient(
+      to right,
+      var(--surface) 0%,
+      var(--surface) 36%,
+      rgb(255 255 255 / 0.72) 52%,
+      transparent 72%
+    );
+}
+
+/* Una sola columna: el texto ocupa la mitad blanca y deja ver el video. */
+.hero__inner--film {
+  /* Por encima del velo, que va en z-index 1. */
+  z-index: 2;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: clamp(24rem, 42vw, 34rem);
+  align-content: center;
+}
+
+.hero__inner--film .hero__body { max-width: 34rem; }
+.hero__inner--film .hero__title { font-size: var(--step-4); }
+
+/* La palabra rotulada va en turquesa, y una regla de color abre el bloque:
+   son los dos golpes de color que sostienen el texto sobre el blanco. */
+.hero__inner--film .hand { color: var(--turquesa-ink); }
+
+.hero__inner--film .hero__title::before {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 5px;
+  margin-bottom: 1.25rem;
+  border-radius: var(--r-full);
+  background: var(--rojo);
+}
+
+/* --- Controles del carrusel --------------------------------- */
+
+.hero__controls {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: clamp(1rem, 2.5vw, 1.75rem);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transform: translateX(-50%);
+}
+
+.hero__arrow {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--ink);
+  background: rgb(255 255 255 / 0.85);
+  border: 2px solid var(--line);
+  border-radius: var(--r-full);
+  cursor: pointer;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease),
+    transform 0.25s var(--ease-back);
+}
+
+.hero__arrow:hover {
+  background: var(--surface);
+  border-color: var(--rojo);
+  color: var(--rojo-ink);
+  transform: scale(1.08);
+}
+
+.hero__arrow svg { width: 1.1rem; height: 1.1rem; }
+
+.hero__dots { display: flex; align-items: center; gap: 0.45rem; }
+
+.hero__dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  padding: 0;
+  background: rgb(255 255 255 / 0.85);
+  border: 2px solid var(--line);
+  border-radius: var(--r-full);
+  cursor: pointer;
+  transition: width 0.3s var(--ease), background 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+
+/* La diapositiva activa se marca alargando el punto, no solo con color:
+   así se distingue sin depender de percibir el matiz. */
+.hero__dot[aria-current="true"] {
+  width: 1.9rem;
+  background: var(--rojo);
+  border-color: var(--rojo);
+}
+
+@media (max-width: 940px) {
+  .hero__veil {
+    /* En vertical el velo se apoya arriba: blanco sólido tras el texto y
+       transparente en la mitad de abajo, que es donde queda el video a
+       todo color. Los tintes suben con él. */
+    background:
+      radial-gradient(80% 30% at 14% 8%,  var(--turquesa-tint), transparent 70%),
+      radial-gradient(70% 26% at 90% 30%, var(--mostaza-tint),  transparent 72%),
+      linear-gradient(
+        to bottom,
+        var(--surface) 0%,
+        var(--surface) 42%,
+        rgb(255 255 255 / 0.78) 58%,
+        transparent 80%
+      );
+  }
+
+  .hero__inner--film {
+    min-height: clamp(28rem, 78vw, 34rem);
+    align-content: start;
+    text-align: center;
+  }
+
+  .hero__inner--film .hero__body { max-width: none; }
+  .hero__inner--film .hero__actions { justify-content: center; }
+  /* La regla de color es un bloque de ancho fijo: sin esto el text-align
+     no la centra y queda descolgada a la izquierda. */
+  .hero__inner--film .hero__title::before { margin-inline: auto; }
+}
 
 @media (max-width: 940px) {
   .hero__inner { grid-template-columns: 1fr; text-align: center; }
@@ -758,6 +926,10 @@ a.topbar__item:hover { color: var(--surface); }
     max-width: 26rem;
     margin-inline: auto;
     padding-top: 7rem;
+    /* En una sola columna las tarjetas se apilan, y el círculo de cada
+       una asoma 6.75rem por encima de su borde: sin este hueco se monta
+       sobre el pie de la tarjeta anterior. Debe superar a --lift. */
+    row-gap: 8.75rem;
   }
 
   /* Aquí la figura la topa su max-width, no el ancho de la tarjeta, así

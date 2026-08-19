@@ -149,51 +149,108 @@
 <!-- ============================================================
      HERO
      ============================================================ -->
-<section class="hero" id="inicio">
-  <span class="hero__blob hero__blob--1" aria-hidden="true"></span>
-  <span class="hero__blob hero__blob--2" aria-hidden="true"></span>
-  <span class="hero__blob hero__blob--3" aria-hidden="true"></span>
-  <span class="hero__blob hero__blob--4" aria-hidden="true"></span>
+<section class="hero" id="inicio" aria-roledescription="carrusel" aria-label="Presentación del colegio">
+  <div class="hero__track" data-hero-track>
 
-  <div class="shell hero__inner">
-    <div class="hero__media reveal-img">
-      <img src="assets/img/estudiantesecundarios.png"
-           alt="Dos estudiantes de secundaria del Gimnasio Cristiano Belén con el uniforme del colegio"
-           width="1536" height="1024" fetchpriority="high" decoding="async">
+    <!-- Slide 1 — matrículas -->
+    <div class="hero__slide hero__slide--intro" role="group" aria-roledescription="diapositiva" aria-label="1 de 2: Matrículas abiertas">
+      <span class="hero__blob hero__blob--1" aria-hidden="true"></span>
+      <span class="hero__blob hero__blob--2" aria-hidden="true"></span>
+      <span class="hero__blob hero__blob--3" aria-hidden="true"></span>
+      <span class="hero__blob hero__blob--4" aria-hidden="true"></span>
 
-      <div class="hero__badge hero__badge--1">Pre-Jardín a 11°</div>
-      <div class="hero__badge hero__badge--2">Formación integral</div>
-    </div>
+      <div class="shell hero__inner">
+        <div class="hero__media reveal-img">
+          <img src="assets/img/estudiantesecundarios.png"
+               alt="Dos estudiantes de secundaria del Gimnasio Cristiano Belén con el uniforme del colegio"
+               width="1536" height="1024" fetchpriority="high" decoding="async">
 
-    <div class="hero__body">
-      <h1 class="hero__title reveal">
-        Matrículas
-        <span class="mark">ABIERTAS</span>
-      </h1>
+          <div class="hero__badge hero__badge--1">Pre-Jardín a 11°</div>
+          <div class="hero__badge hero__badge--2">Formación integral</div>
+        </div>
 
-      <p class="hero__lede lede reveal" style="--i:1">
-        Estamos recibiendo estudiantes nuevos para el año lectivo 2026 en todos
-        los niveles. Educación cristiana, acompañamiento cercano y formación
-        integral desde Pre-Jardín hasta Once.
-      </p>
+        <div class="hero__body">
+          <h1 class="hero__title reveal">
+            Matrículas
+            <span class="mark">ABIERTAS</span>
+          </h1>
 
-      <ul class="chips hero__chips reveal" style="--i:2">
-        <li><a class="chip chip--rojo" href="#preescolar">Pre-escolar</a></li>
-        <li><a class="chip chip--turquesa" href="#primaria">Primaria</a></li>
-        <li><a class="chip chip--mostaza" href="#secundaria">Secundaria</a></li>
-      </ul>
+          <p class="hero__lede lede reveal" style="--i:1">
+            Estamos recibiendo estudiantes nuevos para el año lectivo 2026 en todos
+            los niveles. Educación cristiana, acompañamiento cercano y formación
+            integral desde Pre-Jardín hasta Once.
+          </p>
 
-      <div class="actions hero__actions reveal" style="--i:3">
-        <a class="btn btn--lg" href="#admisiones">
-          Solicita tu cupo
-          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-        <a class="link" href="#nosotros">
-          Conoce el colegio
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </a>
+          <ul class="chips hero__chips reveal" style="--i:2">
+            <li><a class="chip chip--rojo" href="#preescolar">Pre-escolar</a></li>
+            <li><a class="chip chip--turquesa" href="#primaria">Primaria</a></li>
+            <li><a class="chip chip--mostaza" href="#secundaria">Secundaria</a></li>
+          </ul>
+
+          <div class="actions hero__actions reveal" style="--i:3">
+            <a class="btn btn--lg" href="#admisiones">
+              Solicita tu cupo
+              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a class="link" href="#nosotros">
+              Conoce el colegio
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- Slide 2 — video de fondo, blanco a la izquierda -->
+    <div class="hero__slide hero__slide--film" role="group" aria-roledescription="diapositiva" aria-label="2 de 2: Educamos para la eternidad">
+      <video class="hero__film" muted loop playsinline preload="none"
+             poster="assets/video/hero-poster.jpg" aria-hidden="true" tabindex="-1">
+        <source src="assets/video/hero.mp4" type="video/mp4">
+      </video>
+      <span class="hero__veil" aria-hidden="true"></span>
+
+      <div class="shell hero__inner hero__inner--film">
+        <div class="hero__body">
+          <h2 class="hero__title">
+            Educamos para la
+            <span class="hand">eternidad</span>
+          </h2>
+
+          <p class="hero__lede lede">
+            Colegio cristiano evangélico en Montería. Formamos con valores por
+            dentro y desarrollo por fuera, desde Pre-Jardín hasta Once.
+          </p>
+
+          <div class="actions hero__actions">
+            <a class="btn btn--lg" href="#admisiones">
+              Admisiones 2026
+              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a class="link" href="#nosotros">
+              Conoce el colegio
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Controles -->
+  <div class="hero__controls">
+    <button class="hero__arrow" type="button" data-hero-prev aria-label="Diapositiva anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+
+    <div class="hero__dots" data-hero-dots>
+      <button class="hero__dot" type="button" data-hero-go="0" aria-label="Ir a la diapositiva 1"></button>
+      <button class="hero__dot" type="button" data-hero-go="1" aria-label="Ir a la diapositiva 2"></button>
+    </div>
+
+    <button class="hero__arrow" type="button" data-hero-next aria-label="Diapositiva siguiente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
   </div>
 </section>
 

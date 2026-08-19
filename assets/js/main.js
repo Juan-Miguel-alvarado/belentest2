@@ -113,7 +113,78 @@
     });
   }
 
-  /* --- 5. Video de la sección «Nosotros» --------------------- */
+  /* --- 5. Carrusel del hero ---------------------------------- */
+  /* Desplaza un carril horizontal. Sin librerías ni medidas en JS: la
+     posición es un porcentaje, así que sobrevive a cualquier cambio de
+     altura o de ancho sin recalcular nada. */
+  function initHero() {
+    const track = $("[data-hero-track]");
+    if (!track) return;
+
+    const slides = $$(".hero__slide", track);
+    const dots = $$("[data-hero-go]");
+    if (slides.length < 2) return;
+
+    const hero = track.closest(".hero");
+    let index = 0;
+    let timer = null;
+
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const show = (next) => {
+      index = (next + slides.length) % slides.length;
+      track.style.transform = "translateX(-" + index * 100 + "%)";
+
+      slides.forEach((slide, i) => {
+        const active = i === index;
+        /* inert saca del tabulador los enlaces de la diapositiva oculta. */
+        slide.inert = !active;
+        slide.setAttribute("aria-hidden", String(!active));
+
+        /* El video de fondo solo corre en su diapositiva: fuera de ella
+           no gasta datos ni batería. Con preload="none" ni siquiera se
+           descarga hasta la primera vez que se muestra. */
+        const film = $(".hero__film", slide);
+        if (film) {
+          if (active) {
+            const attempt = film.play();
+            if (attempt && typeof attempt.catch === "function") attempt.catch(() => {});
+          } else {
+            film.pause();
+          }
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        dot.setAttribute("aria-current", String(i === index));
+      });
+    };
+
+    const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+    const start = () => {
+      stop();
+      if (calm.matches) return;
+      timer = setInterval(() => show(index + 1), 7000);
+    };
+
+    const goTo = (next) => { show(next); start(); };
+
+    $("[data-hero-next]").addEventListener("click", () => goTo(index + 1));
+    $("[data-hero-prev]").addEventListener("click", () => goTo(index - 1));
+    dots.forEach((dot, i) => dot.addEventListener("click", () => goTo(i)));
+
+    /* El giro automático se detiene mientras el visitante está encima o
+       navegando con el teclado dentro del hero. */
+    hero.addEventListener("mouseenter", stop);
+    hero.addEventListener("mouseleave", start);
+    hero.addEventListener("focusin", stop);
+    hero.addEventListener("focusout", start);
+
+    show(0);
+    start();
+  }
+
+  /* --- 6. Video de la sección «Nosotros» --------------------- */
   /* Arranca pausado con el póster: el visitante decide verlo. */
   function initPlayer() {
     const wrap = $("[data-player]");
@@ -135,7 +206,7 @@
     video.addEventListener("play", () => wrap.classList.add("is-playing"));
   }
 
-  /* --- 6. Video del testimonio, dentro de la propia tarjeta -- */
+  /* --- 7. Video del testimonio, dentro de la propia tarjeta -- */
   function initInlineVideo() {
     const triggers = $$("[data-inline-video]");
     if (!triggers.length) return;
@@ -160,7 +231,7 @@
   }
 
 
-  /* --- 7. Dimensiones de la formación integral --------------- */
+  /* --- 8. Dimensiones de la formación integral --------------- */
   /* Acordeón de una sola abierta: al desplegar una se cierran las demás,
      a diferencia del de preguntas frecuentes, que admite varias. */
   function initDims() {
@@ -187,7 +258,7 @@
       });
     });
   }
-  /* --- 8. Collage de vida belenista -------------------------- */
+  /* --- 9. Collage de vida belenista -------------------------- */
   /* Al pulsar una pieza crece dentro del propio collage; no se abre
      ninguna ventana encima. Solo puede haber una abierta a la vez. */
   function initCollage() {
@@ -217,7 +288,7 @@
     });
   }
 
-  /* --- 9. Botón flotante de WhatsApp ------------------------- */
+  /* --- 10. Botón flotante de WhatsApp ------------------------- */
   function initFab() {
     const fab = $(".wa-fab");
     if (!fab) return;
@@ -226,7 +297,7 @@
     onScroll();
   }
 
-  /* --- 10. Sección activa en el menú -------------------------- */
+  /* --- 11. Sección activa en el menú -------------------------- */
   /* Resalta el enlace del menú según la sección que se está viendo. */
   function initScrollSpy() {
     const links = $$('.menu__link[href^="#"]');
@@ -256,7 +327,7 @@
     map.forEach((_, section) => io.observe(section));
   }
 
-  /* --- 11. Detalles de utilidad ------------------------------- */
+  /* --- 12. Detalles de utilidad ------------------------------- */
   function initMisc() {
     $$("[data-year]").forEach((el) => {
       el.textContent = String(new Date().getFullYear());
@@ -268,6 +339,7 @@
     initDropdowns();
     initMobileMenu();
     initFaq();
+    initHero();
     initPlayer();
     initInlineVideo();
     initDims();
