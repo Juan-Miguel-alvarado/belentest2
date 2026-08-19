@@ -159,7 +159,35 @@
     });
   }
 
-  /* --- 7. Collage de vida belenista -------------------------- */
+
+  /* --- 7. Dimensiones de la formación integral --------------- */
+  /* Acordeón de una sola abierta: al desplegar una se cierran las demás,
+     a diferencia del de preguntas frecuentes, que admite varias. */
+  function initDims() {
+    const items = $$(".dim");
+    if (!items.length) return;
+
+    items.forEach((item) => {
+      const head = $(".dim__head", item);
+      if (!head) return;
+
+      head.addEventListener("click", () => {
+        const open = !item.classList.contains("is-open");
+
+        items.forEach((other) => {
+          other.classList.remove("is-open");
+          const btn = $(".dim__head", other);
+          if (btn) btn.setAttribute("aria-expanded", "false");
+        });
+
+        if (open) {
+          item.classList.add("is-open");
+          head.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+  }
+  /* --- 8. Collage de vida belenista -------------------------- */
   /* Al pulsar una pieza crece dentro del propio collage; no se abre
      ninguna ventana encima. Solo puede haber una abierta a la vez. */
   function initCollage() {
@@ -189,7 +217,7 @@
     });
   }
 
-  /* --- 8. Botón flotante de WhatsApp ------------------------- */
+  /* --- 9. Botón flotante de WhatsApp ------------------------- */
   function initFab() {
     const fab = $(".wa-fab");
     if (!fab) return;
@@ -198,7 +226,7 @@
     onScroll();
   }
 
-  /* --- 9. Sección activa en el menú -------------------------- */
+  /* --- 10. Sección activa en el menú -------------------------- */
   /* Resalta el enlace del menú según la sección que se está viendo. */
   function initScrollSpy() {
     const links = $$('.menu__link[href^="#"]');
@@ -228,7 +256,7 @@
     map.forEach((_, section) => io.observe(section));
   }
 
-  /* --- 10. Detalles de utilidad ------------------------------- */
+  /* --- 11. Detalles de utilidad ------------------------------- */
   function initMisc() {
     $$("[data-year]").forEach((el) => {
       el.textContent = String(new Date().getFullYear());
@@ -242,6 +270,7 @@
     initFaq();
     initPlayer();
     initInlineVideo();
+    initDims();
     initCollage();
     initFab();
     initScrollSpy();

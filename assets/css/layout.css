@@ -937,6 +937,100 @@ a.topbar__item:hover { color: var(--surface); }
 }
 
 /* ============================================================
+   FORMACIÓN INTEGRAL
+   ============================================================ */
+
+/* Acordeón de una sola abierta. Cada dimensión toma uno de los cuatro
+   colores de marca, que es lo que la hace legible de un vistazo. */
+.dims { display: grid; gap: 0.75rem; }
+
+.dim {
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+}
+
+.dim h3 { margin: 0; font-size: inherit; }
+
+.dim__head {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.85rem, 2vw, 1.5rem);
+  width: 100%;
+  padding: clamp(1rem, 2vw, 1.4rem) clamp(1rem, 2.5vw, 1.75rem);
+  text-align: left;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.dim__num {
+  flex: none;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--line);
+  transition: color 0.3s var(--ease);
+}
+
+.dim__name {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.dim__caret {
+  flex: none;
+  width: 1.4rem;
+  height: 1.4rem;
+  transition: transform 0.3s var(--ease);
+}
+
+.dim.is-open .dim__caret { transform: rotate(180deg); }
+
+/* Mismo plegado que el acordeón de preguntas: 0fr → 1fr anima la altura
+   sin tener que fijarla a mano. */
+.dim__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s var(--ease);
+}
+
+.dim.is-open .dim__panel { grid-template-rows: 1fr; }
+.dim__panel > div { overflow: hidden; }
+
+.dim__panel p {
+  max-width: 62ch;
+  padding: 0 clamp(1rem, 2.5vw, 1.75rem) clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--muted);
+}
+
+/* Al abrirse, la fila se viste de su color: borde pleno, fondo en tinte
+   y el número en el derivado -ink, que es el que aguanta texto. */
+.dim--rojo:hover     { border-color: var(--rojo); }
+.dim--turquesa:hover { border-color: var(--turquesa); }
+.dim--mostaza:hover  { border-color: var(--mostaza); }
+.dim--verde:hover    { border-color: var(--verde); }
+
+.dim--rojo.is-open     { border-color: var(--rojo);     background: var(--rojo-tint); }
+.dim--turquesa.is-open { border-color: var(--turquesa); background: var(--turquesa-tint); }
+.dim--mostaza.is-open  { border-color: var(--mostaza);  background: var(--mostaza-tint); }
+.dim--verde.is-open    { border-color: var(--verde);    background: var(--verde-tint); }
+
+.dim--rojo.is-open     .dim__num { color: var(--rojo-ink); }
+.dim--turquesa.is-open .dim__num { color: var(--turquesa-ink); }
+.dim--mostaza.is-open  .dim__num { color: var(--mostaza-ink); }
+.dim--verde.is-open    .dim__num { color: var(--verde-ink); }
+
+/* ============================================================
    VIDA BELENISTA — collage
    ============================================================ */
 
