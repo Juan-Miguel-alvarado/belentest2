@@ -327,7 +327,55 @@
     map.forEach((_, section) => io.observe(section));
   }
 
-  /* --- 12. Detalles de utilidad ------------------------------- */
+  /* --- 12. Visor de imagen (cuadros de honor y de promoción) --- */
+  /* Las piezas son anchas y con los nombres en letra pequeña: en el
+     móvil no hay forma de leerlas sin ampliarlas. */
+  function initLightbox() {
+    const box = $(".lightbox");
+    const img = $("[data-lightbox-img]");
+    const triggers = $$("[data-lightbox]");
+    if (!box || !img || !triggers.length) return;
+
+    let opener = null;
+
+    const close = () => {
+      if (!box.classList.contains("is-open")) return;
+      box.classList.remove("is-open");
+      document.body.classList.remove("is-locked");
+      // El src se limpia al terminar la transición, no antes: si no,
+      // la imagen desaparece de golpe mientras el fondo se desvanece.
+      window.setTimeout(() => {
+        if (!box.classList.contains("is-open")) img.removeAttribute("src");
+      }, 300);
+      if (opener) opener.focus();
+      opener = null;
+    };
+
+    triggers.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const src = btn.getAttribute("data-lightbox-src");
+        if (!src) return;
+        opener = btn;
+        img.src = src;
+        img.alt = $("img", btn) ? $("img", btn).alt : "";
+        box.classList.add("is-open");
+        document.body.classList.add("is-locked");
+        const closeBtn = $("[data-lightbox-close]", box);
+        if (closeBtn) closeBtn.focus();
+      });
+    });
+
+    // Clic fuera de la imagen o en el botón de cerrar.
+    box.addEventListener("click", (e) => {
+      if (e.target === box || e.target.closest("[data-lightbox-close]")) close();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+  }
+
+  /* --- 13. Detalles de utilidad ------------------------------- */
   function initMisc() {
     $$("[data-year]").forEach((el) => {
       el.textContent = String(new Date().getFullYear());
@@ -346,6 +394,7 @@
     initCollage();
     initFab();
     initScrollSpy();
+    initLightbox();
     initMisc();
   };
 

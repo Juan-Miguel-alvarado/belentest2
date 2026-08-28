@@ -1,0 +1,428 @@
+/* ============================================================
+   nosotros.css — bloques propios de la página "Nosotros"
+   Solo lo que no existe ya en base.css / layout.css.
+   Se carga únicamente en nosotros.html.
+   ============================================================ */
+
+/* ============================================================
+   CABECERA DE PÁGINA
+   ============================================================ */
+
+.pagehead {
+  position: relative;
+  padding-block: clamp(2.5rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
+  overflow: hidden;
+}
+
+.pagehead__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 54rem;
+}
+
+/* Manchas de color al estilo de las del hero, pero más discretas:
+   aquí el protagonista es el texto, no la imagen. */
+.pagehead__blob {
+  position: absolute;
+  border-radius: var(--r-full);
+  filter: blur(28px);
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.pagehead__blob--1 {
+  top: -6rem;
+  right: -4rem;
+  width: clamp(16rem, 30vw, 28rem);
+  height: clamp(16rem, 30vw, 28rem);
+  background: var(--turquesa-tint);
+}
+
+.pagehead__blob--2 {
+  bottom: -11rem;
+  right: clamp(4rem, 18vw, 16rem);
+  width: clamp(10rem, 18vw, 16rem);
+  height: clamp(10rem, 18vw, 16rem);
+  background: var(--mostaza-tint);
+}
+
+.pagehead__title { font-size: var(--step-4); }
+
+.pagehead .lede { margin-top: 1.25rem; max-width: 44rem; }
+
+/* Migas: el camino de vuelta a la portada. */
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--rojo-ink); text-decoration: underline; }
+.crumbs svg { width: 1em; height: 1em; flex: none; }
+
+/* Fila de anclas a las secciones de esta misma página. */
+.pagehead .chips { margin-top: 2rem; }
+
+/* ============================================================
+   MISIÓN Y VISIÓN
+   ============================================================ */
+
+.mv {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.mv__card {
+  position: relative;
+  padding: clamp(1.75rem, 3vw, 2.75rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: border-color 0.25s var(--ease), transform 0.3s var(--ease-back),
+    box-shadow 0.3s var(--ease);
+}
+
+.mv__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.mv__icon {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--r-full);
+}
+
+.mv__icon svg { width: 1.7rem; height: 1.7rem; }
+
+.mv__card h2 { font-size: var(--step-2); }
+.mv__card p { margin-top: 1rem; }
+
+.mv__card--mision:hover { border-color: var(--rojo); }
+.mv__card--mision .mv__icon { background: var(--rojo-tint); color: var(--rojo-ink); }
+
+.mv__card--vision:hover { border-color: var(--turquesa); }
+.mv__card--vision .mv__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+
+/* ============================================================
+   VALORES
+   ============================================================ */
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(0.85rem, 1.8vw, 1.25rem);
+}
+
+.value {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: clamp(1.1rem, 2vw, 1.6rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-md);
+  transition: border-color 0.25s var(--ease), transform 0.3s var(--ease-back);
+}
+
+.value:hover { transform: translateY(-4px); }
+
+.value__num {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 700;
+  border-radius: var(--r-full);
+}
+
+.value__name {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+/* Los cuatro colores de marca rotan por la rejilla, como en .dim. */
+.value--rojo:hover     { border-color: var(--rojo); }
+.value--turquesa:hover { border-color: var(--turquesa); }
+.value--mostaza:hover  { border-color: var(--mostaza); }
+.value--verde:hover    { border-color: var(--verde); }
+
+.value--rojo     .value__num { background: var(--rojo-tint);     color: var(--rojo-ink); }
+.value--turquesa .value__num { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+.value--mostaza  .value__num { background: var(--mostaza-tint);  color: var(--mostaza-ink); }
+.value--verde    .value__num { background: var(--verde-tint);    color: var(--verde-ink); }
+
+/* ============================================================
+   HIMNO
+   ============================================================ */
+
+.hymn {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: start;
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
+
+.hymn__aside { position: sticky; top: 8rem; }
+.hymn__aside img { width: clamp(5rem, 9vw, 7rem); height: auto; margin-bottom: 1.5rem; }
+.hymn__aside .lede { margin-top: 1.25rem; }
+
+.hymn__verses {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin: 0;
+}
+
+.hymn__verse {
+  position: relative;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-left: 6px solid var(--turquesa);
+  border-radius: var(--r-md);
+}
+
+.hymn__verse p {
+  font-size: var(--step-1);
+  font-style: italic;
+  line-height: 1.75;
+  color: var(--body);
+}
+
+.hymn__label {
+  display: block;
+  margin-bottom: 0.85rem;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* El coro se repite entre estrofas: va destacado en rojo. */
+.hymn__verse--coro { border-left-color: var(--rojo); background: var(--rojo-tint); }
+.hymn__verse--coro .hymn__label { color: var(--rojo-ink); }
+.hymn__verse--coro p { color: var(--ink); font-style: normal; font-weight: 500; }
+
+/* Fotografía dentro del marco decorativo .player-frame, que ya existe
+   en layout.css y hasta ahora solo envolvía el reproductor de video. */
+.photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================================
+   RECONOCIMIENTOS (cuadro de honor y de promoción)
+   ============================================================ */
+
+.boards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+/* Las piezas del cuadro de promoción son más anchas y con más
+   detalle: ocupan la fila entera para que se puedan leer. */
+.boards--wide { grid-template-columns: 1fr; }
+
+.board {
+  margin: 0;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: border-color 0.25s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.board:hover { border-color: var(--mostaza); box-shadow: var(--shadow-md); }
+
+.board__media {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  background: var(--surface-2);
+  cursor: zoom-in;
+}
+
+.board__media img { width: 100%; height: auto; }
+
+/* La lupa aparece al pasar el cursor; en táctil se queda visible. */
+.board__zoom {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface);
+  border-radius: var(--r-full);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.board__zoom svg { width: 1.05em; height: 1.05em; }
+
+.board__media:hover .board__zoom,
+.board__media:focus-visible .board__zoom { opacity: 1; transform: translateY(0); }
+
+@media (hover: none) {
+  .board__zoom { opacity: 1; transform: none; }
+}
+
+.board figcaption {
+  padding: 1.1rem clamp(1.1rem, 2vw, 1.5rem);
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--ink);
+  border-top: 2px solid var(--line-soft);
+}
+
+.board figcaption span {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font);
+  font-size: var(--step--1);
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.boards + .section__head { margin-top: clamp(3rem, 6vw, 5rem); }
+
+/* ============================================================
+   VISOR DE IMAGEN (lightbox)
+   ============================================================ */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgb(35 34 31 / 0.88);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s var(--ease), visibility 0.25s;
+}
+
+.lightbox.is-open { opacity: 1; visibility: visible; }
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  /* Permite acercarse a los nombres en pantallas pequeñas. */
+  object-fit: contain;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: clamp(0.75rem, 2vw, 1.5rem);
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  color: var(--ink);
+  background: var(--surface);
+  border-radius: var(--r-full);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.25s var(--ease-back);
+}
+
+.lightbox__close:hover { transform: scale(1.08); }
+.lightbox__close svg { width: 1.35rem; height: 1.35rem; }
+
+/* ============================================================
+   MANUAL DE CONVIVENCIA
+   ============================================================ */
+
+.docbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+}
+
+.docbar__cover {
+  width: clamp(7rem, 12vw, 10rem);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-md);
+}
+
+.docbar h2 { font-size: var(--step-2); }
+.docbar p { margin-top: 0.75rem; max-width: 40rem; }
+
+.docbar .chips { margin-top: 1.25rem; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1080px) {
+  .values { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .mv { grid-template-columns: 1fr; }
+  .hymn { grid-template-columns: 1fr; }
+  .hymn__aside { position: static; }
+  .boards { grid-template-columns: 1fr; }
+  .docbar { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+  .docbar p { margin-inline: auto; }
+  .docbar .chips { justify-content: center; }
+}
+
+@media (max-width: 560px) {
+  .values { grid-template-columns: repeat(2, 1fr); }
+  .value__name { font-size: var(--step-0); }
+}
+
+/* Sin movimiento: se quedan los estados, se van las transiciones. */
+@media (prefers-reduced-motion: reduce) {
+  .mv__card,
+  .value,
+  .board,
+  .board__zoom,
+  .lightbox,
+  .lightbox__close {
+    transition: none;
+  }
+  .mv__card:hover,
+  .value:hover,
+  .lightbox__close:hover { transform: none; }
+  .board__zoom { opacity: 1; transform: none; }
+}
