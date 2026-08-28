@@ -6,49 +6,81 @@
 
 /* ============================================================
    CABECERA DE PÁGINA
+   Mismo lavado de tintes y manchas de color que .hero__slide--intro
+   del index, para que las dos páginas abran igual.
    ============================================================ */
 
 .pagehead {
   position: relative;
-  padding-block: clamp(2.5rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
   overflow: hidden;
+  padding-block: clamp(2.25rem, 4.5vw, 4rem) clamp(3rem, 6vw, 5rem);
+  background:
+    radial-gradient(60% 50% at 0% 0%,    var(--turquesa-tint), transparent 68%),
+    radial-gradient(55% 45% at 100% 0%,  var(--rojo-tint),     transparent 68%),
+    radial-gradient(80% 32% at 50% 100%, var(--mostaza-tint),  transparent 76%),
+    var(--surface);
 }
 
 .pagehead__inner {
   position: relative;
   z-index: 1;
-  max-width: 54rem;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4rem);
 }
 
-/* Manchas de color al estilo de las del hero, pero más discretas:
-   aquí el protagonista es el texto, no la imagen. */
+.pagehead__body { max-width: 40rem; }
+
+/* Manchas difusas detrás de la foto, como en el hero. */
 .pagehead__blob {
   position: absolute;
-  border-radius: var(--r-full);
-  filter: blur(28px);
-  opacity: 0.7;
   z-index: 0;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
 }
 
 .pagehead__blob--1 {
-  top: -6rem;
-  right: -4rem;
-  width: clamp(16rem, 30vw, 28rem);
-  height: clamp(16rem, 30vw, 28rem);
-  background: var(--turquesa-tint);
+  width: 34vw; height: 34vw;
+  max-width: 440px; max-height: 440px;
+  top: -8%; right: 4%;
+  background: var(--turquesa);
+  opacity: 0.34;
 }
 
 .pagehead__blob--2 {
-  bottom: -11rem;
-  right: clamp(4rem, 18vw, 16rem);
-  width: clamp(10rem, 18vw, 16rem);
-  height: clamp(10rem, 18vw, 16rem);
-  background: var(--mostaza-tint);
+  width: 26vw; height: 26vw;
+  max-width: 340px; max-height: 340px;
+  bottom: -12%; right: -6%;
+  background: var(--mostaza);
+  opacity: 0.3;
+}
+
+.pagehead__blob--3 {
+  width: 22vw; height: 22vw;
+  max-width: 300px; max-height: 300px;
+  top: 10%; left: -10%;
+  background: var(--rojo);
+  opacity: 0.16;
 }
 
 .pagehead__title { font-size: var(--step-4); }
 
-.pagehead .lede { margin-top: 1.25rem; max-width: 44rem; }
+.pagehead .lede { margin-top: 1.25rem; max-width: 40rem; }
+
+/* El PNG trae fondo transparente: se difumina solo el borde inferior,
+   igual que .hero__media img. */
+.pagehead__media { position: relative; justify-self: center; }
+
+.pagehead__media img {
+  width: 100%;
+  max-width: 560px;
+  /* El tamaño y el repeat van explícitos: sin ellos, algunos motores
+     dimensionan mal el degradado y recortan la imagen entera. */
+  -webkit-mask: linear-gradient(to bottom, #000 90%, transparent 100%) no-repeat 0 0 / 100% 100%;
+  mask: linear-gradient(to bottom, #000 90%, transparent 100%) no-repeat 0 0 / 100% 100%;
+}
 
 /* Migas: el camino de vuelta a la portada. */
 .crumbs {
@@ -68,18 +100,28 @@
 .pagehead .chips { margin-top: 2rem; }
 
 /* ============================================================
-   MISIÓN Y VISIÓN
+   MISIÓN, VISIÓN Y EQUIPO
+   Mosaico: las dos declaraciones apiladas y, al lado, la tarjeta
+   del equipo que las sostiene.
    ============================================================ */
 
-.mv {
+.purpose {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: stretch;
   gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.purpose__cards {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  align-content: start;
 }
 
 .mv__card {
   position: relative;
-  padding: clamp(1.75rem, 3vw, 2.75rem);
+  overflow: hidden;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
   background: var(--surface);
   border: 2px solid var(--line);
   border-radius: var(--r-lg);
@@ -92,25 +134,110 @@
   box-shadow: var(--shadow-md);
 }
 
+/* Número grande al fondo, como marca de agua: da jerarquía sin
+   competir con el texto. */
+.mv__card::after {
+  content: attr(data-num);
+  position: absolute;
+  top: -1.5rem;
+  right: 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 12vw, 9rem);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.mv__head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
 .mv__icon {
   display: grid;
   place-items: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  margin-bottom: 1.5rem;
+  width: 3.25rem;
+  height: 3.25rem;
   border-radius: var(--r-full);
+  flex: none;
 }
 
-.mv__icon svg { width: 1.7rem; height: 1.7rem; }
+.mv__icon svg { width: 1.6rem; height: 1.6rem; }
 
-.mv__card h2 { font-size: var(--step-2); }
-.mv__card p { margin-top: 1rem; }
+.mv__card h3 { font-size: var(--step-2); }
+.mv__card p { position: relative; z-index: 1; }
 
 .mv__card--mision:hover { border-color: var(--rojo); }
 .mv__card--mision .mv__icon { background: var(--rojo-tint); color: var(--rojo-ink); }
+.mv__card--mision::after { color: var(--rojo-tint); }
 
 .mv__card--vision:hover { border-color: var(--turquesa); }
 .mv__card--vision .mv__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+.mv__card--vision::after { color: var(--turquesa-tint); }
+
+/* --- Tarjeta del equipo ------------------------------------ */
+
+.team {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(75% 55% at 100% 0%, var(--turquesa-tint), transparent 70%),
+    radial-gradient(70% 50% at 0% 100%, var(--mostaza-tint), transparent 72%),
+    var(--surface);
+}
+
+.team__eyebrow { margin-bottom: 0.75rem; }
+.team__title { font-size: var(--step-2); }
+.team__intro { margin-top: 0.85rem; }
+
+/* Los retratos se solapan como en una foto de grupo. */
+.team__faces {
+  display: flex;
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.team__faces img {
+  width: clamp(4.5rem, 8vw, 6rem);
+  height: clamp(4.5rem, 8vw, 6rem);
+  object-fit: cover;
+  object-position: 50% 18%;
+  border-radius: var(--r-full);
+  border: 4px solid var(--surface);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.team__faces img + img { margin-left: -1.25rem; }
+
+.team__names {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.team__names li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: var(--step--1);
+}
+
+.team__names strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.team__names span { color: var(--muted); }
 
 /* ============================================================
    VALORES
@@ -123,6 +250,7 @@
 }
 
 .value {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
@@ -135,15 +263,28 @@
 
 .value:hover { transform: translateY(-4px); }
 
-.value__num {
+/* Icono en disco de color; el número queda arriba a la derecha, en
+   pequeño, para no repetir peso visual con el icono. */
+.value__icon {
   display: grid;
   place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--r-full);
+  transition: transform 0.3s var(--ease-back);
+}
+
+.value__icon svg { width: 1.5rem; height: 1.5rem; }
+.value:hover .value__icon { transform: rotate(-6deg) scale(1.06); }
+
+.value__num {
+  position: absolute;
+  top: clamp(0.9rem, 1.6vw, 1.3rem);
+  right: clamp(0.9rem, 1.6vw, 1.3rem);
   font-family: var(--font-display);
   font-size: var(--step--1);
   font-weight: 700;
-  border-radius: var(--r-full);
+  color: var(--grey);
 }
 
 .value__name {
@@ -161,10 +302,10 @@
 .value--mostaza:hover  { border-color: var(--mostaza); }
 .value--verde:hover    { border-color: var(--verde); }
 
-.value--rojo     .value__num { background: var(--rojo-tint);     color: var(--rojo-ink); }
-.value--turquesa .value__num { background: var(--turquesa-tint); color: var(--turquesa-ink); }
-.value--mostaza  .value__num { background: var(--mostaza-tint);  color: var(--mostaza-ink); }
-.value--verde    .value__num { background: var(--verde-tint);    color: var(--verde-ink); }
+.value--rojo     .value__icon { background: var(--rojo-tint);     color: var(--rojo-ink); }
+.value--turquesa .value__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+.value--mostaza  .value__icon { background: var(--mostaza-tint);  color: var(--mostaza-ink); }
+.value--verde    .value__icon { background: var(--verde-tint);    color: var(--verde-ink); }
 
 /* ============================================================
    HIMNO
@@ -234,14 +375,19 @@
    ============================================================ */
 
 .boards {
+  --boards-gap: clamp(1.25rem, 2.5vw, 2rem);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.25rem, 2.5vw, 2rem);
+  gap: var(--boards-gap);
 }
 
-/* Las piezas del cuadro de promoción son más anchas y con más
-   detalle: ocupan la fila entera para que se puedan leer. */
-.boards--wide { grid-template-columns: 1fr; }
+/* El cuadro de promoción son dos piezas: van del mismo ancho que las
+   tres del cuadro de honor —una columna de esa misma rejilla— y
+   centradas, para que las dos quepan en una sola línea. */
+.boards--wide {
+  grid-template-columns: repeat(2, calc((100% - 2 * var(--boards-gap)) / 3));
+  justify-content: center;
+}
 
 .board {
   margin: 0;
@@ -397,7 +543,10 @@
 }
 
 @media (max-width: 900px) {
-  .mv { grid-template-columns: 1fr; }
+  .pagehead__inner { grid-template-columns: 1fr; }
+  .pagehead__media { order: -1; max-width: 26rem; }
+  .purpose { grid-template-columns: 1fr; }
+  .boards--wide { grid-template-columns: 1fr; }
   .hymn { grid-template-columns: 1fr; }
   .hymn__aside { position: static; }
   .boards { grid-template-columns: 1fr; }
@@ -415,6 +564,7 @@
 @media (prefers-reduced-motion: reduce) {
   .mv__card,
   .value,
+  .value__icon,
   .board,
   .board__zoom,
   .lightbox,
@@ -423,6 +573,7 @@
   }
   .mv__card:hover,
   .value:hover,
+  .value:hover .value__icon,
   .lightbox__close:hover { transform: none; }
   .board__zoom { opacity: 1; transform: none; }
 }

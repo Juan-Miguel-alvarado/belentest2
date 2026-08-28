@@ -37,6 +37,7 @@ assets/
   img/  estudiantes*.png  retratos por nivel (PNG con fondo transparente)
         foto-* / aviso-*  fotografías y piezas gráficas del colegio
         cuadro-*.png      cuadros de honor y de promoción (ver abajo)
+        equipo-*.jpg      retratos del equipo directivo (ver abajo)
         portada-manual.jpg portada del manual de convivencia
   video/hero.mp4 + hero-poster.jpg
   docs/ manual-convivencia-2026.pdf
@@ -81,6 +82,12 @@ cerca del 15 %). Si se cambia la extensión hay que actualizar el `src` en el HT
 Se ven en grande con el visor: cualquier tarjeta nueva solo necesita
 `data-lightbox` y `data-lightbox-src` para heredar ese comportamiento.
 
+**Retratos del equipo.** La tarjeta «Nuestro equipo» de `#mision-vision` usa
+`equipo-rector.jpg`, `equipo-coordinadora.jpg` y `equipo-directora.jpg`, los tres
+recortados del cuadro de promoción 2025 —es la única foto del personal que el
+colegio tiene publicada—. Están marcados con un `TODO`: en cuanto el colegio pase
+una foto de grupo del cuerpo docente, se sustituye ese bloque por la fotografía.
+
 **Contenido institucional.** La misión, la visión, los diez valores y el himno
 están en `nosotros.html` como **texto real**, no como imágenes: se pueden leer con
 lector de pantalla, copiar e indexar. En el sitio actual todos ellos viven dentro
@@ -110,6 +117,7 @@ Marcado en el código con comentarios `REVISAR` y `TODO`:
 | Texto real del Proyecto Timoteo | `#timoteo` de `nosotros.html` |
 | Cuadro de promoción de 11°, si existe | `#reconocimientos` de `nosotros.html` |
 | Erratas de la misión y la visión | `#mision-vision` de `nosotros.html` |
+| Foto de grupo del cuerpo docente | tarjeta «Nuestro equipo» de `nosotros.html` |
 
 **Sobre las erratas del texto oficial.** Al pasar la misión y la visión de imagen
 a texto se corrigieron cuatro: «de los estudiante» → «de los estudiantes»,
