@@ -82,6 +82,13 @@ cerca del 15 %). Si se cambia la extensión hay que actualizar el `src` en el HT
 Se ven en grande con el visor: cualquier tarjeta nueva solo necesita
 `data-lightbox` y `data-lightbox-src` para heredar ese comportamiento.
 
+**Los valores.** La sección `#valores` es una rejilla bento: diez tarjetas de
+color y dos piezas fotográficas —una alta y una ancha— que rompen el ritmo. La
+colocación es automática: basta el orden del HTML, y los dos `span` de las fotos
+dejan los huecos que rellenan las tarjetas. El colegio solo publica los *nombres*
+de los valores; la frase de una línea de cada uno es redacción nuestra y está
+marcada con un `REVISAR`.
+
 **Retratos del equipo.** La tarjeta «Nuestro equipo» de `#mision-vision` usa
 `equipo-rector.jpg`, `equipo-coordinadora.jpg` y `equipo-directora.jpg`, los tres
 recortados del cuadro de promoción 2025 —es la única foto del personal que el
@@ -118,6 +125,7 @@ Marcado en el código con comentarios `REVISAR` y `TODO`:
 | Cuadro de promoción de 11°, si existe | `#reconocimientos` de `nosotros.html` |
 | Erratas de la misión y la visión | `#mision-vision` de `nosotros.html` |
 | Foto de grupo del cuerpo docente | tarjeta «Nuestro equipo» de `nosotros.html` |
+| Frases de una línea de los diez valores | `#valores` de `nosotros.html` |
 
 **Sobre las erratas del texto oficial.** Al pasar la misión y la visión de imagen
 a texto se corrigieron cuatro: «de los estudiante» → «de los estudiantes»,
