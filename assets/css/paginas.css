@@ -679,13 +679,11 @@
 .tramite--mostaza  .tramite__icon { background: var(--mostaza-tint);  color: var(--mostaza-ink); }
 .tramite--verde    .tramite__icon { background: var(--verde-tint);    color: var(--verde-ink); }
 
-/* El único trámite con formulario propio ocupa el doble y va teñido:
-   es el que queremos que se vea primero. */
-.tramite--destacada {
-  grid-column: span 2;
-  background:
-    radial-gradient(70% 60% at 100% 0%, var(--turquesa-tint), transparent 70%),
-    var(--surface);
+/* Trámite cuyo formulario todavía no tiene URL publicada. */
+.btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* ============================================================
@@ -932,7 +930,6 @@
   gap: 0.6rem;
   padding: clamp(1.6rem, 2.8vw, 2.25rem);
   text-align: center;
-  text-decoration: none;
   background: var(--surface);
   border: 2px solid var(--line);
   border-radius: var(--r-lg);
@@ -969,6 +966,7 @@
 }
 
 .channel__value {
+  margin-bottom: 1.1rem;
   font-family: var(--font-display);
   font-size: var(--step-1);
   font-weight: 600;
@@ -977,7 +975,9 @@
   overflow-wrap: anywhere;
 }
 
-.channel__note { font-size: var(--step--1); }
+/* El botón se pega abajo: con textos de distinto largo, los tres
+   quedan alineados. */
+.channel .btn { margin-top: auto; }
 
 /* ============================================================
    RESPONSIVE
@@ -985,7 +985,6 @@
 
 @media (max-width: 1080px) {
   .tramites { grid-template-columns: repeat(2, 1fr); }
-  .tramite--destacada { grid-column: span 2; }
   .steps { grid-template-columns: repeat(2, 1fr); }
   /* A dos columnas la línea que une los pasos ya no hilvana nada. */
   .step::before { display: none; }
@@ -1016,7 +1015,6 @@
 @media (max-width: 560px) {
   .values { grid-template-columns: 1fr; }
   .tramites { grid-template-columns: 1fr; }
-  .tramite--destacada { grid-column: span 1; }
   .steps { grid-template-columns: 1fr; }
   .value-photo--tall,
   .value-photo--wide { grid-column: span 1; }

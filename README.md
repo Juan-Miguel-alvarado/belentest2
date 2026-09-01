@@ -92,13 +92,18 @@ se montan igual: `.pagehead` con foto y degradado, secciones alternas
 del menú que corresponde a la página lleva `aria-current="page"` a mano:
 `initScrollSpy()` solo observa enlaces que empiezan por `#`, así que no lo pisa.
 
-**Solicitudes en línea.** De los cinco trámites que publica el sitio actual, solo
-el de **solicitud de citas** tiene una URL que abre. Lo verifiqué uno a uno:
-inasistencias, certificados y PQRS apuntan a direcciones `/edit` de Google Forms
-—devuelven **401**, solo entra el dueño de la cuenta— y el de retiro ya no existe
-(«No se encontró la página»). Mientras el colegio no comparta las URL `/viewform`
-buenas, esos cuatro se canalizan por WhatsApp. Está anotado con un `REVISAR` en
-la propia sección.
+**Solicitudes en línea.** Los cinco trámites son formularios de Google. Cuatro
+tienen enlace y el de **solicitud de retiro** todavía no: su tarjeta muestra el
+botón desactivado «Enlace pendiente».
+
+De los cuatro enlazados, solo el de **solicitud de citas** abre en público.
+Comprobado sin sesión iniciada: inasistencias, certificados y PQRS devuelven
+**401**. La diferencia está en la forma de la URL —las tres son del lado del
+editor, `/forms/d/<id>/viewform`, mientras que la de citas es la publicada,
+`/forms/d/e/<id>/viewform`—. El colegio tiene que sacar el enlace del botón
+**Enviar** de cada formulario, o abrir la respuesta a «cualquier persona con el
+enlace», y sustituirlos en `#tramites`. Está anotado con un `REVISAR` en la
+propia sección.
 
 **Donaciones.** Todo el texto —las cifras, la carta y el certificado de la DIAN—
 sale literal de `/donaciones/` del sitio actual. El colegio **no publica cuenta
@@ -150,7 +155,8 @@ Marcado en el código con comentarios `REVISAR` y `TODO`:
 | Erratas de la misión y la visión | `#mision-vision` de `nosotros.html` |
 | Foto de grupo del cuerpo docente | tarjeta «Nuestro equipo» de `nosotros.html` |
 | Frases de una línea de los diez valores | `#valores` de `nosotros.html` |
-| URL públicas de 4 de los 5 formularios | `#tramites` de `solicitudes.html` |
+| URL públicas de 3 formularios (dan 401) | `#tramites` de `solicitudes.html` |
+| URL del formulario de retiro (no existe) | `#tramites` de `solicitudes.html` |
 | Datos que exige cada trámite | `#como` de `solicitudes.html` |
 | Cuenta bancaria para donar, si la habilitan | `#contacto` de `donaciones.html` |
 
