@@ -1,9 +1,19 @@
 /* ============================================================
    paginas.css — bloques de las páginas interiores
-   Nosotros · Solicitudes en línea · Donaciones.
+   Nosotros · Solicitudes en línea · Donaciones ·
+   Lista y uniforme · Calendario académico · Noticias y eventos.
    Solo lo que no existe ya en base.css / layout.css.
    No la carga la portada.
    ============================================================ */
+
+/* ============================================================
+   AJUSTES DE ESPACIADO
+   ============================================================ */
+
+/* Cuando una onda decorativa separa dos secciones ya deja unos 84 px de
+   aire, con lo que el relleno superior completo sobra: se recorta a la
+   mitad en la sección que va debajo de la onda. */
+.section--tight-top { padding-top: clamp(2rem, 4vw, 3.5rem); }
 
 /* ============================================================
    CABECERA DE PÁGINA
@@ -1042,4 +1052,863 @@
   .channel:hover,
   .lightbox__close:hover { transform: none; }
   .board__zoom { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   UNIFORMES
+   ============================================================ */
+
+.uniformes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.uniforme {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.uniforme--rojo:hover     { border-color: var(--rojo); }
+.uniforme--turquesa:hover { border-color: var(--turquesa); }
+.uniforme--mostaza:hover  { border-color: var(--mostaza); }
+.uniforme--verde:hover    { border-color: var(--verde); }
+.uniforme:hover { box-shadow: var(--shadow-md); }
+
+/* Las láminas son apaisadas (16:9) y llevan el fondo claro incorporado. */
+.uniforme__figure {
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  background: var(--surface-2);
+  border: 0;
+  cursor: zoom-in;
+}
+
+.uniforme__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.4s var(--ease);
+}
+
+.uniforme__figure:hover img { transform: scale(1.03); }
+
+/* Ampliada en el visor: el cursor indica que se puede abrir. */
+
+.uniforme__body { padding: clamp(1.1rem, 2vw, 1.5rem); }
+
+.uniforme__body h3 {
+  font-size: var(--step-1);
+  margin-bottom: 0.85rem;
+}
+
+.uniforme__list {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: var(--body);
+}
+
+/* La viñeta es un punto de color en vez del disco por defecto. */
+.uniforme__list li {
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.uniforme__list li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--r-full);
+  background: var(--line);
+}
+
+.uniforme--rojo     .uniforme__list li::before { background: var(--rojo); }
+.uniforme--turquesa .uniforme__list li::before { background: var(--turquesa); }
+.uniforme--mostaza  .uniforme__list li::before { background: var(--mostaza); }
+.uniforme--verde    .uniforme__list li::before { background: var(--verde); }
+
+@media (max-width: 860px) {
+  .uniformes { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   LISTAS ESCOLARES
+   ============================================================ */
+
+.listas__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.listas__tab {
+  padding: 0.6rem 1.4rem;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-full);
+  cursor: pointer;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.listas__tab:hover { border-color: var(--turquesa); color: var(--turquesa-ink); }
+
+.listas__tab.is-active {
+  color: var(--surface);
+  background: var(--rojo);
+  border-color: var(--rojo);
+}
+
+.listas__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* [hidden] necesita el display:none explícito porque la regla de rejilla
+   de arriba lo pisaría. */
+.listas__grid[hidden] { display: none; }
+
+/* --- Tarjeta de grado --------------------------------------- */
+
+.grado {
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-md);
+  /* Franja de color arriba, como una pestaña de archivador. */
+  border-top-width: 6px;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.grado:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+.grado--rojo     { border-top-color: var(--rojo); }
+.grado--turquesa { border-top-color: var(--turquesa); }
+.grado--mostaza  { border-top-color: var(--mostaza); }
+.grado--verde    { border-top-color: var(--verde); }
+
+.grado__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  width: 100%;
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.grado__name {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.grado__meta { font-size: var(--step--1); color: var(--muted); }
+
+.grado__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 700;
+  color: var(--rojo-ink);
+}
+
+.grado__cta svg { width: 1em; height: 1em; transition: transform 0.25s var(--ease-back); }
+.grado:hover .grado__cta svg { transform: translateX(4px); }
+
+/* ============================================================
+   DOCUMENTO DE LISTA
+
+   La lista en HTML, maquetada como la lámina del colegio: marco rojo,
+   papel crema y casillas para marcar. Es lo que se ve en el visor y lo
+   que sale al imprimir, así que el PDF conserva el diseño.
+   ============================================================ */
+
+/* Lienzo donde se clona el documento para generar el PDF: ancho fijo de
+   A4 a 96 ppp, así el resultado no depende del tamaño del visor.
+
+   Se esconde sacándolo del viewport, sin recortarlo. Nada de alto cero
+   con overflow: html2canvas respeta el recorte de los contenedores y el
+   PDF salía en blanco. Y nada de tocar scrollX/scrollY en sus opciones,
+   que es lo que antes descuadraba el encuadre hacia la izquierda: por
+   defecto la librería ya parte del rectángulo real del elemento. */
+.pdf-stage {
+  position: fixed;
+  top: 0;
+  left: -10000px;
+  width: 794px;
+}
+
+/* Cada lámina ocupa una hoja completa del PDF. El generador corta el lienzo
+   por altura de página, así que dando a todas las cajas el mismo alto salen
+   encuadradas sin declarar saltos de página, que con imágenes fallan. */
+.pdf-hoja {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.pdf-hoja img { max-width: 100%; max-height: 100%; }
+
+.doc__paper {
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  color: var(--ink);
+  /* El marco rojo del original, resuelto con un borde grueso. */
+  background: #fdf8e4;
+  border: clamp(0.75rem, 2vw, 1.5rem) solid var(--rojo);
+  border-radius: var(--r-md);
+}
+
+.doc__head { text-align: center; margin-bottom: 1.75rem; }
+
+/* El escudo va incrustado como data URI en vez de <img>. Con un
+   archivo externo, html2canvas contamina el lienzo al generar el PDF
+   —sobre todo si la página se abre desde el disco— y salía en blanco.
+   Incrustado no hay petición que contaminar. */
+.doc__logo {
+  display: block;
+  width: clamp(2.1rem, 4vw, 2.75rem);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 0.75rem;
+  background: url("data:image/png;base64,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") center / contain no-repeat;
+}
+
+.doc__grade {
+  display: inline-block;
+  padding: 0.3rem 1.4rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: #e2dfd5;
+  border-radius: var(--r-full);
+}
+
+.doc__school {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.doc__title {
+  margin-top: 0.35rem;
+  font-weight: 700;
+  color: var(--rojo-ink);
+}
+
+.doc__title span { font-weight: 600; }
+
+.doc__h {
+  margin: 1.75rem 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rojo-ink);
+  border-bottom: 2px solid rgb(226 223 213 / 0.9);
+  padding-bottom: 0.35rem;
+}
+
+/* Textos: dos columnas, título de la obra y editorial. */
+.doc__textos {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.doc__textos li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 12rem;
+  gap: 1rem;
+  align-items: baseline;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted rgb(109 108 102 / 0.45);
+}
+
+.doc__textos li span:last-child {
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* Útiles: casillas marcables de verdad, para ir tachando al comprar. */
+.doc__utiles {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.doc__utiles li {
+  position: relative;
+  padding-left: 2rem;
+  line-height: 1.45;
+}
+
+.doc__utiles li::before {
+  content: "";
+  position: absolute;
+  top: 0.15em;
+  left: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 2px solid var(--grey);
+  border-radius: var(--r-full);
+  background: transparent;
+}
+
+.doc__nota {
+  margin-top: 1.5rem;
+  padding: 0.85rem 1.1rem;
+  font-weight: 600;
+  border: 2px solid var(--ink);
+  border-radius: var(--r-sm);
+}
+
+.doc__verse {
+  margin-top: 1.75rem;
+  padding-top: 1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-align: center;
+  border-top: 2px solid rgb(226 223 213 / 0.9);
+  color: var(--muted);
+}
+
+/* En pantalla estrecha la editorial se va debajo del título. Era una
+   consulta de contenedor, pero container-type aplica contención de
+   tamaño y el documento colapsaba al clonarlo para el PDF. */
+@media (max-width: 700px) {
+  .doc__textos li { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
+  .doc__textos li span:last-child { text-align: left; }
+}
+
+/* ============================================================
+   VISOR (modal)
+   ============================================================ */
+
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.75rem, 2.5vw, 2rem);
+}
+
+.viewer[hidden] { display: none; }
+
+.viewer__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(35 34 31 / 0.72);
+}
+
+.viewer__box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 62rem);
+  max-height: 100%;
+  overflow: hidden;
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.viewer__bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: none;
+  padding: 0.85rem clamp(0.85rem, 2vw, 1.25rem);
+  border-bottom: 2px solid var(--line);
+}
+
+.viewer__title {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.viewer__tools { display: flex; align-items: center; gap: 0.5rem; }
+
+.viewer__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.9rem;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-full);
+  cursor: pointer;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.viewer__btn:hover { border-color: var(--rojo); color: var(--rojo-ink); }
+.viewer__btn svg { width: 1.05em; height: 1.05em; }
+.viewer__btn[hidden] { display: none; }
+
+.viewer__btn--main {
+  color: var(--surface);
+  background: var(--rojo);
+  border-color: var(--rojo);
+}
+
+.viewer__btn--main:hover {
+  color: var(--surface);
+  background: var(--rojo-ink);
+  border-color: var(--rojo-ink);
+}
+
+.viewer__btn--icon { padding: 0.5rem; }
+
+.viewer__body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: clamp(0.85rem, 2vw, 1.5rem);
+  background: var(--surface-2);
+}
+
+/* Solo la lámina que cuelga directamente del visor llena el ancho. Con
+   el selector descendiente esta regla también alcanzaba al escudo de la
+   lista, que es un img anidado, y lo estiraba a pantalla completa. */
+.viewer__body > img { display: block; width: 100%; height: auto; border-radius: var(--r-sm); }
+
+/* El documento vuelve a ser visible dentro del visor. */
+.viewer__body .doc[hidden] { display: block; }
+
+@media (max-width: 640px) {
+  .viewer__bar { flex-wrap: wrap; }
+  .viewer__title { flex: 1 0 100%; }
+  .viewer__tools { flex: 1; }
+  .viewer__btn { flex: 1; justify-content: center; }
+}
+
+/* ============================================================
+   IMPRESIÓN
+
+   Al imprimir solo sale el documento del visor, sin cabecera, menú,
+   pie ni marco del modal. Es lo que convierte el botón «Descargar PDF»
+   en un PDF maquetado sin necesidad de ninguna librería.
+   ============================================================ */
+
+@media print {
+  /* Con visibility los elementos ocultos siguen ocupando su espacio, y el
+     documento salía desplazado en la hoja. Con display:none desaparecen
+     del flujo. Funciona porque el visor es hijo directo de <body>: por eso
+     está fuera de <main> en el HTML. */
+  body > *:not(.viewer) { display: none !important; }
+
+  .viewer {
+    position: static;
+    display: block;
+    width: auto;
+    padding: 0;
+  }
+
+  .viewer__box,
+  .viewer__body {
+    position: static;
+    display: block;
+    width: auto;
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    overflow: visible;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .viewer__backdrop,
+  .viewer__bar {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .doc__paper { border-width: 0.6rem; border-radius: 0; }
+
+  /* Que no se parta un ítem entre dos páginas. */
+  .doc__utiles li,
+  .doc__textos li { break-inside: avoid; }
+
+  @page { margin: 12mm; }
+}
+
+/* ============================================================
+   PERÍODOS DEL CALENDARIO
+   ============================================================ */
+
+.periodos { display: grid; gap: 0.75rem; }
+
+.periodo {
+  overflow: hidden;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-md);
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.periodo h3 { margin: 0; font-size: inherit; }
+
+.periodo__head {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.85rem, 2vw, 1.5rem);
+  width: 100%;
+  padding: clamp(1rem, 2vw, 1.4rem) clamp(1rem, 2.5vw, 1.75rem);
+  text-align: left;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.periodo__num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 700;
+  color: var(--surface);
+  background: var(--grey);
+  border-radius: var(--r-full);
+  transition: background 0.3s var(--ease);
+}
+
+.periodo__title {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.periodo__dates {
+  display: block;
+  margin-top: 0.25rem;
+  font-family: var(--font);
+  font-size: var(--step--1);
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.periodo__caret {
+  flex: none;
+  width: 1.4rem;
+  height: 1.4rem;
+  transition: transform 0.3s var(--ease);
+}
+
+.periodo.is-open .periodo__caret { transform: rotate(180deg); }
+
+/* Mismo plegado que los acordeones del sitio: 0fr → 1fr anima la altura
+   sin tener que fijarla a mano. */
+.periodo__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s var(--ease);
+}
+
+.periodo.is-open .periodo__panel { grid-template-rows: 1fr; }
+.periodo__panel > div { overflow: hidden; }
+
+.periodo__list {
+  display: grid;
+  gap: 0.6rem;
+  padding: 0 clamp(1rem, 2.5vw, 1.75rem) clamp(1.1rem, 2vw, 1.5rem);
+  margin: 0;
+  list-style: none;
+  color: var(--body);
+}
+
+.periodo__list li { position: relative; padding-left: 1.4rem; }
+
+.periodo__list li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--r-full);
+  background: var(--line);
+}
+
+.periodo--rojo.is-open     { border-color: var(--rojo);     background: var(--rojo-tint); }
+.periodo--turquesa.is-open { border-color: var(--turquesa); background: var(--turquesa-tint); }
+.periodo--mostaza.is-open  { border-color: var(--mostaza);  background: var(--mostaza-tint); }
+.periodo--verde.is-open    { border-color: var(--verde);    background: var(--verde-tint); }
+
+.periodo--rojo     .periodo__num { background: var(--rojo); }
+.periodo--turquesa .periodo__num { background: var(--turquesa-ink); }
+.periodo--mostaza  .periodo__num { background: var(--mostaza-ink); }
+.periodo--verde    .periodo__num { background: var(--verde-ink); }
+
+.periodo--rojo     .periodo__list li::before { background: var(--rojo); }
+.periodo--turquesa .periodo__list li::before { background: var(--turquesa); }
+.periodo--mostaza  .periodo__list li::before { background: var(--mostaza); }
+.periodo--verde    .periodo__list li::before { background: var(--verde); }
+
+/* ============================================================
+   CONVOCATORIAS
+   ============================================================ */
+
+.convos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.convo {
+  padding: clamp(1.25rem, 2.2vw, 1.75rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-md);
+  /* La franja de color va arriba, como una pestaña de archivador. */
+  border-top-width: 6px;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.convo:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+.convo--rojo     { border-top-color: var(--rojo); }
+.convo--turquesa { border-top-color: var(--turquesa); }
+.convo--mostaza  { border-top-color: var(--mostaza); }
+.convo--verde    { border-top-color: var(--verde); }
+
+.convo__mes {
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.convo h3 { font-size: var(--step-1); margin: 0.35rem 0 0.75rem; }
+
+.convo__fecha { font-weight: 600; color: var(--ink); }
+.convo__grados { margin-top: 0.35rem; font-size: var(--step--1); color: var(--muted); }
+
+/* ============================================================
+   LÁMINAS DESCARGABLES
+   ============================================================ */
+
+.laminas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.lamina {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  cursor: zoom-in;
+  overflow: hidden;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-md);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+}
+
+.lamina:hover {
+  transform: translateY(-4px);
+  border-color: var(--turquesa);
+  box-shadow: var(--shadow-md);
+}
+
+.lamina img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: top center;
+  background: var(--surface-2);
+}
+
+.lamina__name {
+  padding: 0.85rem 1rem;
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink);
+  text-align: center;
+}
+
+.laminas__pie {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+/* ============================================================
+   AVISOS
+   ============================================================ */
+
+.avisos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.aviso {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  overflow: hidden;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.aviso:hover { border-color: var(--rojo); box-shadow: var(--shadow-md); }
+
+.aviso__media { display: block; overflow: hidden; background: var(--surface-2); }
+
+.aviso__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease);
+}
+
+.aviso__media:hover img { transform: scale(1.04); }
+
+.aviso__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: clamp(1.1rem, 2vw, 1.6rem);
+}
+
+.aviso__tag {
+  align-self: flex-start;
+  padding: 0.25rem 0.8rem;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 700;
+  border-radius: var(--r-full);
+}
+
+.aviso__tag--rojo     { background: var(--rojo-tint);     color: var(--rojo-ink); }
+.aviso__tag--turquesa { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+
+.aviso h3 { font-size: var(--step-1); }
+.aviso__lema { font-weight: 600; color: var(--ink); }
+.aviso__body p:last-child { color: var(--muted); }
+
+@media (max-width: 1000px) {
+  .avisos { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .aviso { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   AGENDA DEL AÑO
+   ============================================================ */
+
+/* Línea de tiempo: el hilo vertical es un borde en el propio elemento,
+   así crece con el contenido sin alturas fijas. */
+.agenda {
+  display: grid;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.agenda__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) 0 clamp(1.25rem, 2.5vw, 1.75rem) 1.75rem;
+  border-left: 3px solid var(--line-soft);
+}
+
+.agenda__item::before {
+  content: "";
+  position: absolute;
+  top: clamp(1.5rem, 2.8vw, 2rem);
+  left: -0.6rem;
+  width: 1rem;
+  height: 1rem;
+  border: 3px solid var(--surface);
+  border-radius: var(--r-full);
+  background: var(--grey);
+}
+
+.agenda__item--rojo::before     { background: var(--rojo); }
+.agenda__item--turquesa::before { background: var(--turquesa); }
+.agenda__item--mostaza::before  { background: var(--mostaza); }
+.agenda__item--verde::before    { background: var(--verde); }
+
+.agenda__when {
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.agenda__body h3 { font-size: var(--step-1); margin-bottom: 0.35rem; }
+.agenda__body p { color: var(--muted); }
+
+@media (max-width: 700px) {
+  .agenda__item { grid-template-columns: 1fr; gap: 0.35rem; }
 }

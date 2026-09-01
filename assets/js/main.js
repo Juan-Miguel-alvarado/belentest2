@@ -297,7 +297,371 @@
     onScroll();
   }
 
-  /* --- 11. Sección activa en el menú -------------------------- */
+  /* --- 11. Páginas interiores -------------------------------- */
+  /* Pestañas de nivel en las listas escolares. Los paneles usan el
+     atributo hidden, que es lo que ya entienden los lectores de
+     pantalla, en vez de una clase propia. */
+  function initListas() {
+    const tabs = $$(".listas__tab");
+    if (!tabs.length) return;
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const nivel = tab.dataset.nivel;
+
+        tabs.forEach((other) => {
+          const on = other === tab;
+          other.classList.toggle("is-active", on);
+          other.setAttribute("aria-selected", String(on));
+        });
+
+        $$("[data-nivel-panel]").forEach((panel) => {
+          panel.hidden = panel.dataset.nivelPanel !== nivel;
+        });
+      });
+    });
+  }
+
+  /* Acordeón de períodos del calendario: uno abierto a la vez. */
+  function initPeriodos() {
+    const items = $$(".periodo");
+    if (!items.length) return;
+
+    items.forEach((item) => {
+      const head = $(".periodo__head", item);
+      if (!head) return;
+
+      head.addEventListener("click", () => {
+        const open = !item.classList.contains("is-open");
+
+        items.forEach((other) => {
+          other.classList.remove("is-open");
+          const btn = $(".periodo__head", other);
+          if (btn) btn.setAttribute("aria-expanded", "false");
+        });
+
+        if (open) {
+          item.classList.add("is-open");
+          head.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+  }
+
+  /* Envoltorio de html2pdf, compartido por el visor de listas y por las
+     láminas del calendario. Lleva las dos precauciones que costaron
+     encontrar:
+
+     1. La página se lleva arriba del todo antes de generar. html2pdf monta
+        su propio contenedor con position:fixed, pero html2canvas mide en
+        coordenadas del documento: con la página desplazada captura la franja
+        equivocada y el PDF sale en blanco.
+     2. El salto se hace dentro del ciclo de pintado y asignando scrollTop.
+        Quitar la clase que bloquea el scroll no surte efecto hasta el
+        siguiente reflujo, y como la hoja pone scroll-behavior: smooth,
+        window.scrollTo se anima y html2canvas mide a mitad del recorrido.
+
+     Devuelve una promesa que se cumple cuando el archivo ya se descargó, con
+     la página y el bloqueo de scroll tal como estaban. */
+  function generarPdf(elemento, ajustes) {
+    const raiz = document.scrollingElement || document.documentElement;
+    const scrollPrev = raiz.scrollTop;
+    const estabaBloqueado = document.body.classList.contains("is-locked");
+    const behaviorPrev = document.documentElement.style.scrollBehavior;
+
+    document.documentElement.style.scrollBehavior = "auto";
+    document.body.classList.remove("is-locked");
+
+    return new Promise((listo) => {
+      requestAnimationFrame(() => {
+        raiz.scrollTop = 0;
+        requestAnimationFrame(() => {
+          window.html2pdf().set(ajustes).from(elemento).save().then(listo, listo);
+        });
+      });
+    }).then(() => {
+      raiz.scrollTop = scrollPrev;
+      document.documentElement.style.scrollBehavior = behaviorPrev;
+      if (estabaBloqueado) document.body.classList.add("is-locked");
+    });
+  }
+
+  /* Visor compartido: abre en un modal la lámina de un uniforme o la
+     lista digital de un grado, con sus botones de descarga.
+
+     Los documentos de lista viven en la página (ocultos) y el visor los
+     mueve dentro; al cerrar vuelven a su sitio. Se mueven en vez de
+     clonarse para que las casillas que el visitante haya marcado no se
+     pierdan y para no duplicar ids en el documento. */
+  function initViewer() {
+    const viewer = $("[data-viewer]");
+    if (!viewer) return;
+
+    const body = $("[data-viewer-body]", viewer);
+    const title = $("[data-viewer-title]", viewer) || $("#viewer-title", viewer);
+    const pdfBtn = $("[data-viewer-pdf]", viewer);
+    const pdfLabel = $("[data-viewer-pdf-label]", viewer);
+    const download = $("[data-viewer-download]", viewer);
+    const downloadLabel = $("[data-viewer-download-label]", viewer);
+
+    let lastFocus = null;
+    let borrowed = null;   // documento prestado de la página
+    let home = null;       // dónde estaba, para devolverlo
+    let pdfName = "";      // nombre del archivo PDF que se genera
+
+    /* «Pre-Jardín» → «pre-jardin». Se descomponen las tildes con NFD y se
+       descartan las marcas diacríticas por código, que evita meter
+       escapes unicode en la expresión regular. */
+    const slug = (s) => s
+      .normalize("NFD")
+      .split("")
+      .filter((c) => c.charCodeAt(0) < 768 || c.charCodeAt(0) > 879)
+      .join("")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
+    const close = () => {
+      if (borrowed && home) {
+        borrowed.hidden = true;
+        home.appendChild(borrowed);
+      }
+      borrowed = null;
+      home = null;
+
+      body.textContent = "";
+      viewer.hidden = true;
+      document.body.classList.remove("is-locked");
+      if (lastFocus) lastFocus.focus();
+    };
+
+    const open = (btn) => {
+      lastFocus = btn;
+      body.textContent = "";
+
+      const docId = btn.dataset.verDoc;
+      const imagen = btn.dataset.verImagen;
+      const archivo = btn.dataset.verArchivo || "";
+
+      if (docId) {
+        /* Lista digital: se presta el documento de la tarjeta. */
+        const doc = document.getElementById(docId);
+        if (!doc) return;
+
+        home = doc.parentNode;
+        borrowed = doc;
+        doc.hidden = false;
+        body.appendChild(doc);
+
+        const name = $(".doc__grade", doc);
+        const grado = name ? name.textContent : "";
+        title.textContent = grado ? "Lista de " + grado : "Lista escolar";
+        pdfBtn.hidden = false;
+        downloadLabel.textContent = "Descargar imagen";
+
+        /* Nombre del PDF, sin tildes ni espacios: viaja mejor por correo
+           y por WhatsApp, que es como lo van a compartir. */
+        pdfName = "lista-utiles-2026-" + slug(grado) + ".pdf";
+      } else {
+        /* Lámina de uniforme: solo la imagen. */
+        const img = document.createElement("img");
+        img.src = imagen;
+        img.alt = btn.dataset.verTitulo || "";
+        body.appendChild(img);
+
+        title.textContent = btn.dataset.verTitulo || "";
+        pdfBtn.hidden = true;
+        downloadLabel.textContent = "Descargar imagen";
+        pdfName = "";
+      }
+
+      download.href = imagen;
+      download.setAttribute("download", archivo);
+
+      viewer.hidden = false;
+      document.body.classList.add("is-locked");
+      /* El primer [data-viewer-close] es el fondo, un div que no toma foco:
+         hay que buscar el botón de cerrar de la barra. */
+      const cerrar = $("button[data-viewer-close]", viewer);
+      if (cerrar) cerrar.focus();
+    };
+
+    $$("[data-ver-doc], [data-ver-imagen]").forEach((btn) => {
+      btn.addEventListener("click", () => open(btn));
+    });
+
+    $$("[data-viewer-close]", viewer).forEach((btn) => {
+      btn.addEventListener("click", close);
+    });
+
+    /* Genera el PDF con html2pdf y lo baja de un clic. Si la librería no
+       llegó a cargar, se cae al diálogo de impresión del sistema, que con
+       la hoja @media print produce el mismo documento.
+
+       Hay dos cosas aquí que parecen rodeos y no lo son:
+
+       1. La página se lleva arriba del todo antes de generar. html2pdf
+          monta su propio contenedor con position:fixed, pero html2canvas
+          mide en coordenadas del documento: con la página desplazada
+          captura la franja equivocada y el PDF sale en blanco. Es el
+          motivo real de las hojas vacías, no la posición del clon.
+       2. El documento se clona a un lienzo de ancho fijo en vez de usar el
+          que está en el visor, cuyo ancho depende del tamaño de la ventana
+          y cuyo contenedor tiene scroll propio. */
+    if (pdfBtn) {
+      pdfBtn.addEventListener("click", () => {
+        const paper = $(".doc__paper", body);
+        if (!paper) return;
+
+        if (!window.html2pdf) {
+          window.print();
+          return;
+        }
+
+        pdfBtn.disabled = true;
+        pdfLabel.textContent = "Generando…";
+
+        /* El documento se clona a un lienzo de ancho fijo en vez de usar el
+           que está en el visor, cuyo ancho depende del tamaño de la ventana
+           y cuyo contenedor tiene scroll propio. */
+        const stage = document.createElement("div");
+        stage.className = "pdf-stage";
+        const clone = paper.cloneNode(true);
+        stage.appendChild(clone);
+        document.body.appendChild(stage);
+
+        /* La página del PDF se hace del tamaño exacto del documento, así
+           que la lista entra completa en una sola hoja y no se parte.
+           Margen blanco alrededor: sin él el marco rojo llega al borde de
+           la hoja y en el visor no se lee como una página. */
+        const margen = 26;
+        const w = clone.offsetWidth;
+        /* Dos píxeles de holgura: si el alto de la página coincidiera al
+           milímetro con el del contenido, un redondeo podía sacar una
+           segunda hoja casi vacía. */
+        const h = clone.offsetHeight + 2;
+
+        generarPdf(clone, {
+          margin: margen,
+          filename: pdfName || "lista-escolar.pdf",
+          image: { type: "jpeg", quality: 0.98 },
+          /* scale 2 para que el texto no salga pixelado. */
+          html2canvas: { scale: 2, backgroundColor: "#ffffff", useCORS: true },
+          jsPDF: {
+            unit: "px",
+            format: [w + margen * 2, h + margen * 2],
+            orientation: h >= w ? "portrait" : "landscape",
+            /* px_scaling hace que un píxel del documento sea un píxel del
+               PDF; sin él jsPDF reescala y el encuadre no cuadra. */
+            hotfixes: ["px_scaling"]
+          }
+        }).then(() => {
+          stage.remove();
+          pdfBtn.disabled = false;
+          pdfLabel.textContent = "Descargar PDF";
+        });
+      });
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !viewer.hidden) close();
+    });
+  }
+
+  /* Junta las láminas del calendario en un único PDF, una por hoja.
+
+     El lienzo se arma con cajas del alto exacto de la página en vez de con
+     saltos de página: html2pdf corta el lienzo por altura de hoja, así que
+     con cajas iguales cada lámina cae encuadrada en la suya. Los saltos
+     declarados fallan cuando el contenido son imágenes. */
+  function initLaminasPdf() {
+    const btn = $("[data-laminas-pdf]");
+    if (!btn) return;
+
+    const laminas = $$(".laminas img");
+    if (!laminas.length) return;
+
+    const label = $("[data-laminas-pdf-label]", btn) || btn;
+    const textoPrev = label.textContent;
+
+    btn.addEventListener("click", () => {
+      if (!window.html2pdf) return;
+
+      btn.disabled = true;
+      label.textContent = "Generando…";
+
+      /* Las hojas van en un bloque normal dentro del lienzo, no colgando de
+         él: el lienzo está en position:fixed y html2canvas mide cero de alto
+         cuando se le entrega un elemento fijo. */
+      const stage = document.createElement("div");
+      stage.className = "pdf-stage";
+      const hojas = document.createElement("div");
+      stage.appendChild(hojas);
+
+      const copias = laminas.map((img) => {
+        const hoja = document.createElement("div");
+        hoja.className = "pdf-hoja";
+        const copia = new Image();
+        copia.src = img.currentSrc || img.src;
+        hoja.appendChild(copia);
+        hojas.appendChild(hoja);
+        return copia;
+      });
+
+      document.body.appendChild(stage);
+
+      const fin = () => {
+        stage.remove();
+        btn.disabled = false;
+        label.textContent = textoPrev;
+      };
+
+      /* Sin esperar a que las copias carguen, html2canvas dibujaría hojas
+         vacías. */
+      const cargadas = copias.map(
+        (img) =>
+          new Promise((listo) => {
+            if (img.complete) return listo();
+            img.addEventListener("load", listo, { once: true });
+            img.addEventListener("error", listo, { once: true });
+          })
+      );
+
+      Promise.all(cargadas)
+        .then(() => {
+          /* Las medidas salen de las copias ya cargadas: las del documento
+             llevan loading="lazy" y, mientras no se han visto, su tamaño
+             natural es cero.
+
+             La hoja se hace del tamaño de la lámina mayor para que ninguna
+             quede recortada; las más pequeñas se centran con el sobrante. */
+          const w = Math.max(...copias.map((img) => img.naturalWidth));
+          const h = Math.max(...copias.map((img) => img.naturalHeight));
+          if (!w || !h) return;
+
+          stage.style.width = w + "px";
+          copias.forEach((img) => {
+            img.parentNode.style.height = h + "px";
+          });
+
+          return generarPdf(hojas, {
+            margin: 0,
+            filename: btn.dataset.laminasPdf || "calendario.pdf",
+            image: { type: "jpeg", quality: 0.95 },
+            html2canvas: { scale: 2, backgroundColor: "#ffffff", useCORS: true },
+            jsPDF: {
+              unit: "px",
+              format: [w, h],
+              orientation: h >= w ? "portrait" : "landscape",
+              hotfixes: ["px_scaling"]
+            }
+          });
+        })
+        .then(fin, fin);
+    });
+  }
+
+  /* --- 12. Sección activa en el menú -------------------------- */
   /* Resalta el enlace del menú según la sección que se está viendo. */
   function initScrollSpy() {
     const links = $$('.menu__link[href^="#"]');
@@ -327,7 +691,7 @@
     map.forEach((_, section) => io.observe(section));
   }
 
-  /* --- 12. Visor de imagen (cuadros de honor y de promoción) --- */
+  /* --- 13. Visor de imagen (cuadros de honor y de promoción) --- */
   /* Las piezas son anchas y con los nombres en letra pequeña: en el
      móvil no hay forma de leerlas sin ampliarlas. */
   function initLightbox() {
@@ -375,7 +739,7 @@
     });
   }
 
-  /* --- 13. Detalles de utilidad ------------------------------- */
+  /* --- 14. Detalles de utilidad ------------------------------- */
   function initMisc() {
     $$("[data-year]").forEach((el) => {
       el.textContent = String(new Date().getFullYear());
@@ -395,6 +759,10 @@
     initFab();
     initScrollSpy();
     initLightbox();
+    initListas();
+    initPeriodos();
+    initViewer();
+    initLaminasPdf();
     initMisc();
   };
 
