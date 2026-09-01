@@ -348,6 +348,44 @@
     });
   }
 
+  /* Envoltorio de html2pdf, compartido por el visor de listas y por las
+     láminas del calendario. Lleva las dos precauciones que costaron
+     encontrar:
+
+     1. La página se lleva arriba del todo antes de generar. html2pdf monta
+        su propio contenedor con position:fixed, pero html2canvas mide en
+        coordenadas del documento: con la página desplazada captura la franja
+        equivocada y el PDF sale en blanco.
+     2. El salto se hace dentro del ciclo de pintado y asignando scrollTop.
+        Quitar la clase que bloquea el scroll no surte efecto hasta el
+        siguiente reflujo, y como la hoja pone scroll-behavior: smooth,
+        window.scrollTo se anima y html2canvas mide a mitad del recorrido.
+
+     Devuelve una promesa que se cumple cuando el archivo ya se descargó, con
+     la página y el bloqueo de scroll tal como estaban. */
+  function generarPdf(elemento, ajustes) {
+    const raiz = document.scrollingElement || document.documentElement;
+    const scrollPrev = raiz.scrollTop;
+    const estabaBloqueado = document.body.classList.contains("is-locked");
+    const behaviorPrev = document.documentElement.style.scrollBehavior;
+
+    document.documentElement.style.scrollBehavior = "auto";
+    document.body.classList.remove("is-locked");
+
+    return new Promise((listo) => {
+      requestAnimationFrame(() => {
+        raiz.scrollTop = 0;
+        requestAnimationFrame(() => {
+          window.html2pdf().set(ajustes).from(elemento).save().then(listo, listo);
+        });
+      });
+    }).then(() => {
+      raiz.scrollTop = scrollPrev;
+      document.documentElement.style.scrollBehavior = behaviorPrev;
+      if (estabaBloqueado) document.body.classList.add("is-locked");
+    });
+  }
+
   /* Visor compartido: abre en un modal la lámina de un uniforme o la
      lista digital de un grado, con sus botones de descarga.
 
@@ -442,7 +480,10 @@
 
       viewer.hidden = false;
       document.body.classList.add("is-locked");
-      $("[data-viewer-close]", viewer).focus();
+      /* El primer [data-viewer-close] es el fondo, un div que no toma foco:
+         hay que buscar el botón de cerrar de la barra. */
+      const cerrar = $("button[data-viewer-close]", viewer);
+      if (cerrar) cerrar.focus();
     };
 
     $$("[data-ver-doc], [data-ver-imagen]").forEach((btn) => {
@@ -480,36 +521,18 @@
         pdfBtn.disabled = true;
         pdfLabel.textContent = "Generando…";
 
+        /* El documento se clona a un lienzo de ancho fijo en vez de usar el
+           que está en el visor, cuyo ancho depende del tamaño de la ventana
+           y cuyo contenedor tiene scroll propio. */
         const stage = document.createElement("div");
         stage.className = "pdf-stage";
         const clone = paper.cloneNode(true);
         stage.appendChild(clone);
         document.body.appendChild(stage);
 
-        /* Estado que hay que devolver tal cual estaba. El bloqueo de scroll
-           del modal se suelta un momento porque impide mover la página. */
-        const raiz = document.scrollingElement || document.documentElement;
-        const scrollPrev = raiz.scrollTop;
-        const estabaBloqueado = document.body.classList.contains("is-locked");
-
-        /* scroll-behavior: smooth también anima la asignación de scrollTop,
-           así que se desactiva mientras dura la generación. */
-        const behaviorPrev = document.documentElement.style.scrollBehavior;
-        document.documentElement.style.scrollBehavior = "auto";
-        document.body.classList.remove("is-locked");
-
-        const done = () => {
-          raiz.scrollTop = scrollPrev;
-          document.documentElement.style.scrollBehavior = behaviorPrev;
-          if (estabaBloqueado) document.body.classList.add("is-locked");
-          stage.remove();
-          pdfBtn.disabled = false;
-          pdfLabel.textContent = "Descargar PDF";
-        };
-
         /* La página del PDF se hace del tamaño exacto del documento, así
-           que la lista entra completa en una sola hoja y no se parte. */
-        /* Margen blanco alrededor: sin él el marco rojo llega al borde de
+           que la lista entra completa en una sola hoja y no se parte.
+           Margen blanco alrededor: sin él el marco rojo llega al borde de
            la hoja y en el visor no se lee como una página. */
         const margen = 26;
         const w = clone.offsetWidth;
@@ -518,43 +541,123 @@
            segunda hoja casi vacía. */
         const h = clone.offsetHeight + 2;
 
-        /* El scroll va dentro del ciclo de pintado: quitar la clase que lo
-           bloquea no surte efecto hasta el siguiente reflujo, y asignándolo
-           en la misma vuelta el navegador lo ignoraba. Y se asigna scrollTop
-           en vez de window.scrollTo porque la hoja pone scroll-behavior:
-           smooth, con lo que el salto se anima y html2canvas acababa
-           midiendo a mitad del recorrido. */
-        requestAnimationFrame(() => {
-          raiz.scrollTop = 0;
-
-          requestAnimationFrame(() => {
-            window
-              .html2pdf()
-              .set({
-                margin: margen,
-                filename: pdfName || "lista-escolar.pdf",
-                image: { type: "jpeg", quality: 0.98 },
-                /* scale 2 para que el texto no salga pixelado. */
-                html2canvas: { scale: 2, backgroundColor: "#ffffff", useCORS: true },
-                jsPDF: {
-                  unit: "px",
-                  format: [w + margen * 2, h + margen * 2],
-                  orientation: h >= w ? "portrait" : "landscape",
-                  /* px_scaling hace que un píxel del documento sea un píxel
-                     del PDF; sin él jsPDF reescala y el encuadre no cuadra. */
-                  hotfixes: ["px_scaling"]
-                }
-              })
-              .from(clone)
-              .save()
-              .then(done, done);
-          });
+        generarPdf(clone, {
+          margin: margen,
+          filename: pdfName || "lista-escolar.pdf",
+          image: { type: "jpeg", quality: 0.98 },
+          /* scale 2 para que el texto no salga pixelado. */
+          html2canvas: { scale: 2, backgroundColor: "#ffffff", useCORS: true },
+          jsPDF: {
+            unit: "px",
+            format: [w + margen * 2, h + margen * 2],
+            orientation: h >= w ? "portrait" : "landscape",
+            /* px_scaling hace que un píxel del documento sea un píxel del
+               PDF; sin él jsPDF reescala y el encuadre no cuadra. */
+            hotfixes: ["px_scaling"]
+          }
+        }).then(() => {
+          stage.remove();
+          pdfBtn.disabled = false;
+          pdfLabel.textContent = "Descargar PDF";
         });
       });
     }
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && !viewer.hidden) close();
+    });
+  }
+
+  /* Junta las láminas del calendario en un único PDF, una por hoja.
+
+     El lienzo se arma con cajas del alto exacto de la página en vez de con
+     saltos de página: html2pdf corta el lienzo por altura de hoja, así que
+     con cajas iguales cada lámina cae encuadrada en la suya. Los saltos
+     declarados fallan cuando el contenido son imágenes. */
+  function initLaminasPdf() {
+    const btn = $("[data-laminas-pdf]");
+    if (!btn) return;
+
+    const laminas = $$(".laminas img");
+    if (!laminas.length) return;
+
+    const label = $("[data-laminas-pdf-label]", btn) || btn;
+    const textoPrev = label.textContent;
+
+    btn.addEventListener("click", () => {
+      if (!window.html2pdf) return;
+
+      btn.disabled = true;
+      label.textContent = "Generando…";
+
+      /* Las hojas van en un bloque normal dentro del lienzo, no colgando de
+         él: el lienzo está en position:fixed y html2canvas mide cero de alto
+         cuando se le entrega un elemento fijo. */
+      const stage = document.createElement("div");
+      stage.className = "pdf-stage";
+      const hojas = document.createElement("div");
+      stage.appendChild(hojas);
+
+      const copias = laminas.map((img) => {
+        const hoja = document.createElement("div");
+        hoja.className = "pdf-hoja";
+        const copia = new Image();
+        copia.src = img.currentSrc || img.src;
+        hoja.appendChild(copia);
+        hojas.appendChild(hoja);
+        return copia;
+      });
+
+      document.body.appendChild(stage);
+
+      const fin = () => {
+        stage.remove();
+        btn.disabled = false;
+        label.textContent = textoPrev;
+      };
+
+      /* Sin esperar a que las copias carguen, html2canvas dibujaría hojas
+         vacías. */
+      const cargadas = copias.map(
+        (img) =>
+          new Promise((listo) => {
+            if (img.complete) return listo();
+            img.addEventListener("load", listo, { once: true });
+            img.addEventListener("error", listo, { once: true });
+          })
+      );
+
+      Promise.all(cargadas)
+        .then(() => {
+          /* Las medidas salen de las copias ya cargadas: las del documento
+             llevan loading="lazy" y, mientras no se han visto, su tamaño
+             natural es cero.
+
+             La hoja se hace del tamaño de la lámina mayor para que ninguna
+             quede recortada; las más pequeñas se centran con el sobrante. */
+          const w = Math.max(...copias.map((img) => img.naturalWidth));
+          const h = Math.max(...copias.map((img) => img.naturalHeight));
+          if (!w || !h) return;
+
+          stage.style.width = w + "px";
+          copias.forEach((img) => {
+            img.parentNode.style.height = h + "px";
+          });
+
+          return generarPdf(hojas, {
+            margin: 0,
+            filename: btn.dataset.laminasPdf || "calendario.pdf",
+            image: { type: "jpeg", quality: 0.95 },
+            html2canvas: { scale: 2, backgroundColor: "#ffffff", useCORS: true },
+            jsPDF: {
+              unit: "px",
+              format: [w, h],
+              orientation: h >= w ? "portrait" : "landscape",
+              hotfixes: ["px_scaling"]
+            }
+          });
+        })
+        .then(fin, fin);
     });
   }
 
@@ -659,6 +762,7 @@
     initListas();
     initPeriodos();
     initViewer();
+    initLaminasPdf();
     initMisc();
   };
 
