@@ -1,0 +1,1342 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lista y uniforme — Gimnasio Cristiano Belén</title>
+<meta name="description" content="Listas de textos y útiles escolares 2026 por grado, en versión digital descargable, y los cuatro uniformes del Gimnasio Cristiano Belén, Montería.">
+<meta name="theme-color" content="#e24b4a">
+<link rel="icon" href="assets/img/logotipo.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:title" content="Lista y uniforme — Gimnasio Cristiano Belén">
+<meta property="og:description" content="Listas escolares 2026 por grado y los uniformes diario y de educación física.">
+<meta property="og:image" content="assets/img/estudiantesbelen.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/nosotros.css">
+<link rel="stylesheet" href="assets/css/paginas.css">
+</head>
+
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<!-- ============================================================
+     BARRA SUPERIOR
+     ============================================================ -->
+<div class="topbar">
+  <div class="shell topbar__inner">
+    <span class="topbar__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <span class="topbar__hours-long">Lunes a viernes · 8:00 a.m. – 3:00 p.m.</span>
+      <span class="topbar__hours-short">Lun – Vie · 8:00 a.m. – 3:00 p.m.</span>
+    </span>
+    <!-- TODO: reemplazar por la dirección exacta de la sede -->
+    <span class="topbar__item topbar__item--hide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Montería, Córdoba
+    </span>
+    <a class="topbar__item topbar__phone" href="tel:+573217156040">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      321 715 6040
+    </a>
+  </div>
+</div>
+
+<!-- ============================================================
+     CABECERA
+     Igual que la del index. Solo cambian los destinos: los anclajes
+     de la portada llevan ahora el prefijo index.html.
+     ============================================================ -->
+<header class="masthead">
+  <div class="shell masthead__inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logotipo.png" alt="" width="56" height="56">
+      <span>
+        <span class="brand__name">Gimnasio Cristiano Belén</span>
+        <span class="brand__tag">Educamos para la eternidad</span>
+      </span>
+    </a>
+
+    <div class="masthead__actions">
+      <a class="btn btn--outline btn--sm btn--plataforma" href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
+        Plataforma
+      </a>
+      <a class="btn btn--sm" href="index.html#admisiones">
+        Admisiones 2026
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir el menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="shell navbar" aria-label="Principal">
+    <div class="navwrap">
+      <ul class="menu">
+        <li class="menu__item"><a class="menu__link" href="index.html">Inicio</a></li>
+        <!-- Página actual: se marca a mano. initScrollSpy() solo observa
+             enlaces que empiezan por "#", así que no lo sobrescribe. -->
+        <li class="menu__item"><a class="menu__link" href="nosotros.html" aria-current="page">Nosotros</a></li>
+        <li class="menu__item menu__item--has-menu">
+          <button class="menu__link" type="button" aria-expanded="false">
+            Guía escolar
+            <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown">
+            <a href="lista-uniforme.html">Lista y uniforme</a>
+            <a href="calendario-academico.html">Calendario académico</a>
+            <a href="noticias-eventos.html">Noticias y eventos</a>
+            <a href="assets/docs/manual-convivencia-2026.pdf" target="_blank" rel="noopener">Manual de convivencia</a>
+            <hr>
+            <p class="dropdown__head">Para las familias</p>
+            <a href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">Webcolegios</a>
+            <a href="https://www.psepagos.co/PSEHostingUI/ShowTicketOffice.aspx?ID=7633" target="_blank" rel="noopener">Pagos en línea (PSE)</a>
+          </div>
+        </li>
+        <li class="menu__item"><a class="menu__link" href="index.html#solicitudes">Solicitudes en línea</a></li>
+        <li class="menu__item"><a class="menu__link" href="index.html#donaciones">Donaciones</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="menu-movil">
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html" aria-current="page">Nosotros</a>
+  <details>
+    <summary>Guía escolar</summary>
+    <div class="mobile-menu__sub">
+      <a href="lista-uniforme.html">Lista y uniforme</a>
+      <a href="calendario-academico.html">Calendario académico</a>
+      <a href="noticias-eventos.html">Noticias y eventos</a>
+      <a href="assets/docs/manual-convivencia-2026.pdf" target="_blank" rel="noopener">Manual de convivencia</a>
+      <a href="https://www.psepagos.co/PSEHostingUI/ShowTicketOffice.aspx?ID=7633" target="_blank" rel="noopener">Pagos en línea (PSE)</a>
+    </div>
+  </details>
+  <a href="index.html#solicitudes">Solicitudes en línea</a>
+  <a href="index.html#donaciones">Donaciones</a>
+  <div class="mobile-menu__foot">
+    <a class="btn btn--block" href="index.html#admisiones">Admisiones 2026</a>
+    <a class="btn btn--outline btn--block" href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">Plataforma</a>
+  </div>
+</div>
+
+
+<main id="contenido">
+
+<!-- ============================================================
+     CABECERA DE PÁGINA
+     ============================================================ -->
+<section class="pagehead">
+  <span class="pagehead__blob pagehead__blob--1" aria-hidden="true"></span>
+  <span class="pagehead__blob pagehead__blob--2" aria-hidden="true"></span>
+  <span class="pagehead__blob pagehead__blob--3" aria-hidden="true"></span>
+
+  <div class="shell pagehead__inner">
+    <div class="pagehead__body">
+      <nav class="crumbs reveal" aria-label="Migas de pan">
+        <a href="index.html">Inicio</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        <span>Lista y uniforme</span>
+      </nav>
+
+      <h1 class="pagehead__title reveal" style="--i:1">
+        Lista y <span class="mark">UNIFORME</span>
+      </h1>
+
+      <p class="lede reveal" style="--i:2">
+        Todo lo que se necesita para empezar el año: la lista de textos y útiles
+        de cada grado y los cuatro uniformes del colegio.
+      </p>
+
+      <ul class="chips reveal" style="--i:3">
+        <li><a class="chip chip--rojo" href="#uniformes">Uniformes</a></li>
+        <li><a class="chip chip--turquesa" href="#listas">Listas por grado</a></li>
+      </ul>
+    </div>
+
+    <div class="pagehead__media reveal-img" style="--i:2">
+      <img src="assets/img/estudiantesbelen.png" alt="Dos estudiantes del Gimnasio Cristiano Belén con el uniforme diario" width="1359" height="1157" fetchpriority="high" decoding="async">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     UNIFORMES
+     El texto está transcrito de las láminas oficiales del colegio, para
+     que la información sea buscable y accesible y no dependa solo de la
+     imagen. La lámina se abre en el visor, con su botón de descarga.
+     ============================================================ -->
+<section class="section section--tint" id="uniformes">
+  <div class="shell">
+    <div class="section__head reveal">
+      <p class="eyebrow">Cómo se viste el belenista</p>
+      <h2>Los cuatro <span class="hand">uniformes</span></h2>
+      <p class="lede">
+        Toca cualquier lámina para verla en grande y descargarla. Debajo de
+        cada una está la misma información en texto.
+      </p>
+    </div>
+
+    <div class="uniformes">
+      <article class="uniforme uniforme--rojo reveal">
+        <button class="uniforme__figure" type="button"
+                data-ver-imagen="assets/img/paginas/DIAPOSITIVAS-3.jpg"
+                data-ver-titulo="Uniforme diario · Hombres, preescolar"
+                data-ver-archivo="uniforme-diario-hombres-preescolar.jpg"
+                aria-label="Ver en grande la lámina del uniforme diario de preescolar para hombres">
+          <img src="assets/img/paginas/DIAPOSITIVAS-3.jpg" alt="Uniforme diario de preescolar para hombres: camiseta polo blanca, pantalón corto cargo gris oscuro, medias blancas, zapatos negros y correa negra" width="1920" height="1080" loading="lazy" decoding="async">
+        </button>
+        <div class="uniforme__body">
+          <h3>Diario · Hombres, preescolar</h3>
+          <ul class="uniforme__list">
+            <li>Camiseta tipo polo belenista</li>
+            <li>Pantalón corto cargo gris oscuro, tela drill</li>
+            <li>Medias blancas</li>
+            <li>Zapatos negros</li>
+            <li>Reata color negro</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="uniforme uniforme--turquesa reveal" style="--i:1">
+        <button class="uniforme__figure" type="button"
+                data-ver-imagen="assets/img/paginas/DIAPOSITIVAS-1.jpg"
+                data-ver-titulo="Uniforme diario · Hombres, primaria y secundaria"
+                data-ver-archivo="uniforme-diario-hombres-primaria-secundaria.jpg"
+                aria-label="Ver en grande la lámina del uniforme diario de primaria y secundaria para hombres">
+          <img src="assets/img/paginas/DIAPOSITIVAS-1.jpg" alt="Uniforme diario de primaria y secundaria para hombres: camiseta polo blanca, pantalón largo cargo gris oscuro, medias blancas, zapatos negros y correa negra" width="1920" height="1080" loading="lazy" decoding="async">
+        </button>
+        <div class="uniforme__body">
+          <h3>Diario · Hombres, primaria y secundaria</h3>
+          <ul class="uniforme__list">
+            <li>Camiseta tipo polo belenista</li>
+            <li>Pantalón largo cargo gris oscuro, tela drill</li>
+            <li>Medias blancas</li>
+            <li>Zapatos negros</li>
+            <li>Reata color negro</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="uniforme uniforme--mostaza reveal" style="--i:2">
+        <button class="uniforme__figure" type="button"
+                data-ver-imagen="assets/img/paginas/DIAPOSITIVAS-2.jpg"
+                data-ver-titulo="Uniforme diario · Mujeres"
+                data-ver-archivo="uniforme-diario-mujeres.jpg"
+                aria-label="Ver en grande la lámina del uniforme diario de mujeres">
+          <img src="assets/img/paginas/DIAPOSITIVAS-2.jpg" alt="Uniforme diario de mujeres: jumper gris, blusa blanca con botones, medias blancas y zapatos rojos" width="1920" height="1080" loading="lazy" decoding="async">
+        </button>
+        <div class="uniforme__body">
+          <h3>Diario · Mujeres</h3>
+          <ul class="uniforme__list">
+            <li>Jumper gris, con abertura hasta la cintura y falda hasta la rodilla</li>
+            <li>Blusa con botones, con dos franjas en las mangas y escudo en la manga izquierda</li>
+            <li>Medias blancas</li>
+            <li>Zapatos rojos</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="uniforme uniforme--verde reveal" style="--i:3">
+        <button class="uniforme__figure" type="button"
+                data-ver-imagen="assets/img/paginas/DIAPOSITIVAS-.jpg"
+                data-ver-titulo="Uniforme de deporte · Educación física"
+                data-ver-archivo="uniforme-deporte-educacion-fisica.jpg"
+                aria-label="Ver en grande la lámina del uniforme de educación física">
+          <img src="assets/img/paginas/DIAPOSITIVAS-.jpg" alt="Uniforme de educación física: camiseta polo belenista, jogger gris con líneas a los lados, medias blancas y tenis blancos" width="1920" height="1080" loading="lazy" decoding="async">
+        </button>
+        <div class="uniforme__body">
+          <h3>Deporte · Educación física</h3>
+          <ul class="uniforme__list">
+            <li>Camiseta tipo polo belenista</li>
+            <li>Jogger gris con líneas contramarcadas a los lados</li>
+            <li>Medias blancas</li>
+            <li>Tenis blancos</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="wave wave--flip wave--white" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 40c180 45 360 45 540 22s360-58 540-35 300 45 360 53v10H0Z"/></svg>
+</div>
+
+<!-- ============================================================
+     LISTAS ESCOLARES POR GRADO
+
+     Cada grado lleva su lista completa en HTML (.doc), no como imagen.
+     El visor la muestra en grande y la imprime; el diseño de impresión
+     es el mismo que se ve en pantalla, así que el PDF sale maquetado.
+     La lámina original del colegio queda como descarga alternativa.
+     ============================================================ -->
+<section class="section" id="listas">
+  <div class="shell">
+    <div class="section__head reveal">
+      <p class="eyebrow eyebrow--turquesa">Año 2026</p>
+      <h2>Listas por <span class="hand">grado</span></h2>
+      <p class="lede">
+        Elige el nivel y luego el grado. Cada lista se abre en grande, se puede
+        marcar mientras compras y se descarga en PDF o como imagen.
+      </p>
+    </div>
+
+    <div class="listas reveal">
+      <div class="listas__tabs" role="tablist" aria-label="Niveles">
+        <button class="listas__tab is-active" type="button" role="tab" aria-selected="true" data-nivel="preescolar">Preescolar</button>
+        <button class="listas__tab" type="button" role="tab" aria-selected="false" data-nivel="primaria">Primaria</button>
+        <button class="listas__tab" type="button" role="tab" aria-selected="false" data-nivel="secundaria">Secundaria</button>
+      </div>
+
+      <!-- ---------------------------------------------------- -->
+      <!-- PREESCOLAR                                           -->
+      <!-- ---------------------------------------------------- -->
+      <div class="listas__grid" data-nivel-panel="preescolar">
+
+        <article class="grado grado--rojo">
+          <button class="grado__btn" type="button" data-ver-doc="doc-pre-jardin"
+                  data-ver-imagen="assets/img/paginas/listas/lista-pre-jardin.png"
+                  data-ver-archivo="lista-pre-jardin-2026.png">
+            <span class="grado__name">Pre-Jardín</span>
+            <span class="grado__meta">Preescolar · 30 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-pre-jardin" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Pre-Jardín</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel preescolar</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Work Book Soy Belenista</span><span></span></li>
+                <li><span>I Love English — Inglés A</span><span>Encuentro</span></li>
+                <li><span>Plan lector: Yo puedo hablar con Dios</span><span>Nueva Generación</span></li>
+                <li><span>Biblia ilustrada para niños</span><span></span></li>
+                <li><span>Cuento infantil ilustrado</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>1 Cuaderno cosido de 100 hojas cuadritos B</li>
+                <li>1 Cuaderno cosido de 100 hojas rengloncitos C</li>
+                <li>2 Cuadernos de 50 hojas rayado</li>
+                <li>1 Block de hojas tamaño carta sin rayas</li>
+                <li>8 Pliegos de papel de seda surtidos</li>
+                <li>1 Block de hojas iris tamaño carta</li>
+                <li>2 Paquetes 1/8 de cartulina de colores fuertes y colores pastel</li>
+                <li>1 Paquete de pintura a dedos</li>
+                <li>1 Pincel No. 10</li>
+                <li>2 Cajas de plastilina grandes</li>
+                <li>1 Caja de colores triangulares</li>
+                <li>1 Caja de crayolas grandes</li>
+                <li>1 Paquete de plumones delgados</li>
+                <li>1 Goma de borrar grande</li>
+                <li>2 Lápices negros triangulares</li>
+                <li>1 Sacapunta con depósito grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>1 Tarro de colbón grande</li>
+                <li>1 Carpeta de seguridad</li>
+                <li>2 Rollos de lana</li>
+                <li>2 Gel escarchado</li>
+                <li>1 Juego didáctico: rompecabezas, arma todo y/o encajables (escoja uno solo)</li>
+                <li>2 Tarro de silicona líquido mediano</li>
+                <li>2 Paquetes de foamy de colores surtidos</li>
+                <li>1 Delantal de manga larga</li>
+                <li>1 Paquete de copitos</li>
+                <li>1 Paquete de paletas de colores</li>
+                <li>2 Paquete de paños húmedos</li>
+                <li>1 Toalla mediana</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="grado grado--turquesa">
+          <button class="grado__btn" type="button" data-ver-doc="doc-jardin"
+                  data-ver-imagen="assets/img/paginas/listas/lista-jardin.png"
+                  data-ver-archivo="lista-jardin-2026.png">
+            <span class="grado__name">Jardín</span>
+            <span class="grado__meta">Preescolar · 30 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-jardin" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Jardín</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel preescolar</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Work Book Soy Belenista</span><span></span></li>
+                <li><span>I Love English — Inglés B</span><span>Encuentro</span></li>
+                <li><span>Plan lector: Yo puedo hablar con Dios</span><span>Nueva Generación</span></li>
+                <li><span>Soy Vida</span><span>Publicaciones Vives</span></li>
+                <li><span>Biblia ilustrada para niños</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>1 Cuaderno cosido de 100 hojas cuadritos B</li>
+                <li>1 Cuaderno cosido de 100 hojas rengloncitos C</li>
+                <li>2 Cuadernos de 50 hojas rayado</li>
+                <li>1 Block de hojas tamaño carta sin rayas</li>
+                <li>8 Pliegos de papel de seda surtidos</li>
+                <li>1 Block de hojas iris tamaño carta</li>
+                <li>2 Paquetes 1/8 de cartulina de colores fuertes y colores pastel</li>
+                <li>1 Paquete de pintura a dedos</li>
+                <li>1 Pincel No. 10</li>
+                <li>2 Cajas de plastilina grandes</li>
+                <li>1 Caja de colores triangulares</li>
+                <li>1 Caja de crayolas grandes</li>
+                <li>1 Paquete de plumones delgados</li>
+                <li>1 Goma de borrar grande</li>
+                <li>2 Lápices negros triangulares</li>
+                <li>1 Sacapuntas con depósito grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>1 Tarro de colbón grande</li>
+                <li>1 Carpeta de seguridad</li>
+                <li>2 Rollos de lana</li>
+                <li>2 Gel escarchado</li>
+                <li>1 Juego didáctico: rompecabezas, arma todo y/o encajables (escoja uno solo)</li>
+                <li>1 Tarro de silicona líquido mediano</li>
+                <li>2 Paquetes de foamy de colores surtidos</li>
+                <li>1 Delantal de manga larga</li>
+                <li>1 Paquete de copitos</li>
+                <li>1 Paquete de paletas de colores</li>
+                <li>2 Paquete de paños húmedos</li>
+                <li>1 Toalla mediana</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="grado grado--mostaza">
+          <button class="grado__btn" type="button" data-ver-doc="doc-transicion"
+                  data-ver-imagen="assets/img/paginas/listas/lista-transicion.png"
+                  data-ver-archivo="lista-transicion-2026.png">
+            <span class="grado__name">Transición</span>
+            <span class="grado__meta">Preescolar · 30 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-transicion" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Transición</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel preescolar</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Work Book Soy Belenista</span><span></span></li>
+                <li><span>I Love English — Inglés C</span><span>Encuentro</span></li>
+                <li><span>Plan lector: Dios cuida de mí — Cuenta con mi amabilidad</span><span>Nueva Generación</span></li>
+                <li><span>Soy Vida</span><span>Publicaciones Vives</span></li>
+                <li><span>Biblia ilustrada para niños</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>1 Cuaderno cosido de 100 hojas cuadritos B</li>
+                <li>1 Cuaderno cosido de 100 hojas rengloncitos C</li>
+                <li>2 Cuadernos de 50 hojas rayado</li>
+                <li>1 Block de hojas tamaño carta sin rayas</li>
+                <li>8 Pliegos de papel de seda surtidos</li>
+                <li>1 Block de hojas iris tamaño carta</li>
+                <li>2 Paquetes 1/8 de cartulina de colores fuertes y colores pastel</li>
+                <li>1 Paquete de pintura a dedos</li>
+                <li>1 Pincel No. 10</li>
+                <li>2 Cajas de plastilina grandes</li>
+                <li>1 Caja de colores triangulares</li>
+                <li>1 Caja de crayolas grandes</li>
+                <li>1 Paquete de plumones delgados</li>
+                <li>1 Goma de borrar grande</li>
+                <li>2 Lápices negros triangulares</li>
+                <li>1 Sacapuntas con depósito grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>1 Tarro de colbón grande</li>
+                <li>1 Carpeta de seguridad</li>
+                <li>2 Rollos de lana</li>
+                <li>2 Gel escarchado</li>
+                <li>1 Juego didáctico: rompecabezas, arma todo y/o encajables (escoja uno solo)</li>
+                <li>1 Tarro de silicona líquido mediano</li>
+                <li>2 Paquetes de foamy de colores surtidos</li>
+                <li>1 Delantal de manga larga</li>
+                <li>1 Paquete de copitos</li>
+                <li>1 Paquete de paletas de colores</li>
+                <li>2 Paquete de paños húmedos</li>
+                <li>1 Toalla mediana</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ---------------------------------------------------- -->
+      <!-- PRIMARIA                                             -->
+      <!-- ---------------------------------------------------- -->
+      <div class="listas__grid" data-nivel-panel="primaria" hidden>
+
+        <article class="grado grado--rojo">
+          <button class="grado__btn" type="button" data-ver-doc="doc-primero"
+                  data-ver-imagen="assets/img/paginas/listas/lista-primero.png"
+                  data-ver-archivo="lista-primero-2026.png">
+            <span class="grado__name">Primero</span>
+            <span class="grado__meta">Básica primaria · 24 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-primero" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Primero</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel básica primaria</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Work Book Soy Belenista</span><span></span></li>
+                <li><span>Bible Work Book</span><span></span></li>
+                <li><span>Gateway Gold 1</span><span>Garnet Education</span></li>
+                <li><span>Plan lector: El gorrión muy preocupado — Cuenta con mi amabilidad</span><span>Nueva Generación</span></li>
+                <li><span>Soy Vida</span><span>Publicaciones Vives</span></li>
+                <li><span>Biblia RVA 1960</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>2 Cuadernos cosidos de 100 hojas rayados</li>
+                <li>5 Cuadernos cosidos de 50 hojas rayados</li>
+                <li>1 Cuaderno de 100 hojas cuadriculado</li>
+                <li>1 Cuaderno de 100 hojas doble línea</li>
+                <li>1 Block tamaño carta sin rayas</li>
+                <li>1 Cuaderno de dibujo argollado</li>
+                <li>2 Cajas de colores</li>
+                <li>1 Caja de plastilina</li>
+                <li>5 Vinilos (amarillo, azul, rojo, blanco y negro)</li>
+                <li>1 Pincel No. 8 cerda suave</li>
+                <li>8 Pliegos de papel seda colores surtidos</li>
+                <li>1 Colbón grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>1 Delantal plástico</li>
+                <li>2 Lápices negros</li>
+                <li>2 Lápices rojos</li>
+                <li>1 Cartuchera</li>
+                <li>1 Goma de borrar</li>
+                <li>1 Sacapuntas</li>
+                <li>1 Paquete de cartulinas de colores fuertes</li>
+                <li>1 Paquete de cartulinas de colores pasteles</li>
+                <li>1 Juego geométrico</li>
+                <li>1 Juego didáctico — bloques lógicos</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="grado grado--turquesa">
+          <button class="grado__btn" type="button" data-ver-doc="doc-segundo"
+                  data-ver-imagen="assets/img/paginas/listas/lista-segundo.png"
+                  data-ver-archivo="lista-segundo-2026.png">
+            <span class="grado__name">Segundo</span>
+            <span class="grado__meta">Básica primaria · 25 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-segundo" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Segundo</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel básica primaria</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Work Book Soy Belenista</span><span></span></li>
+                <li><span>Bible Work Book</span><span></span></li>
+                <li><span>Gateway Gold 2</span><span>Garnet Education</span></li>
+                <li><span>Plan lector: El regalo de Jesús para ti — Mitos y leyendas de Colombia</span><span>Nueva Generación</span></li>
+                <li><span>Soy Vida</span><span>Publicaciones Vives</span></li>
+                <li><span>Biblia RVA 1960</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>2 Cuadernos cosidos de 100 hojas rayados</li>
+                <li>5 Cuadernos cosidos de 50 hojas rayados</li>
+                <li>1 Cuaderno de 100 hojas cuadriculado</li>
+                <li>1 Cuaderno de 50 hojas cuadriculado</li>
+                <li>1 Cuaderno de 100 hojas doble línea</li>
+                <li>1 Block tamaño carta sin rayas</li>
+                <li>1 Cuaderno de dibujo argollado</li>
+                <li>1 Caja de colores grande</li>
+                <li>1 Caja de plastilina grande</li>
+                <li>1 Caja de crayolas</li>
+                <li>5 Vinilos (amarillo, azul, rojo, blanco y negro)</li>
+                <li>1 Pincel No. 8 cerda suave</li>
+                <li>8 Pliegos de papel seda surtidos</li>
+                <li>1 Colbón grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>1 Delantal plástico</li>
+                <li>2 Lápices negros</li>
+                <li>2 Lápices rojos</li>
+                <li>1 Cartuchera</li>
+                <li>1 Goma de borrar</li>
+                <li>1 Sacapuntas</li>
+                <li>1 Paquete de cartulina de colores fuertes</li>
+                <li>1 Paquete de cartulina de colores pasteles</li>
+                <li>1 Juego geométrico</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__nota">Además: 1 Diccionario de Inglés · 1 Diccionario de Español RAE</p>
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="grado grado--mostaza">
+          <button class="grado__btn" type="button" data-ver-doc="doc-tercero"
+                  data-ver-imagen="assets/img/paginas/listas/lista-tercero.png"
+                  data-ver-archivo="lista-tercero-2026.png">
+            <span class="grado__name">Tercero</span>
+            <span class="grado__meta">Básica primaria · 26 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-tercero" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Tercero</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel básica primaria</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Work Book Soy Belenista</span><span></span></li>
+                <li><span>Bible Work Book</span><span></span></li>
+                <li><span>Gateway Gold 3</span><span>Garnet Education</span></li>
+                <li><span>Plan lector: Parábolas de vida — Cuentos y leyendas de Colombia</span><span>Nueva Generación</span></li>
+                <li><span>Soy Vida</span><span>Publicaciones Vives</span></li>
+                <li><span>Biblia RVA 1960</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>4 Cuadernos cosidos de 100 hojas rayados</li>
+                <li>6 Cuadernos cosidos de 50 hojas rayados</li>
+                <li>1 Cuaderno de 100 hojas cuadriculado</li>
+                <li>1 Cuaderno de 50 hojas cuadriculado</li>
+                <li>1 Cuaderno de 100 hojas doble línea</li>
+                <li>1 Block tamaño carta sin rayas</li>
+                <li>1 Cuaderno de dibujo argollado</li>
+                <li>1 Caja de colores grande</li>
+                <li>1 Caja de plastilina grande</li>
+                <li>1 Caja de crayolas</li>
+                <li>5 Vinilos (amarillo, azul, rojo, blanco y negro)</li>
+                <li>1 Pincel No. 8</li>
+                <li>8 Pliegos de papel seda surtidos</li>
+                <li>1 Colbón grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>1 Delantal plástico</li>
+                <li>2 Lápices negros</li>
+                <li>2 Lápices rojos</li>
+                <li>1 Cartuchera</li>
+                <li>1 Goma de borrar</li>
+                <li>1 Sacapuntas</li>
+                <li>1 Paquete de cartulinas de colores fuertes</li>
+                <li>1 Paquete de cartulinas de colores pasteles</li>
+                <li>1 Juego geométrico</li>
+                <li>1 Compás</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__nota">Además: 1 Diccionario de Inglés · 1 Diccionario de Español RAE</p>
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="grado grado--verde">
+          <button class="grado__btn" type="button" data-ver-doc="doc-cuarto"
+                  data-ver-imagen="assets/img/paginas/listas/lista-cuarto.png"
+                  data-ver-archivo="lista-cuarto-2026.png">
+            <span class="grado__name">Cuarto</span>
+            <span class="grado__meta">Básica primaria · 23 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-cuarto" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Cuarto</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel básica primaria</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Proyecto Enfoque Integral (Matemáticas, Inglés y Lengua Castellana) + pin de plataforma; Ciencias Sociales y Ciencias Naturales libro virtual</span><span>Enlinea Editores</span></li>
+                <li><span>Gateway Gold 4</span><span>Garnet Education</span></li>
+                <li><span>Bible Work Book</span><span></span></li>
+                <li><span>Plan lector: Constructores de paz — El abuelo Bijao y otro cuento de Lao</span><span>Nueva Generación</span></li>
+                <li><span>Soy Vida</span><span>Publicaciones Vives</span></li>
+                <li><span>Biblia RVA 1960</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>4 Cuadernos cosidos de 100 hojas rayados</li>
+                <li>7 Cuadernos cosidos de 50 hojas rayados</li>
+                <li>1 Cuaderno de 100 hojas cuadriculado</li>
+                <li>1 Cuaderno de 50 hojas cuadriculado</li>
+                <li>1 Cuaderno de 100 hojas doble línea</li>
+                <li>1 Block tamaño carta sin rayas</li>
+                <li>1 Cuaderno de dibujo argollado</li>
+                <li>1 Caja de colores grande</li>
+                <li>5 Vinilos (amarillo, azul, rojo, blanco y negro)</li>
+                <li>1 Pincel No. 8</li>
+                <li>8 Pliegos de papel seda surtidos</li>
+                <li>1 Colbón grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>2 Lápices negros</li>
+                <li>2 Lápices rojos</li>
+                <li>1 Cartuchera</li>
+                <li>1 Goma de borrar</li>
+                <li>1 Sacapuntas</li>
+                <li>1 Paquete de cartulinas de colores fuertes</li>
+                <li>1 Paquete de cartulinas de colores pasteles</li>
+                <li>1 Juego geométrico</li>
+                <li>1 Compás</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__nota">Además: 1 Diccionario de Inglés · 1 Diccionario de Español RAE</p>
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="grado grado--rojo">
+          <button class="grado__btn" type="button" data-ver-doc="doc-quinto"
+                  data-ver-imagen="assets/img/paginas/listas/lista-quinto.png"
+                  data-ver-archivo="lista-quinto-2026.png">
+            <span class="grado__name">Quinto</span>
+            <span class="grado__meta">Básica primaria · 23 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-quinto" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Quinto</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel básica primaria</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Proyecto Enfoque Integral (Matemáticas, Inglés y Lengua Castellana) + pin de plataforma; Ciencias Sociales y Ciencias Naturales libro virtual</span><span>Enlinea Editores</span></li>
+                <li><span>Bible Work Book</span><span></span></li>
+                <li><span>Plan lector: Crónicas de Narnia. El León, la Bruja y el Ropero — El principito</span><span>Nueva Generación</span></li>
+                <li><span>Soy Vida</span><span>Publicaciones Vives</span></li>
+                <li><span>Biblia RVA 1960</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>4 Cuadernos cosidos de 100 hojas rayados</li>
+                <li>7 Cuadernos cosidos de 50 hojas rayados</li>
+                <li>1 Cuaderno de 100 hojas cuadriculado</li>
+                <li>1 Cuaderno de 50 hojas cuadriculado</li>
+                <li>1 Cuaderno de 100 hojas doble línea «Mi primer cuaderno D»</li>
+                <li>1 Block tamaño carta sin rayas</li>
+                <li>1 Cuaderno de dibujo argollado</li>
+                <li>1 Caja de colores grande</li>
+                <li>5 Vinilos (amarillo, azul, rojo, blanco y negro)</li>
+                <li>1 Pincel No. 8</li>
+                <li>8 Pliegos de papel barrilete surtidos</li>
+                <li>1 Colbón grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>2 Lápices negros</li>
+                <li>2 Lápices rojos</li>
+                <li>1 Cartuchera</li>
+                <li>1 Goma de borrar</li>
+                <li>1 Sacapuntas</li>
+                <li>1 Paquete de cartulinas de colores fuertes</li>
+                <li>1 Paquete de cartulinas de colores pasteles</li>
+                <li>1 Juego geométrico</li>
+                <li>1 Compás</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__nota">Además: 1 Diccionario de Inglés · 1 Diccionario de Español RAE</p>
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ---------------------------------------------------- -->
+      <!-- SECUNDARIA                                           -->
+      <!-- ---------------------------------------------------- -->
+      <div class="listas__grid" data-nivel-panel="secundaria" hidden>
+
+        <article class="grado grado--rojo">
+          <button class="grado__btn" type="button" data-ver-doc="doc-sexto"
+                  data-ver-imagen="assets/img/paginas/listas/lista-sexto.png"
+                  data-ver-archivo="lista-sexto-2026.png">
+            <span class="grado__name">Sexto</span>
+            <span class="grado__meta">Básica secundaria · 23 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-sexto" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Sexto</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel básica</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Proyecto Enfoque Integral (Matemáticas, Inglés y Lengua Castellana) + pin de plataforma; Ciencias Sociales y Ciencias Naturales libro virtual</span><span>Enlinea Editores</span></li>
+                <li><span>Bible Work Book</span><span></span></li>
+                <li><span>Plan lector: La aventura de la oración — Crónicas de Narnia. El León, la Bruja y el Ropero — Doce cuentos peregrinos — La Ilíada</span><span>Nueva Generación</span></li>
+                <li><span>Soy Vida No 6</span><span>Publicaciones Vives</span></li>
+                <li><span>Biblia RVA 1960</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>4 Cuadernos cosidos de 100 hojas rayados</li>
+                <li>7 Cuadernos cosidos de 50 hojas rayados</li>
+                <li>1 Cuaderno de 100 hojas cuadriculado</li>
+                <li>2 Cuadernos de 50 hojas cuadriculado</li>
+                <li>1 Block tamaño carta sin rayas</li>
+                <li>1 Block tamaño carta con rayas</li>
+                <li>1 Caja de colores grande</li>
+                <li>5 Vinilos (amarillo, azul, rojo, blanco y negro)</li>
+                <li>1 Pincel No. 8</li>
+                <li>8 Pliegos de papel seda surtidos</li>
+                <li>1 Colbón grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>2 Lápices negros</li>
+                <li>2 Lápices rojos</li>
+                <li>1 Cartuchera</li>
+                <li>1 Goma de borrar</li>
+                <li>1 Sacapuntas</li>
+                <li>1 Paquete de cartulinas de colores fuertes</li>
+                <li>1 Paquete de cartulinas de colores pasteles</li>
+                <li>1 Marcador permanente</li>
+                <li>1 Juego geométrico</li>
+                <li>1 Compás</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__nota">Además: 1 Diccionario de Inglés · 1 Diccionario de Español RAE</p>
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="grado grado--turquesa">
+          <button class="grado__btn" type="button" data-ver-doc="doc-septimo"
+                  data-ver-imagen="assets/img/paginas/listas/lista-septimo.png"
+                  data-ver-archivo="lista-septimo-2026.png">
+            <span class="grado__name">Séptimo</span>
+            <span class="grado__meta">Básica secundaria · 22 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-septimo" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Séptimo</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel básica</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Proyecto Enfoque Integral (Matemáticas, Inglés y Lengua Castellana) + pin de plataforma; Ciencias Sociales y Ciencias Naturales libro virtual</span><span>Enlinea Editores</span></li>
+                <li><span>Bible Work Book</span><span></span></li>
+                <li><span>Plan lector: Más que un carpintero — La isla misteriosa — La odisea</span><span></span></li>
+                <li><span>Soy Vida No 7</span><span>Publicaciones Vives</span></li>
+                <li><span>Biblia RVA 1960</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>4 Cuadernos cosidos de 100 hojas rayados</li>
+                <li>7 Cuadernos cosidos de 50 hojas rayados</li>
+                <li>1 Cuaderno de 100 hojas cuadriculado</li>
+                <li>4 Cuadernos de 50 hojas cuadriculado</li>
+                <li>1 Block tamaño carta sin rayas</li>
+                <li>1 Block tamaño carta con rayas</li>
+                <li>1 Caja de colores grande</li>
+                <li>5 Vinilos (amarillo, azul, rojo, blanco y negro)</li>
+                <li>1 Pincel No. 8</li>
+                <li>8 Pliegos de papel barrilete surtidos</li>
+                <li>1 Colbón grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>2 Lápices negros</li>
+                <li>2 Lápices rojos</li>
+                <li>1 Cartuchera</li>
+                <li>1 Goma de borrar</li>
+                <li>1 Sacapuntas</li>
+                <li>1 Paquete de cartulinas de colores fuertes</li>
+                <li>1 Paquete de cartulinas de colores pasteles</li>
+                <li>1 Juego geométrico</li>
+                <li>1 Compás</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__nota">Además: 1 Diccionario de Inglés · 1 Diccionario de Español RAE</p>
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="grado grado--mostaza">
+          <button class="grado__btn" type="button" data-ver-doc="doc-octavo"
+                  data-ver-imagen="assets/img/paginas/listas/lista-octavo.png"
+                  data-ver-archivo="lista-octavo-2026.png">
+            <span class="grado__name">Octavo</span>
+            <span class="grado__meta">Básica secundaria · 21 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-octavo" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Octavo</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel básica</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Proyecto Enfoque Integral (Matemáticas, Inglés y Lengua Castellana) + pin de plataforma; Ciencias Sociales y Ciencias Naturales libro virtual</span><span>Enlinea Editores</span></li>
+                <li><span>Bible Work Book</span><span></span></li>
+                <li><span>Plan lector: Popol Vuh — La metamorfosis</span><span></span></li>
+                <li><span>Soy Vida No 8</span><span>Publicaciones Vives</span></li>
+                <li><span>Biblia RVA 1960</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>4 Cuadernos cosidos de 100 hojas rayados</li>
+                <li>7 Cuadernos cosidos de 50 hojas rayados</li>
+                <li>1 Cuaderno de 100 hojas cuadriculado</li>
+                <li>2 Cuadernos de 50 hojas cuadriculado</li>
+                <li>1 Block tamaño carta sin rayas</li>
+                <li>1 Block tamaño carta con rayas</li>
+                <li>5 Vinilos (amarillo, azul, rojo, blanco y negro)</li>
+                <li>1 Pincel No. 8</li>
+                <li>8 Pliegos de papel barrilete surtidos</li>
+                <li>1 Colbón grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>2 Lápices negros</li>
+                <li>2 Lápices rojos</li>
+                <li>1 Cartuchera</li>
+                <li>1 Goma de borrar</li>
+                <li>1 Sacapuntas</li>
+                <li>1 Paquete de cartulinas de colores fuertes</li>
+                <li>1 Paquete de cartulinas de colores pasteles</li>
+                <li>1 Juego geométrico</li>
+                <li>1 Compás</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__nota">Además: 1 Diccionario de Inglés · 1 Diccionario de Español RAE</p>
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="grado grado--verde">
+          <button class="grado__btn" type="button" data-ver-doc="doc-noveno"
+                  data-ver-imagen="assets/img/paginas/listas/lista-noveno.png"
+                  data-ver-archivo="lista-noveno-2026.png">
+            <span class="grado__name">Noveno</span>
+            <span class="grado__meta">Básica secundaria · 21 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-noveno" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Noveno</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel básica</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Proyecto Enfoque Integral (Matemáticas, Inglés y Lengua Castellana) + pin de plataforma; Ciencias Sociales y Ciencias Naturales libro virtual</span><span>Enlinea Editores</span></li>
+                <li><span>Bible Work Book</span><span></span></li>
+                <li><span>Plan lector: Más que un carpintero (Josh McDowell) — La divina comedia — Crónica de una muerte anunciada</span><span></span></li>
+                <li><span>Soy Vida No 9</span><span>Publicaciones Vives</span></li>
+                <li><span>Biblia RVA 1960</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>4 Cuadernos cosidos de 100 hojas rayados</li>
+                <li>7 Cuadernos cosidos de 50 hojas rayados</li>
+                <li>1 Cuaderno de 100 hojas cuadriculado</li>
+                <li>2 Cuadernos de 50 hojas cuadriculado</li>
+                <li>1 Block tamaño carta sin rayas</li>
+                <li>1 Block tamaño carta con rayas</li>
+                <li>5 Vinilos (amarillo, azul, rojo, blanco y negro)</li>
+                <li>1 Pincel No. 8</li>
+                <li>8 Pliegos de papel barrilete surtidos</li>
+                <li>1 Colbón grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>2 Lápices negros</li>
+                <li>2 Lápices rojos</li>
+                <li>1 Cartuchera</li>
+                <li>1 Goma de borrar</li>
+                <li>1 Sacapuntas</li>
+                <li>1 Paquete de cartulinas de colores fuertes</li>
+                <li>1 Paquete de cartulinas de colores pasteles</li>
+                <li>1 Juego geométrico</li>
+                <li>1 Compás</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__nota">Además: 1 Diccionario de Inglés · 1 Diccionario de Español RAE</p>
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="grado grado--rojo">
+          <button class="grado__btn" type="button" data-ver-doc="doc-decimo"
+                  data-ver-imagen="assets/img/paginas/listas/lista-decimo.png"
+                  data-ver-archivo="lista-decimo-2026.png">
+            <span class="grado__name">Décimo</span>
+            <span class="grado__meta">Media académica · 19 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-decimo" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Décimo</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel media académica</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Sapiens + Inglés + pin de plataforma</span><span>Enlinea Editores</span></li>
+                <li><span>Bible Work Book</span><span></span></li>
+                <li><span>Plan lector: El mundo de Sofía — Don Quijote de la Mancha — María — Convicciones (Josh McDowell) — Cien años de soledad</span><span></span></li>
+                <li><span>Soy Vida No 10</span><span>Publicaciones Vives</span></li>
+                <li><span>Biblia RVA 1960</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>4 Cuadernos cosidos de 100 hojas rayados</li>
+                <li>7 Cuadernos cosidos de 50 hojas rayados</li>
+                <li>1 Cuaderno de 100 hojas cuadriculado</li>
+                <li>2 Cuadernos de 50 hojas cuadriculado</li>
+                <li>1 Block tamaño carta sin rayas</li>
+                <li>1 Block tamaño carta con rayas</li>
+                <li>5 Vinilos (amarillo, azul, rojo, blanco y negro)</li>
+                <li>1 Pincel No. 8</li>
+                <li>8 Pliegos de papel barrilete surtidos</li>
+                <li>1 Colbón grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>1 Cartuchera</li>
+                <li>1 Goma de borrar</li>
+                <li>1 Sacapuntas</li>
+                <li>1 Paquete de cartulinas de colores fuertes</li>
+                <li>1 Paquete de cartulinas de colores pasteles</li>
+                <li>1 Juego geométrico</li>
+                <li>1 Compás</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__nota">Además: 1 Diccionario de Inglés · 1 Diccionario de Español RAE</p>
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="grado grado--turquesa">
+          <button class="grado__btn" type="button" data-ver-doc="doc-once"
+                  data-ver-imagen="assets/img/paginas/listas/lista-once.png"
+                  data-ver-archivo="lista-once-2026.png">
+            <span class="grado__name">Once</span>
+            <span class="grado__meta">Media académica · 19 útiles</span>
+            <span class="grado__cta">Ver lista
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <div class="doc" id="doc-once" hidden>
+            <div class="doc__paper">
+              <header class="doc__head">
+                <span class="doc__logo" aria-hidden="true"></span>
+                <p class="doc__grade">Undécimo</p>
+                <p class="doc__school">Gimnasio Cristiano Belén</p>
+                <p class="doc__title">Lista de textos y útiles escolares año 2026<br><span>Nivel media académica</span></p>
+              </header>
+
+              <h4 class="doc__h">Textos</h4>
+              <ul class="doc__textos">
+                <li><span>Sapiens + Inglés + pin de plataforma</span><span>Enlinea Editores</span></li>
+                <li><span>Bible Work Book</span><span></span></li>
+                <li><span>Plan lector: El túnel — Ojos de perro azul — Crimen y castigo — Piense (John Piper)</span><span></span></li>
+                <li><span>Soy Vida No 11</span><span>Publicaciones Vives</span></li>
+                <li><span>Biblia RVA 1960</span><span></span></li>
+              </ul>
+
+              <h4 class="doc__h">Útiles</h4>
+              <ul class="doc__utiles">
+                <li>4 Cuadernos cosidos de 100 hojas rayados</li>
+                <li>7 Cuadernos cosidos de 50 hojas rayados</li>
+                <li>1 Cuaderno de 100 hojas cuadriculado</li>
+                <li>2 Cuadernos de 50 hojas cuadriculado</li>
+                <li>1 Block tamaño carta sin rayas</li>
+                <li>1 Block tamaño carta con rayas</li>
+                <li>5 Vinilos (amarillo, azul, rojo, blanco y negro)</li>
+                <li>1 Pincel No. 8</li>
+                <li>8 Pliegos de papel barrilete surtidos</li>
+                <li>1 Colbón grande</li>
+                <li>1 Tijera punta roma</li>
+                <li>1 Cartuchera</li>
+                <li>1 Goma de borrar</li>
+                <li>1 Sacapuntas</li>
+                <li>1 Paquete de cartulinas de colores fuertes</li>
+                <li>1 Paquete de cartulinas de colores pasteles</li>
+                <li>1 Juego geométrico</li>
+                <li>1 Compás</li>
+                <li>1 Bata de laboratorio</li>
+              </ul>
+
+              <p class="doc__nota">Además: 1 Diccionario de Inglés · 1 Diccionario de Español RAE</p>
+              <p class="doc__verse">Lucas 2:52</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     VISOR
+     Uno solo para toda la página: muestra una lámina de uniforme o una
+     lista digital, con sus botones de descarga. Va fuera de <main> a
+     propósito: al imprimir se ocultan los hermanos directos de <body>,
+     y anidado dentro de <main> el documento salía descolocado.
+     ============================================================ -->
+<div class="viewer" data-viewer hidden>
+  <div class="viewer__backdrop" data-viewer-close></div>
+
+  <div class="viewer__box" role="dialog" aria-modal="true" aria-labelledby="viewer-title">
+    <div class="viewer__bar">
+      <p class="viewer__title" id="viewer-title"></p>
+
+      <div class="viewer__tools">
+        <!-- Genera el PDF y lo baja de un clic, sin diálogo de impresión.
+             Solo aparece en las listas; los uniformes son una imagen. -->
+        <button class="viewer__btn viewer__btn--main" type="button" data-viewer-pdf hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></svg>
+          <span data-viewer-pdf-label>Descargar PDF</span>
+        </button>
+
+        <!-- Descarga directa del archivo original, con su nombre. -->
+        <a class="viewer__btn" data-viewer-download download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/><path d="M8 11l4 4 4-4M12 3v12"/></svg>
+          <span data-viewer-download-label>Descargar imagen</span>
+        </a>
+
+        <button class="viewer__btn viewer__btn--icon" type="button" data-viewer-close aria-label="Cerrar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="viewer__body" data-viewer-body></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     VISOR DE IMAGEN
+     Lo usa el cuadro de honor y el de promoción: en el móvil las
+     piezas se ven diminutas y los nombres no se pueden leer.
+     ============================================================ -->
+<div class="lightbox" id="visor" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <button class="lightbox__close" type="button" data-lightbox-close aria-label="Cerrar la imagen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+  <img class="lightbox__img" alt="" data-lightbox-img>
+</div>
+
+<!-- ============================================================
+     PIE
+     ============================================================ -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__top">
+      <div>
+        <div class="brand">
+          <img src="assets/img/logotipo.png" alt="" width="56" height="56">
+          <span>
+            <span class="brand__name">Gimnasio Cristiano Belén</span>
+            <span class="brand__tag">Educamos para la eternidad</span>
+          </span>
+        </div>
+        <p class="footer__about">
+          Formando con valores por dentro, desarrollo por fuera. Establecimiento
+          cristiano evangélico de carácter privado en Montería, Córdoba.
+        </p>
+        <!-- TODO: reemplazar # por las URLs reales de las redes del colegio -->
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg></a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.5 7.5a3 3 0 0 0-2.1-2.1C18.6 5 12 5 12 5s-6.6 0-8.4.4A3 3 0 0 0 1.5 7.5 31 31 0 0 0 1.1 12c0 1.5.1 3 .4 4.5a3 3 0 0 0 2.1 2.1C5.4 19 12 19 12 19s6.6 0 8.4-.4a3 3 0 0 0 2.1-2.1c.3-1.5.4-3 .4-4.5s-.1-3-.4-4.5ZM9.9 15.1V8.9l5.4 3.1-5.4 3.1Z"/></svg></a>
+          <a href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6a11.3 11.3 0 0 1-4.4-4c-.3-.5-.7-1.2-.7-2.2s.5-1.5.7-1.7c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.7c.1.1.1.3 0 .5l-.3.4-.3.3c-.1.1-.2.3 0 .5.2.3.7 1.1 1.4 1.8.9.8 1.7 1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6 0 1Z"/></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Enlaces</h4>
+        <ul class="footer__links">
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="index.html#programas">Nuestros programas</a></li>
+          <li><a href="index.html#eventos">Vida belenista</a></li>
+          <li><a href="index.html#faq">Preguntas frecuentes</a></li>
+          <li><a href="assets/docs/manual-convivencia-2026.pdf" target="_blank" rel="noopener">Manual de convivencia</a></li>
+        </ul>
+      </div>
+
+      <div id="solicitudes">
+        <h4>Solicitudes en línea</h4>
+        <ul class="footer__links">
+          <!-- REVISAR: el colegio solo tiene URL pública para la solicitud de
+               citas; los demás trámites se canalizan por WhatsApp y correo. -->
+          <li><a href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">Permisos e inasistencias</a></li>
+          <li><a href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">Certificados y constancias</a></li>
+          <li><a href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">Solicitud de citas</a></li>
+          <li><a href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">PQRS</a></li>
+          <li><a href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">Webcolegios</a></li>
+        </ul>
+      </div>
+
+      <div id="donaciones">
+        <h4>Contáctanos</h4>
+        <ul class="footer__links">
+          <li><a href="tel:+573217156040">321 715 6040</a></li>
+          <li><a href="mailto:contacto@gimnasiocristianobelen.edu.co">Correo institucional</a></li>
+          <li><a href="https://www.psepagos.co/PSEHostingUI/ShowTicketOffice.aspx?ID=7633" target="_blank" rel="noopener">Pagos en línea (PSE)</a></li>
+          <li>Lunes a viernes, 8:00 a.m. – 3:00 p.m.</li>
+        </ul>
+        <div class="footer__pills">
+          <a class="footer__pill" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 8.6a5 5 0 0 0-8.8-2.9 5 5 0 0 0-8.8 2.9c0 5.2 8.8 10.4 8.8 10.4s8.8-5.2 8.8-10.4Z"/></svg>
+            ¿Quieres donar?
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>Copyright © <span data-year>2026</span> Gimnasio Cristiano Belén</p>
+      <p>Desarrollado por Lina y Juan <span class="heart" aria-hidden="true">♥</span></p>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6a11.3 11.3 0 0 1-4.4-4c-.3-.5-.7-1.2-.7-2.2s.5-1.5.7-1.7c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.7c.1.1.1.3 0 .5l-.3.4-.3.3c-.1.1-.2.3 0 .5.2.3.7 1.1 1.4 1.8.9.8 1.7 1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6 0 1Z"/></svg>
+</a>
+<!-- html2pdf genera el PDF de las listas. Va local, no desde un CDN,
+     para que la página siga siendo autocontenida en WordPress. -->
+<script src="assets/js/html2pdf.bundle.min.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
