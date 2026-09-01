@@ -1395,6 +1395,15 @@ a.topbar__item:hover { color: var(--surface); }
   color: var(--surface);
 }
 
+/* Cuando el título de la columna lleva a su propia página, hereda el
+   color del titular y solo se subraya al pasar por encima. */
+.footer h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer h4 a:hover { text-decoration: underline; }
+
 .footer__links { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.65rem; }
 
 .footer__links a {

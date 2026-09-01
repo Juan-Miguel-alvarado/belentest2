@@ -1,11 +1,1049 @@
 /* ============================================================
-   paginas.css — componentes de las páginas interiores
-
-   Lista y uniforme · Calendario académico · Noticias y eventos
-
-   La cabecera de página (.pagehead) y las migas (.crumbs) viven en
-   nosotros.css, que estas páginas también cargan.
+   paginas.css — bloques de las páginas interiores
+   Nosotros · Solicitudes en línea · Donaciones ·
+   Lista y uniforme · Calendario académico · Noticias y eventos.
+   Solo lo que no existe ya en base.css / layout.css.
+   No la carga la portada.
    ============================================================ */
+
+/* ============================================================
+   CABECERA DE PÁGINA
+   Mismo lavado de tintes y manchas de color que .hero__slide--intro
+   del index, para que las dos páginas abran igual.
+   ============================================================ */
+
+.pagehead {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(2.25rem, 4.5vw, 4rem) clamp(3rem, 6vw, 5rem);
+  background:
+    radial-gradient(60% 50% at 0% 0%,    var(--turquesa-tint), transparent 68%),
+    radial-gradient(55% 45% at 100% 0%,  var(--rojo-tint),     transparent 68%),
+    radial-gradient(80% 32% at 50% 100%, var(--mostaza-tint),  transparent 76%),
+    var(--surface);
+}
+
+.pagehead__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.pagehead__body { max-width: 40rem; }
+
+/* Manchas difusas detrás de la foto, como en el hero. */
+.pagehead__blob {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.pagehead__blob--1 {
+  width: 34vw; height: 34vw;
+  max-width: 440px; max-height: 440px;
+  top: -8%; right: 4%;
+  background: var(--turquesa);
+  opacity: 0.34;
+}
+
+.pagehead__blob--2 {
+  width: 26vw; height: 26vw;
+  max-width: 340px; max-height: 340px;
+  bottom: -12%; right: -6%;
+  background: var(--mostaza);
+  opacity: 0.3;
+}
+
+.pagehead__blob--3 {
+  width: 22vw; height: 22vw;
+  max-width: 300px; max-height: 300px;
+  top: 10%; left: -10%;
+  background: var(--rojo);
+  opacity: 0.16;
+}
+
+.pagehead__title { font-size: var(--step-4); }
+
+.pagehead .lede { margin-top: 1.25rem; max-width: 40rem; }
+
+/* El PNG trae fondo transparente: se difumina solo el borde inferior,
+   igual que .hero__media img. */
+.pagehead__media { position: relative; justify-self: center; }
+
+.pagehead__media img {
+  width: 100%;
+  max-width: 560px;
+  /* El tamaño y el repeat van explícitos: sin ellos, algunos motores
+     dimensionan mal el degradado y recortan la imagen entera. */
+  -webkit-mask: linear-gradient(to bottom, #000 90%, transparent 100%) no-repeat 0 0 / 100% 100%;
+  mask: linear-gradient(to bottom, #000 90%, transparent 100%) no-repeat 0 0 / 100% 100%;
+}
+
+/* Migas: el camino de vuelta a la portada. */
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--rojo-ink); text-decoration: underline; }
+.crumbs svg { width: 1em; height: 1em; flex: none; }
+
+/* Fila de anclas a las secciones de esta misma página. */
+.pagehead .chips { margin-top: 2rem; }
+
+/* ============================================================
+   MISIÓN, VISIÓN Y EQUIPO
+   Mosaico: las dos declaraciones apiladas y, al lado, la tarjeta
+   del equipo que las sostiene.
+   ============================================================ */
+
+.purpose {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: stretch;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.purpose__cards {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  align-content: start;
+}
+
+.mv__card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: border-color 0.25s var(--ease), transform 0.3s var(--ease-back),
+    box-shadow 0.3s var(--ease);
+}
+
+.mv__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Número grande al fondo, como marca de agua: da jerarquía sin
+   competir con el texto. */
+.mv__card::after {
+  content: attr(data-num);
+  position: absolute;
+  top: -1.5rem;
+  right: 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 12vw, 9rem);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.mv__head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.mv__icon {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--r-full);
+  flex: none;
+}
+
+.mv__icon svg { width: 1.6rem; height: 1.6rem; }
+
+.mv__card h3 { font-size: var(--step-2); }
+.mv__card p { position: relative; z-index: 1; }
+
+.mv__card--mision:hover { border-color: var(--rojo); }
+.mv__card--mision .mv__icon { background: var(--rojo-tint); color: var(--rojo-ink); }
+.mv__card--mision::after { color: var(--rojo-tint); }
+
+.mv__card--vision:hover { border-color: var(--turquesa); }
+.mv__card--vision .mv__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+.mv__card--vision::after { color: var(--turquesa-tint); }
+
+/* --- Tarjeta del equipo ------------------------------------ */
+
+.team {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(75% 55% at 100% 0%, var(--turquesa-tint), transparent 70%),
+    radial-gradient(70% 50% at 0% 100%, var(--mostaza-tint), transparent 72%),
+    var(--surface);
+}
+
+.team__eyebrow { margin-bottom: 0.75rem; }
+.team__title { font-size: var(--step-2); }
+.team__intro { margin-top: 0.85rem; }
+
+/* Los retratos se solapan como en una foto de grupo. */
+.team__faces {
+  display: flex;
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.team__faces img {
+  width: clamp(4.5rem, 8vw, 6rem);
+  height: clamp(4.5rem, 8vw, 6rem);
+  object-fit: cover;
+  object-position: 50% 18%;
+  border-radius: var(--r-full);
+  border: 4px solid var(--surface);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.team__faces img + img { margin-left: -1.25rem; }
+
+.team__names {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.team__names li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: var(--step--1);
+}
+
+.team__names strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.team__names span { color: var(--muted); }
+
+/* ============================================================
+   VALORES
+   Rejilla bento: los diez valores en tarjetas de color y dos
+   piezas fotográficas que rompen el ritmo —una alta y una ancha—.
+   El orden del HTML basta: la colocación automática rellena los
+   huecos que dejan los dos tramos con span.
+   ============================================================ */
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.85rem, 1.8vw, 1.25rem);
+}
+
+.value {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: clamp(1.15rem, 2vw, 1.65rem);
+  border: 2px solid transparent;
+  border-radius: var(--r-md);
+  transition: border-color 0.25s var(--ease), transform 0.3s var(--ease-back),
+    box-shadow 0.3s var(--ease);
+}
+
+.value:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+/* El disco va en blanco sobre el fondo teñido: así el icono resalta
+   en vez de fundirse con la tarjeta. */
+.value__icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  background: var(--surface);
+  border-radius: var(--r-full);
+  transition: transform 0.3s var(--ease-back);
+}
+
+.value__icon svg { width: 1.5rem; height: 1.5rem; }
+.value:hover .value__icon { transform: rotate(-6deg) scale(1.08); }
+
+.value__num {
+  position: absolute;
+  top: clamp(1rem, 1.8vw, 1.5rem);
+  right: clamp(1rem, 1.8vw, 1.5rem);
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 700;
+  opacity: 0.5;
+}
+
+.value__name {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-top: 0.35rem;
+}
+
+.value__text { font-size: var(--step--1); line-height: 1.5; }
+
+/* Los cuatro colores de marca rotan por la rejilla. */
+.value--rojo     { background: var(--rojo-tint); }
+.value--turquesa { background: var(--turquesa-tint); }
+.value--mostaza  { background: var(--mostaza-tint); }
+.value--verde    { background: var(--verde-tint); }
+
+.value--rojo:hover     { border-color: var(--rojo); }
+.value--turquesa:hover { border-color: var(--turquesa); }
+.value--mostaza:hover  { border-color: var(--mostaza); }
+.value--verde:hover    { border-color: var(--verde); }
+
+.value--rojo     .value__icon,
+.value--rojo     .value__num { color: var(--rojo-ink); }
+.value--turquesa .value__icon,
+.value--turquesa .value__num { color: var(--turquesa-ink); }
+.value--mostaza  .value__icon,
+.value--mostaza  .value__num { color: var(--mostaza-ink); }
+.value--verde    .value__icon,
+.value--verde    .value__num { color: var(--verde-ink); }
+
+/* --- Piezas fotográficas ----------------------------------- */
+
+.value-photo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 15rem;
+  padding: clamp(1.25rem, 2.2vw, 1.85rem);
+  overflow: hidden;
+  border-radius: var(--r-md);
+}
+
+.value-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Las fotografías del colegio vienen apagadas; un punto de luz y
+     saturación las pone a la altura del resto de la página. */
+  filter: brightness(1.08) saturate(1.12);
+}
+
+/* Velo oscuro solo en la mitad baja: la foto se sigue viendo y el
+   texto mantiene contraste. */
+.value-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(35 34 31 / 0.88) 0%,
+    rgb(35 34 31 / 0.62) 28%,
+    rgb(35 34 31 / 0.12) 62%,
+    transparent 100%
+  );
+}
+
+.value-photo__body { position: relative; z-index: 1; color: var(--surface); }
+
+.value-photo__quote {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.value-photo__quote .hand { font-weight: 400; }
+
+.value-photo__source {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: var(--step--1);
+  color: rgb(255 255 255 / 0.75);
+}
+
+.value-photo--tall { grid-column: span 2; grid-row: span 2; }
+.value-photo--wide { grid-column: span 2; }
+
+/* ============================================================
+   HIMNO
+   ============================================================ */
+
+.hymn {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: start;
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
+
+.hymn__aside { position: sticky; top: 8rem; }
+.hymn__aside img { width: clamp(5rem, 9vw, 7rem); height: auto; margin-bottom: 1.5rem; }
+.hymn__aside .lede { margin-top: 1.25rem; }
+
+.hymn__verses {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin: 0;
+}
+
+.hymn__verse {
+  position: relative;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-left: 6px solid var(--turquesa);
+  border-radius: var(--r-md);
+}
+
+.hymn__verse p {
+  font-size: var(--step-1);
+  font-style: italic;
+  line-height: 1.75;
+  color: var(--body);
+}
+
+.hymn__label {
+  display: block;
+  margin-bottom: 0.85rem;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* El coro se repite entre estrofas: va destacado en rojo. */
+.hymn__verse--coro { border-left-color: var(--rojo); background: var(--rojo-tint); }
+.hymn__verse--coro .hymn__label { color: var(--rojo-ink); }
+.hymn__verse--coro p { color: var(--ink); font-style: normal; font-weight: 500; }
+
+/* Fotografía dentro del marco decorativo .player-frame, que ya existe
+   en layout.css y hasta ahora solo envolvía el reproductor de video. */
+.photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================================
+   RECONOCIMIENTOS (cuadro de honor y de promoción)
+   ============================================================ */
+
+.boards {
+  --boards-gap: clamp(1.25rem, 2.5vw, 2rem);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--boards-gap);
+}
+
+/* El cuadro de promoción son dos piezas: van del mismo ancho que las
+   tres del cuadro de honor —una columna de esa misma rejilla— y
+   centradas, para que las dos quepan en una sola línea. */
+.boards--wide {
+  grid-template-columns: repeat(2, calc((100% - 2 * var(--boards-gap)) / 3));
+  justify-content: center;
+}
+
+.board {
+  margin: 0;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: border-color 0.25s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.board:hover { border-color: var(--mostaza); box-shadow: var(--shadow-md); }
+
+.board__media {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  background: var(--surface-2);
+  cursor: zoom-in;
+}
+
+.board__media img { width: 100%; height: auto; }
+
+/* La lupa aparece al pasar el cursor; en táctil se queda visible. */
+.board__zoom {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface);
+  border-radius: var(--r-full);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.board__zoom svg { width: 1.05em; height: 1.05em; }
+
+.board__media:hover .board__zoom,
+.board__media:focus-visible .board__zoom { opacity: 1; transform: translateY(0); }
+
+@media (hover: none) {
+  .board__zoom { opacity: 1; transform: none; }
+}
+
+.board figcaption {
+  padding: 1.1rem clamp(1.1rem, 2vw, 1.5rem);
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--ink);
+  border-top: 2px solid var(--line-soft);
+}
+
+.board figcaption span {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font);
+  font-size: var(--step--1);
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.boards + .section__head { margin-top: clamp(3rem, 6vw, 5rem); }
+
+/* ============================================================
+   VISOR DE IMAGEN (lightbox)
+   ============================================================ */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgb(35 34 31 / 0.88);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s var(--ease), visibility 0.25s;
+}
+
+.lightbox.is-open { opacity: 1; visibility: visible; }
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  /* Permite acercarse a los nombres en pantallas pequeñas. */
+  object-fit: contain;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: clamp(0.75rem, 2vw, 1.5rem);
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  color: var(--ink);
+  background: var(--surface);
+  border-radius: var(--r-full);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.25s var(--ease-back);
+}
+
+.lightbox__close:hover { transform: scale(1.08); }
+.lightbox__close svg { width: 1.35rem; height: 1.35rem; }
+
+/* ============================================================
+   MANUAL DE CONVIVENCIA
+   ============================================================ */
+
+.docbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+}
+
+.docbar__cover {
+  width: clamp(7rem, 12vw, 10rem);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-md);
+}
+
+.docbar h2 { font-size: var(--step-2); }
+.docbar p { margin-top: 0.75rem; max-width: 40rem; }
+
+.docbar .chips { margin-top: 1.25rem; }
+
+/* ============================================================
+   TRÁMITES  (solicitudes.html)
+   ============================================================ */
+
+.tramites {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.tramite {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: clamp(1.5rem, 2.6vw, 2.1rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: border-color 0.25s var(--ease), transform 0.3s var(--ease-back),
+    box-shadow 0.3s var(--ease);
+}
+
+.tramite:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+
+.tramite__icon {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--r-full);
+}
+
+.tramite__icon svg { width: 1.6rem; height: 1.6rem; }
+.tramite h3 { font-size: var(--step-1); }
+.tramite p { font-size: var(--step--1); }
+
+/* El pie queda abajo aunque las tarjetas tengan textos de distinto
+   largo, para que todos los botones se alineen. */
+.tramite__foot { margin-top: auto; padding-top: 1.1rem; }
+
+/* Etiqueta del canal por el que se tramita. */
+.tramite__via {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+.tramite__via svg { width: 1.05em; height: 1.05em; }
+
+.tramite--rojo:hover     { border-color: var(--rojo); }
+.tramite--turquesa:hover { border-color: var(--turquesa); }
+.tramite--mostaza:hover  { border-color: var(--mostaza); }
+.tramite--verde:hover    { border-color: var(--verde); }
+
+.tramite--rojo     .tramite__icon { background: var(--rojo-tint);     color: var(--rojo-ink); }
+.tramite--turquesa .tramite__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+.tramite--mostaza  .tramite__icon { background: var(--mostaza-tint);  color: var(--mostaza-ink); }
+.tramite--verde    .tramite__icon { background: var(--verde-tint);    color: var(--verde-ink); }
+
+/* Trámite cuyo formulario todavía no tiene URL publicada. */
+.btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ============================================================
+   PASOS  (solicitudes.html)
+   ============================================================ */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  counter-reset: paso;
+}
+
+.step { position: relative; padding-top: 3.5rem; }
+
+/* Línea que hilvana los pasos; se corta en el último. */
+.step::before {
+  content: "";
+  position: absolute;
+  top: 1.4rem;
+  left: 3.4rem;
+  right: calc(-1 * clamp(1.25rem, 2.5vw, 2rem));
+  height: 2px;
+  background: var(--line);
+}
+
+.step:last-child::before { display: none; }
+
+.step__num {
+  counter-increment: paso;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 700;
+  color: var(--surface);
+  background: var(--rojo);
+  border-radius: var(--r-full);
+}
+
+.step__num::after { content: counter(paso); }
+.step h3 { font-size: var(--step-1); margin-bottom: 0.5rem; }
+.step p { font-size: var(--step--1); }
+
+/* ============================================================
+   CIFRAS  (donaciones.html)
+   ============================================================ */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.stat {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  text-align: center;
+  border-radius: var(--r-lg);
+  border: 2px solid transparent;
+}
+
+.stat__figure {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.stat__label {
+  display: block;
+  margin-top: 0.75rem;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.stat__note { display: block; margin-top: 0.4rem; font-size: var(--step--1); }
+
+.stat--rojo     { background: var(--rojo-tint); }
+.stat--mostaza  { background: var(--mostaza-tint); }
+.stat--turquesa { background: var(--turquesa-tint); }
+
+.stat--rojo     .stat__figure { color: var(--rojo-ink); }
+.stat--mostaza  .stat__figure { color: var(--mostaza-ink); }
+.stat--turquesa .stat__figure { color: var(--turquesa-ink); }
+
+/* ============================================================
+   CARTA  (donaciones.html)
+   ============================================================ */
+
+.letter {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  align-items: start;
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
+
+.letter__aside { position: sticky; top: 8rem; }
+
+/* La cita se saca del cuerpo del texto y se convierte en la pieza
+   visual de la columna izquierda. */
+.letter__quote {
+  margin: 1.75rem 0 0;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-radius: var(--r-lg);
+  border-left: 6px solid var(--rojo);
+  background: var(--rojo-tint);
+}
+
+.letter__quote p {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.letter__quote cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: var(--step--1);
+  font-style: normal;
+  color: var(--rojo-ink);
+}
+
+.letter__body > p + p { margin-top: 1.1rem; }
+.letter__body strong { color: var(--ink); font-weight: 600; }
+
+.letter__sign {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--line-soft);
+  font-size: var(--step--1);
+}
+
+.letter__sign strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  color: var(--ink);
+}
+
+/* ============================================================
+   FORMAS DE AYUDAR Y CONTACTO
+   ============================================================ */
+
+.ways {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.way {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: clamp(1.6rem, 2.8vw, 2.25rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: border-color 0.25s var(--ease), transform 0.3s var(--ease-back),
+    box-shadow 0.3s var(--ease);
+}
+
+.way:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.way--rojo:hover     { border-color: var(--rojo); }
+.way--turquesa:hover { border-color: var(--turquesa); }
+.way--verde:hover    { border-color: var(--verde); }
+
+.way__icon {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--r-full);
+}
+
+.way__icon svg { width: 1.6rem; height: 1.6rem; }
+.way--rojo     .way__icon { background: var(--rojo-tint);     color: var(--rojo-ink); }
+.way--turquesa .way__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+.way--verde    .way__icon { background: var(--verde-tint);    color: var(--verde-ink); }
+
+.way h3 { font-size: var(--step-1); }
+
+.way .way__amount {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.way .way__amount span { font-size: var(--step--1); font-weight: 400; color: var(--muted); }
+.way p { font-size: var(--step--1); }
+.way .link { margin-top: auto; padding-top: 1rem; }
+
+/* Aviso destacado: el certificado de la DIAN y avisos equivalentes. */
+.callout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 1.25rem;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1.35rem, 2.5vw, 1.9rem);
+  background: var(--verde-tint);
+  border-radius: var(--r-lg);
+}
+
+.callout__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--verde-ink);
+  background: var(--surface);
+  border-radius: var(--r-full);
+}
+
+.callout__icon svg { width: 1.4rem; height: 1.4rem; }
+.callout h3 { font-size: var(--step-1); margin-bottom: 0.35rem; }
+.callout p { font-size: var(--step--1); }
+
+/* --- Tarjetas de contacto ---------------------------------- */
+
+.channels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.channel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: clamp(1.6rem, 2.8vw, 2.25rem);
+  text-align: center;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: border-color 0.25s var(--ease), transform 0.3s var(--ease-back),
+    box-shadow 0.3s var(--ease);
+}
+
+.channel:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.channel--rojo:hover     { border-color: var(--rojo); }
+.channel--verde:hover    { border-color: var(--verde); }
+.channel--turquesa:hover { border-color: var(--turquesa); }
+
+.channel__icon {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: 0.4rem;
+  border-radius: var(--r-full);
+}
+
+.channel__icon svg { width: 1.6rem; height: 1.6rem; }
+.channel--rojo     .channel__icon { background: var(--rojo-tint);     color: var(--rojo-ink); }
+.channel--verde    .channel__icon { background: var(--verde-tint);    color: var(--verde-ink); }
+.channel--turquesa .channel__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+
+.channel__label {
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.channel__value {
+  margin-bottom: 1.1rem;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  color: var(--ink);
+  /* Los correos largos no deben desbordar la tarjeta. */
+  overflow-wrap: anywhere;
+}
+
+/* El botón se pega abajo: con textos de distinto largo, los tres
+   quedan alineados. */
+.channel .btn { margin-top: auto; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1080px) {
+  .tramites { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  /* A dos columnas la línea que une los pasos ya no hilvana nada. */
+  .step::before { display: none; }
+  /* A dos columnas las piezas de foto pasan a banda: ocupan la fila
+     entera y una sola altura. */
+  .values { grid-template-columns: repeat(2, 1fr); }
+  .value-photo--tall { grid-row: span 1; min-height: 13rem; }
+}
+
+@media (max-width: 900px) {
+  .pagehead__inner { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr; }
+  .ways { grid-template-columns: 1fr; }
+  .channels { grid-template-columns: 1fr; }
+  .letter { grid-template-columns: 1fr; }
+  .letter__aside { position: static; }
+  .pagehead__media { order: -1; max-width: 26rem; }
+  .purpose { grid-template-columns: 1fr; }
+  .boards--wide { grid-template-columns: 1fr; }
+  .hymn { grid-template-columns: 1fr; }
+  .hymn__aside { position: static; }
+  .boards { grid-template-columns: 1fr; }
+  .docbar { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+  .docbar p { margin-inline: auto; }
+  .docbar .chips { justify-content: center; }
+}
+
+@media (max-width: 560px) {
+  .values { grid-template-columns: 1fr; }
+  .tramites { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .value-photo--tall,
+  .value-photo--wide { grid-column: span 1; }
+}
+
+/* Sin movimiento: se quedan los estados, se van las transiciones. */
+@media (prefers-reduced-motion: reduce) {
+  .mv__card,
+  .value,
+  .value__icon,
+  .tramite,
+  .way,
+  .channel,
+  .board,
+  .board__zoom,
+  .lightbox,
+  .lightbox__close {
+    transition: none;
+  }
+  .mv__card:hover,
+  .value:hover,
+  .value:hover .value__icon,
+  .tramite:hover,
+  .way:hover,
+  .channel:hover,
+  .lightbox__close:hover { transform: none; }
+  .board__zoom { opacity: 1; transform: none; }
+}
 
 /* ============================================================
    UNIFORMES

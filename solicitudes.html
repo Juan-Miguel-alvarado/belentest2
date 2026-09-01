@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solicitudes en línea — Gimnasio Cristiano Belén</title>
+<meta name="description" content="Tramita en línea permisos e inasistencias, certificados y constancias, citas con docentes, PQRS y solicitud de retiro en el Gimnasio Cristiano Belén, Montería.">
+<meta name="theme-color" content="#e24b4a">
+<link rel="icon" href="assets/img/logotipo.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:title" content="Solicitudes en línea — Gimnasio Cristiano Belén">
+<meta property="og:description" content="Permisos, certificados, citas y PQRS del Gimnasio Cristiano Belén, sin pasar por la secretaría.">
+<meta property="og:image" content="assets/img/estudianteprimaria.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/paginas.css">
+</head>
+
+
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<!-- ============================================================
+     BARRA SUPERIOR
+     ============================================================ -->
+<div class="topbar">
+  <div class="shell topbar__inner">
+    <span class="topbar__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <span class="topbar__hours-long">Lunes a viernes · 8:00 a.m. – 3:00 p.m.</span>
+      <span class="topbar__hours-short">Lun – Vie · 8:00 a.m. – 3:00 p.m.</span>
+    </span>
+    <!-- TODO: reemplazar por la dirección exacta de la sede -->
+    <span class="topbar__item topbar__item--hide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Montería, Córdoba
+    </span>
+    <a class="topbar__item topbar__phone" href="tel:+573217156040">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      321 715 6040
+    </a>
+  </div>
+</div>
+
+<!-- ============================================================
+     CABECERA
+     Igual que la del index. Solo cambian los destinos: los anclajes
+     de la portada llevan ahora el prefijo index.html.
+     ============================================================ -->
+<header class="masthead">
+  <div class="shell masthead__inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logotipo.png" alt="" width="56" height="56">
+      <span>
+        <span class="brand__name">Gimnasio Cristiano Belén</span>
+        <span class="brand__tag">Educamos para la eternidad</span>
+      </span>
+    </a>
+
+    <div class="masthead__actions">
+      <a class="btn btn--outline btn--sm btn--plataforma" href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
+        Plataforma
+      </a>
+      <a class="btn btn--sm" href="index.html#admisiones">
+        Admisiones 2026
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir el menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="shell navbar" aria-label="Principal">
+    <div class="navwrap">
+      <ul class="menu">
+        <li class="menu__item"><a class="menu__link" href="index.html">Inicio</a></li>
+        <!-- Página actual: se marca a mano. initScrollSpy() solo observa
+             enlaces que empiezan por "#", así que no lo sobrescribe. -->
+        <li class="menu__item"><a class="menu__link" href="nosotros.html">Nosotros</a></li>
+        <li class="menu__item menu__item--has-menu">
+          <button class="menu__link" type="button" aria-expanded="false">
+            Guía escolar
+            <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown">
+            <a href="lista-uniforme.html">Lista y uniforme</a>
+            <a href="calendario-academico.html">Calendario académico</a>
+            <a href="noticias-eventos.html">Noticias y eventos</a>
+            <a href="assets/docs/manual-convivencia-2026.pdf" target="_blank" rel="noopener">Manual de convivencia</a>
+            <hr>
+            <p class="dropdown__head">Para las familias</p>
+            <a href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">Webcolegios</a>
+            <a href="https://www.psepagos.co/PSEHostingUI/ShowTicketOffice.aspx?ID=7633" target="_blank" rel="noopener">Pagos en línea (PSE)</a>
+          </div>
+        </li>
+        <li class="menu__item"><a class="menu__link" href="solicitudes.html" aria-current="page">Solicitudes en línea</a></li>
+        <li class="menu__item"><a class="menu__link" href="donaciones.html">Donaciones</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="menu-movil">
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <details>
+    <summary>Guía escolar</summary>
+    <div class="mobile-menu__sub">
+      <a href="lista-uniforme.html">Lista y uniforme</a>
+      <a href="calendario-academico.html">Calendario académico</a>
+      <a href="noticias-eventos.html">Noticias y eventos</a>
+      <a href="assets/docs/manual-convivencia-2026.pdf" target="_blank" rel="noopener">Manual de convivencia</a>
+      <a href="https://www.psepagos.co/PSEHostingUI/ShowTicketOffice.aspx?ID=7633" target="_blank" rel="noopener">Pagos en línea (PSE)</a>
+    </div>
+  </details>
+  <a href="solicitudes.html" aria-current="page">Solicitudes en línea</a>
+  <a href="donaciones.html">Donaciones</a>
+  <div class="mobile-menu__foot">
+    <a class="btn btn--block" href="index.html#admisiones">Admisiones 2026</a>
+    <a class="btn btn--outline btn--block" href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">Plataforma</a>
+  </div>
+</div>
+
+<main id="contenido">
+
+<!-- ============================================================
+     CABECERA DE PÁGINA
+     ============================================================ -->
+<section class="pagehead">
+  <span class="pagehead__blob pagehead__blob--1" aria-hidden="true"></span>
+  <span class="pagehead__blob pagehead__blob--2" aria-hidden="true"></span>
+  <span class="pagehead__blob pagehead__blob--3" aria-hidden="true"></span>
+
+  <div class="shell pagehead__inner">
+    <div class="pagehead__body">
+      <nav class="crumbs reveal" aria-label="Migas de pan">
+        <a href="index.html">Inicio</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        <span>Solicitudes en línea</span>
+      </nav>
+
+      <h1 class="pagehead__title reveal" style="--i:1">
+        Tus trámites, <span class="mark mark--turquesa">EN LÍNEA</span>
+      </h1>
+
+      <p class="lede reveal" style="--i:2">
+        Permisos, certificados, citas y PQRS sin desplazarte hasta el colegio.
+        Elige el trámite, envíalo y nosotros te respondemos en horario de
+        atención.
+      </p>
+
+      <ul class="chips reveal" style="--i:3">
+        <li><a class="chip chip--rojo" href="#tramites">Los trámites</a></li>
+        <li><a class="chip chip--turquesa" href="#como">Cómo funciona</a></li>
+        <li><a class="chip chip--mostaza" href="#atencion">Atención y plataformas</a></li>
+      </ul>
+    </div>
+
+    <div class="pagehead__media reveal-img" style="--i:2">
+      <img src="assets/img/estudianteprimaria.png" alt="Estudiante de primaria del Gimnasio Cristiano Belén" width="1536" height="1024" fetchpriority="high" decoding="async">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LOS TRÁMITES
+     REVISAR — los enlaces de tres formularios no abren en público.
+     Comprobado sin sesión iniciada: inasistencias, certificados y PQRS
+     devuelven 401. Son URL del lado del editor
+     (/forms/d/<id>/viewform); la que sí funciona, la de citas, tiene la
+     forma publicada /forms/d/e/<id>/viewform. El colegio tiene que
+     sacar el enlace de «Enviar» de cada formulario —o abrir la
+     respuesta a cualquiera con el enlace— y sustituirlos aquí.
+     Al de retiro le falta la URL por completo.
+     ============================================================ -->
+<section class="section section--tint" id="tramites">
+  <div class="shell">
+    <div class="section__head reveal">
+      <h2>Elige tu <span class="hand">trámite</span></h2>
+      <p class="lede">
+        Cinco gestiones que puedes iniciar desde aquí, cualquier día y a
+        cualquier hora.
+      </p>
+    </div>
+
+    <div class="tramites">
+      <article class="tramite tramite--turquesa reveal">
+        <span class="tramite__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="m9.5 15 1.8 1.8 3.4-3.6"/></svg>
+        </span>
+        <h3>Solicitud de citas</h3>
+        <p>
+          Agenda una cita con un docente, con la coordinación académica o con
+          rectoría.
+        </p>
+        <div class="tramite__foot">
+          <span class="tramite__via">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+            Formulario de Google
+          </span>
+          <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfktVcPh3qPJSOV4INPRyshr9utwn-ykQxyAY7E8_elnt7wIQ/viewform" target="_blank" rel="noopener">
+            Abrir el formulario
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="tramite tramite--rojo reveal" style="--i:1">
+        <span class="tramite__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="m9.5 14.5 5 5M14.5 14.5l-5 5"/></svg>
+        </span>
+        <h3>Permisos e inasistencias</h3>
+        <p>
+          Avisa de una ausencia o pide permiso para retirar al estudiante
+          durante la jornada. Indica el nombre, el grado y la fecha.
+        </p>
+        <div class="tramite__foot">
+          <span class="tramite__via">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+            Formulario de Google
+          </span>
+          <a class="btn" href="https://docs.google.com/forms/d/1FIZyIdGKIsAjoIuWd253VwiOsHpAR9PoJF3fqzuziVU/viewform?edit_requested=true" target="_blank" rel="noopener">
+            Abrir el formulario
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="tramite tramite--mostaza reveal" style="--i:2">
+        <span class="tramite__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v4h4"/><path d="M9 13h6M9 17h4"/></svg>
+        </span>
+        <h3>Certificados y constancias</h3>
+        <p>
+          Certificados de estudio, constancias de matrícula y de conducta o
+          copias de boletines.
+        </p>
+        <div class="tramite__foot">
+          <span class="tramite__via">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+            Formulario de Google
+          </span>
+          <a class="btn" href="https://docs.google.com/forms/d/1LAkwrUw800iaqKG0i5CUQ0A3HdT6jZgzOP79sn1d0HU/viewform?edit_requested=true" target="_blank" rel="noopener">
+            Pedir el documento
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="tramite tramite--verde reveal" style="--i:1">
+        <span class="tramite__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.8a8 8 0 0 1-8 8H8.4L3.5 22l1.2-4.3A8 8 0 1 1 21 11.8Z"/><path d="M12 8.2v4M12 15.4h.01"/></svg>
+        </span>
+        <h3>PQRS</h3>
+        <p>
+          Peticiones, quejas, reclamos y sugerencias. Todo lo que nos ayude a
+          mejorar tiene canal y respuesta.
+        </p>
+        <div class="tramite__foot">
+          <span class="tramite__via">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+            Formulario de Google
+          </span>
+          <a class="btn" href="https://docs.google.com/forms/d/1mHblVXWnzPOqOgTpUMy4gMadZlyD7xIi8lZtLIvuucY/viewform?edit_requested=true" target="_blank" rel="noopener">
+            Abrir el formulario
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="tramite tramite--rojo reveal" style="--i:2">
+        <span class="tramite__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3"/><path d="M10 17 5 12l5-5"/><path d="M5 12h11"/></svg>
+        </span>
+        <h3>Solicitud de retiro</h3>
+        <p>
+          Si necesitas retirar al estudiante, este es el trámite: te indicamos el
+          conducto regular y los documentos de cierre.
+        </p>
+        <!-- REVISAR: el colegio confirma que este trámite tiene formulario,
+             pero todavía no ha pasado la URL. En cuanto llegue, se sustituye
+             el botón desactivado por el enlace. -->
+        <div class="tramite__foot">
+          <span class="tramite__via">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+            Formulario de Google
+          </span>
+          <button class="btn btn--outline" type="button" disabled>
+            Enlace pendiente
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="wave wave--flip wave--white" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 40c180 45 360 45 540 22s360-58 540-35 300 45 360 53v10H0Z"/></svg>
+</div>
+
+<!-- ============================================================
+     CÓMO FUNCIONA
+     ============================================================ -->
+<section class="section" id="como">
+  <div class="shell">
+    <div class="section__head reveal">
+      <p class="eyebrow eyebrow--turquesa">En cuatro pasos</p>
+      <h2>Cómo <span class="hand">funciona</span></h2>
+      <p class="lede">
+        El mismo recorrido para todos los trámites.
+      </p>
+    </div>
+
+    <div class="steps">
+      <article class="step reveal">
+        <span class="step__num" aria-hidden="true"></span>
+        <h3>Elige el trámite</h3>
+        <p>Empieza por la tarjeta que corresponde a tu solicitud.</p>
+      </article>
+
+      <article class="step reveal" style="--i:1">
+        <span class="step__num" aria-hidden="true"></span>
+        <h3>Cuéntanos lo esencial</h3>
+        <!-- REVISAR: confirmar con el colegio qué datos exige cada trámite. -->
+        <p>Nombre completo del estudiante, grado, el motivo y las fechas.</p>
+      </article>
+
+      <article class="step reveal" style="--i:2">
+        <span class="step__num" aria-hidden="true"></span>
+        <h3>Lo recibimos</h3>
+        <p>Entra en la secretaría del colegio dentro del horario de atención.</p>
+      </article>
+
+      <article class="step reveal" style="--i:3">
+        <span class="step__num" aria-hidden="true"></span>
+        <h3>Te respondemos</h3>
+        <p>Te contactaremos vía WhatsApp con los documentos o confirmaciones que necesites.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="wave" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 40c180 45 360 45 540 22s360-58 540-35 300 45 360 53v10H0Z"/></svg>
+</div>
+
+<!-- ============================================================
+     ATENCIÓN Y PLATAFORMAS
+     ============================================================ -->
+<section class="section section--tint" id="atencion">
+  <div class="shell">
+    <div class="section__head reveal">
+      <p class="eyebrow eyebrow--mostaza">Dónde encontrarnos</p>
+      <h2>Atención y <span class="hand">plataformas</span></h2>
+      <p class="lede">
+        Escríbenos por donde te resulte más cómodo. Respondemos de lunes a
+        viernes, de 8:00 a.m. a 3:00 p.m.
+      </p>
+    </div>
+
+    <div class="channels">
+      <article class="channel channel--verde reveal">
+        <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6a11.3 11.3 0 0 1-4.4-4c-.3-.5-.7-1.2-.7-2.2s.5-1.5.7-1.7c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.7c.1.1.1.3 0 .5l-.3.4-.3.3c-.1.1-.2.3 0 .5.2.3.7 1.1 1.4 1.8.9.8 1.7 1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6 0 1Z"/></svg></span>
+        <span class="channel__label">WhatsApp</span>
+        <span class="channel__value">Escríbenos</span>
+        <a class="btn btn--sm" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">
+          Abrir WhatsApp
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <article class="channel channel--rojo reveal" style="--i:1">
+        <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+        <span class="channel__label">Teléfono</span>
+        <span class="channel__value">321 715 6040</span>
+        <a class="btn btn--sm" href="tel:+573217156040">
+          Llamar ahora
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <article class="channel channel--turquesa reveal" style="--i:2">
+        <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></span>
+        <span class="channel__label">Correo</span>
+        <span class="channel__value">contacto@gimnasiocristianobelen.edu.co</span>
+        <a class="btn btn--sm" href="mailto:contacto@gimnasiocristianobelen.edu.co">
+          Escribir un correo
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+    </div>
+
+    <div class="callout reveal">
+      <span class="callout__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
+      </span>
+      <div>
+        <h3>Notas, boletines y pagos</h3>
+        <p>
+          El seguimiento académico va por <strong>Webcolegios</strong> y los
+          pagos por <strong>PSE</strong>.
+        </p>
+        <div class="actions u-mt">
+          <a class="btn btn--sm" href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">
+            Entrar a Webcolegios
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn--outline btn--sm" href="https://www.psepagos.co/PSEHostingUI/ShowTicketOffice.aspx?ID=7633" target="_blank" rel="noopener">
+            Pagos en línea (PSE)
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LLAMADO FINAL
+     ============================================================ -->
+<section class="cta">
+  <span class="cta__dot cta__dot--1" aria-hidden="true"></span>
+  <span class="cta__dot cta__dot--2" aria-hidden="true"></span>
+  <span class="cta__dot cta__dot--3" aria-hidden="true"></span>
+  <span class="cta__dot cta__dot--4" aria-hidden="true"></span>
+
+  <div class="shell cta__inner">
+    <h2 class="cta__title reveal">
+      ¿No encuentras<br>
+      tu <span class="hand">trámite</span>?
+    </h2>
+    <p class="lede reveal" style="--i:1; max-width: 38rem;">
+      Escríbenos y te indicamos el conducto regular. Estamos para acompañarte.
+    </p>
+    <div class="actions reveal" style="--i:2">
+      <a class="btn btn--lg" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">
+        Hablar con el colegio
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+
+
+<!-- ============================================================
+     PIE
+     ============================================================ -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__top">
+      <div>
+        <div class="brand">
+          <img src="assets/img/logotipo.png" alt="" width="56" height="56">
+          <span>
+            <span class="brand__name">Gimnasio Cristiano Belén</span>
+            <span class="brand__tag">Educamos para la eternidad</span>
+          </span>
+        </div>
+        <p class="footer__about">
+          Formando con valores por dentro, desarrollo por fuera. Establecimiento
+          cristiano evangélico de carácter privado en Montería, Córdoba.
+        </p>
+        <!-- TODO: reemplazar # por las URLs reales de las redes del colegio -->
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg></a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.5 7.5a3 3 0 0 0-2.1-2.1C18.6 5 12 5 12 5s-6.6 0-8.4.4A3 3 0 0 0 1.5 7.5 31 31 0 0 0 1.1 12c0 1.5.1 3 .4 4.5a3 3 0 0 0 2.1 2.1C5.4 19 12 19 12 19s6.6 0 8.4-.4a3 3 0 0 0 2.1-2.1c.3-1.5.4-3 .4-4.5s-.1-3-.4-4.5ZM9.9 15.1V8.9l5.4 3.1-5.4 3.1Z"/></svg></a>
+          <a href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6a11.3 11.3 0 0 1-4.4-4c-.3-.5-.7-1.2-.7-2.2s.5-1.5.7-1.7c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.7c.1.1.1.3 0 .5l-.3.4-.3.3c-.1.1-.2.3 0 .5.2.3.7 1.1 1.4 1.8.9.8 1.7 1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6 0 1Z"/></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Enlaces</h4>
+        <ul class="footer__links">
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="index.html#programas">Nuestros programas</a></li>
+          <li><a href="index.html#eventos">Vida belenista</a></li>
+          <li><a href="index.html#faq">Preguntas frecuentes</a></li>
+          <li><a href="assets/docs/manual-convivencia-2026.pdf" target="_blank" rel="noopener">Manual de convivencia</a></li>
+        </ul>
+      </div>
+
+      <div id="solicitudes">
+        <h4><a href="solicitudes.html">Solicitudes en línea</a></h4>
+        <ul class="footer__links">
+          <!-- REVISAR: el colegio solo tiene URL pública para la solicitud de
+               citas; los demás trámites se canalizan por WhatsApp y correo. -->
+          <li><a href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">Permisos e inasistencias</a></li>
+          <li><a href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">Certificados y constancias</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfktVcPh3qPJSOV4INPRyshr9utwn-ykQxyAY7E8_elnt7wIQ/viewform" target="_blank" rel="noopener">Solicitud de citas</a></li>
+          <li><a href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">PQRS</a></li>
+          <li><a href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">Webcolegios</a></li>
+        </ul>
+      </div>
+
+      <div id="donaciones">
+        <h4>Contáctanos</h4>
+        <ul class="footer__links">
+          <li><a href="tel:+573217156040">321 715 6040</a></li>
+          <li><a href="mailto:contacto@gimnasiocristianobelen.edu.co">Correo institucional</a></li>
+          <li><a href="https://www.psepagos.co/PSEHostingUI/ShowTicketOffice.aspx?ID=7633" target="_blank" rel="noopener">Pagos en línea (PSE)</a></li>
+          <li>Lunes a viernes, 8:00 a.m. – 3:00 p.m.</li>
+        </ul>
+        <div class="footer__pills">
+          <a class="footer__pill" href="donaciones.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 8.6a5 5 0 0 0-8.8-2.9 5 5 0 0 0-8.8 2.9c0 5.2 8.8 10.4 8.8 10.4s8.8-5.2 8.8-10.4Z"/></svg>
+            ¿Quieres donar?
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>Copyright © <span data-year>2026</span> Gimnasio Cristiano Belén</p>
+      <p>Desarrollado por Lina y Juan <span class="heart" aria-hidden="true">♥</span></p>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6a11.3 11.3 0 0 1-4.4-4c-.3-.5-.7-1.2-.7-2.2s.5-1.5.7-1.7c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.7c.1.1.1.3 0 .5l-.3.4-.3.3c-.1.1-.2.3 0 .5.2.3.7 1.1 1.4 1.8.9.8 1.7 1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6 0 1Z"/></svg>
+</a>
+<script src="assets/js/motion.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

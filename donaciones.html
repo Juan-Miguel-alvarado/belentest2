@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Calendario académico — Gimnasio Cristiano Belén</title>
-<meta name="description" content="Períodos académicos, exámenes, nivelaciones, recesos, entrega de informes y convocatorias del Gimnasio Cristiano Belén, Montería.">
+<title>Donaciones — Gimnasio Cristiano Belén | Apadrina a un niño</title>
+<meta name="description" content="Cambia una vida con tu apoyo: 50 niños del Gimnasio Cristiano Belén, en Montería, corren el riesgo de no continuar su educación cristiana. Conoce cómo apadrinar y recibe tu certificado de donación deducible ante la DIAN.">
 <meta name="theme-color" content="#e24b4a">
 <link rel="icon" href="assets/img/logotipo.png" type="image/png">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CO">
-<meta property="og:title" content="Calendario académico — Gimnasio Cristiano Belén">
-<meta property="og:description" content="Los cuatro períodos del año con sus fechas de exámenes, recesos y entrega de informes.">
-<meta property="og:image" content="assets/img/estudiantesbelen.png">
+<meta property="og:title" content="Donaciones — Gimnasio Cristiano Belén">
+<meta property="og:description" content="Lleva a un niño a conocer a Cristo. Apadrina la educación de un estudiante belenista.">
+<meta property="og:image" content="assets/img/estudiantepreescolar.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="assets/css/layout.css">
 <link rel="stylesheet" href="assets/css/paginas.css">
 </head>
+
 
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -85,7 +86,7 @@
         <li class="menu__item"><a class="menu__link" href="index.html">Inicio</a></li>
         <!-- Página actual: se marca a mano. initScrollSpy() solo observa
              enlaces que empiezan por "#", así que no lo sobrescribe. -->
-        <li class="menu__item"><a class="menu__link" href="nosotros.html" aria-current="page">Nosotros</a></li>
+        <li class="menu__item"><a class="menu__link" href="nosotros.html">Nosotros</a></li>
         <li class="menu__item menu__item--has-menu">
           <button class="menu__link" type="button" aria-expanded="false">
             Guía escolar
@@ -103,7 +104,7 @@
           </div>
         </li>
         <li class="menu__item"><a class="menu__link" href="solicitudes.html">Solicitudes en línea</a></li>
-        <li class="menu__item"><a class="menu__link" href="donaciones.html">Donaciones</a></li>
+        <li class="menu__item"><a class="menu__link" href="donaciones.html" aria-current="page">Donaciones</a></li>
       </ul>
     </div>
   </nav>
@@ -111,7 +112,7 @@
 
 <div class="mobile-menu" id="menu-movil">
   <a href="index.html">Inicio</a>
-  <a href="nosotros.html" aria-current="page">Nosotros</a>
+  <a href="nosotros.html">Nosotros</a>
   <details>
     <summary>Guía escolar</summary>
     <div class="mobile-menu__sub">
@@ -123,13 +124,12 @@
     </div>
   </details>
   <a href="solicitudes.html">Solicitudes en línea</a>
-  <a href="donaciones.html">Donaciones</a>
+  <a href="donaciones.html" aria-current="page">Donaciones</a>
   <div class="mobile-menu__foot">
     <a class="btn btn--block" href="index.html#admisiones">Admisiones 2026</a>
     <a class="btn btn--outline btn--block" href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">Plataforma</a>
   </div>
 </div>
-
 
 <main id="contenido">
 
@@ -146,148 +146,65 @@
       <nav class="crumbs reveal" aria-label="Migas de pan">
         <a href="index.html">Inicio</a>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-        <span>Calendario académico</span>
+        <span>Donaciones</span>
       </nav>
 
       <h1 class="pagehead__title reveal" style="--i:1">
-        Calendario <span class="mark mark--turquesa">ACADÉMICO</span>
+        Cambia una vida<br>
+        con tu <span class="mark">APOYO</span>
       </h1>
 
       <p class="lede reveal" style="--i:2">
-        Los cuatro períodos del año, con sus fechas de exámenes, nivelaciones,
-        recesos y entrega de informes.
+        Lleva a un niño a conocer a Cristo. Hoy, 50 niños de familias con
+        dificultades económicas corren el riesgo de no continuar su educación
+        cristiana. Aquí es donde tú puedes marcar la diferencia.
       </p>
 
       <ul class="chips reveal" style="--i:3">
-        <li><a class="chip chip--rojo" href="#periodos">Períodos</a></li>
-        <li><a class="chip chip--turquesa" href="#convocatorias">Convocatorias</a></li>
-        <li><a class="chip chip--mostaza" href="#laminas">Descargar</a></li>
+        <li><a class="chip chip--rojo" href="#necesidad">La necesidad</a></li>
+        <li><a class="chip chip--turquesa" href="#carta">La carta</a></li>
+        <li><a class="chip chip--mostaza" href="#como-ayudar">Cómo ayudar</a></li>
       </ul>
     </div>
 
     <div class="pagehead__media reveal-img" style="--i:2">
-      <img src="assets/img/estudiantesbelen.png" alt="Dos estudiantes del Gimnasio Cristiano Belén" width="1359" height="1157" fetchpriority="high" decoding="async">
+      <img src="assets/img/estudiantepreescolar.png" alt="Estudiante de preescolar del Gimnasio Cristiano Belén" width="1536" height="1024" fetchpriority="high" decoding="async">
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     PERÍODOS ACADÉMICOS
-     Transcripción del calendario publicado por el colegio. El lema del
-     año y todas las fechas vienen de esas láminas.
+     LA NECESIDAD
+     Cifras tal como las publica el colegio en su página de donaciones.
      ============================================================ -->
-<section class="section section--tint" id="periodos">
+<section class="section section--tint" id="necesidad">
   <div class="shell">
     <div class="section__head reveal">
-      <p class="eyebrow">Año 2025 · «Discípulos que hacen discípulos»</p>
-      <h2>Cuatro <span class="hand">períodos</span></h2>
+      <p class="eyebrow">El desafío de este año</p>
+      <h2>Lo que está en <span class="hand">juego</span></h2>
       <p class="lede">
-        Toca cada período para ver su detalle. Un período abierto a la vez.
+        Los costos operativos que imponen las nuevas regulaciones han puesto en
+        riesgo la permanencia de medio centenar de estudiantes.
       </p>
     </div>
 
-    <div class="periodos reveal">
-      <article class="periodo periodo--rojo is-open">
-        <h3>
-          <button class="periodo__head" type="button" aria-expanded="true" aria-controls="periodo-1">
-            <span class="periodo__num">I</span>
-            <span class="periodo__title">
-              Primer período
-              <span class="periodo__dates">29 de enero – 4 de abril · 9 semanas</span>
-            </span>
-            <svg class="periodo__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-        </h3>
-        <div class="periodo__panel" id="periodo-1"><div>
-          <ul class="periodo__list">
-            <li><b>Inicio de clases:</b> 29 de enero para estudiantes nuevos, 30 de enero para estudiantes regulares.</li>
-            <li><b>Feria de cortesía:</b> 7 de febrero.</li>
-            <li><b>Viernes de prueba saber</b> (Plataforma En Línea): 8 de marzo.</li>
-            <li>Seguimiento a estudiantes del primer período: 19 al 21 de marzo.</li>
-            <li>Planes de mejoramiento académico: 25 al 28 de marzo. Se envían actividades solo de dos indicadores de desempeño.</li>
-            <li><b>Exámenes acumulativos:</b> 31 de marzo al 4 de abril.</li>
-            <li>Nivelaciones: 7 al 11 de abril.</li>
-            <li>Receso de semana santa: 14 al 21 de abril. Regreso a clase el martes 22 de abril.</li>
-            <li><b>I entrega de informes:</b> 2 de mayo, horario diurno de 6:30 a 9:30 a. m.</li>
-          </ul>
-        </div></div>
+    <div class="stats">
+      <article class="stat stat--rojo reveal">
+        <span class="stat__figure">50</span>
+        <span class="stat__label">niños en riesgo</span>
+        <span class="stat__note">De familias con dificultades económicas.</span>
       </article>
 
-      <article class="periodo periodo--turquesa">
-        <h3>
-          <button class="periodo__head" type="button" aria-expanded="false" aria-controls="periodo-2">
-            <span class="periodo__num">II</span>
-            <span class="periodo__title">
-              Segundo período
-              <span class="periodo__dates">7 de abril – 6 de junio · 9 semanas</span>
-            </span>
-            <svg class="periodo__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-        </h3>
-        <div class="periodo__panel" id="periodo-2"><div>
-          <ul class="periodo__list">
-            <li><b>Feria de cortesía:</b> 10 de julio.</li>
-            <li><b>Semana del idioma</b> (Día del idioma e English Week): 22 al 25 de abril.</li>
-            <li><b>Viernes de prueba saber</b> (Plataforma En Línea): 3 de mayo.</li>
-            <li><b>Inauguración de los juegos:</b> 28 de mayo.</li>
-            <li>Seguimiento a estudiantes del segundo período: 21 al 23 de mayo.</li>
-            <li>Planes de mejoramiento académico: 26 al 30 de mayo.</li>
-            <li><b>Exámenes acumulativos:</b> 6 al 12 de junio.</li>
-            <li>Nivelaciones: 16 al 19 de junio.</li>
-            <li>Segundo receso: 16 de junio al 7 de julio. Regreso a clases el martes 8 de julio.</li>
-            <li><b>II entrega de informes escritos:</b> 11 y 12 de julio, de 7:00 a 10:00 a. m.</li>
-          </ul>
-        </div></div>
+      <article class="stat stat--mostaza reveal" style="--i:1">
+        <span class="stat__figure">$4.200.000</span>
+        <span class="stat__label">cuesta un año</span>
+        <span class="stat__note">La educación completa de un estudiante.</span>
       </article>
 
-      <article class="periodo periodo--mostaza">
-        <h3>
-          <button class="periodo__head" type="button" aria-expanded="false" aria-controls="periodo-3">
-            <span class="periodo__num">III</span>
-            <span class="periodo__title">
-              Tercer período
-              <span class="periodo__dates">9 de junio – 29 de agosto · 9 semanas</span>
-            </span>
-            <svg class="periodo__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-        </h3>
-        <div class="periodo__panel" id="periodo-3"><div>
-          <ul class="periodo__list">
-            <li><b>Olimpiadas matemáticas:</b> 30 de julio al 1 de agosto.</li>
-            <li>Seguimiento a estudiantes del tercer período: 20 al 22 de agosto. Los planes de mejoramiento se reportan y envían en esta fecha.</li>
-            <li>Planes de mejoramiento académico: 25 al 29 de agosto.</li>
-            <li><b>Exámenes acumulativos:</b> 1 al 5 de septiembre.</li>
-            <li>Nivelaciones: 8 al 12 de septiembre.</li>
-            <li><b>III entrega de informes escritos:</b> sábado 3 y 4 de octubre, de 7:00 a 10:00 a. m.</li>
-          </ul>
-        </div></div>
-      </article>
-
-      <article class="periodo periodo--verde">
-        <h3>
-          <button class="periodo__head" type="button" aria-expanded="false" aria-controls="periodo-4">
-            <span class="periodo__num">IV</span>
-            <span class="periodo__title">
-              Cuarto período
-              <span class="periodo__dates">1 de septiembre – 14 de noviembre · 10 semanas</span>
-            </span>
-            <svg class="periodo__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-        </h3>
-        <div class="periodo__panel" id="periodo-4"><div>
-          <ul class="periodo__list">
-            <li><b>Celebración semana belenista:</b> 27 al 31 de octubre.</li>
-            <li><b>Viernes de prueba saber</b> (Plataforma En Línea): 6 de septiembre.</li>
-            <li>Receso estudiantil: 6 al 13 de octubre. Regreso a clases el martes 14 de octubre.</li>
-            <li>Seguimiento a estudiantes del cuarto período: 4 de noviembre.</li>
-            <li>Planes de mejoramiento académico: 4 al 7 de noviembre.</li>
-            <li><b>Exámenes acumulativos:</b> 7 al 13 de noviembre.</li>
-            <li>Nivelaciones: 18 al 21 de noviembre.</li>
-            <li><b>Clausura:</b> 14 de noviembre.</li>
-            <li><b>IV entrega de informes escritos:</b> jueves 28 de noviembre, de 6:30 a 9:30 a. m.</li>
-            <li><b>Certificación de grados</b> (Transición y Quinto): 3 de diciembre.</li>
-          </ul>
-        </div></div>
+      <article class="stat stat--turquesa reveal" style="--i:2">
+        <span class="stat__figure">$350.000</span>
+        <span class="stat__label">al mes</span>
+        <span class="stat__note">Si prefieres repartirlo en 12 cuotas.</span>
       </article>
     </div>
   </div>
@@ -298,128 +215,233 @@
 </div>
 
 <!-- ============================================================
-     VALOR DEL MES Y CONVOCATORIAS
+     LA CARTA
+     Texto oficial de la página de donaciones del colegio.
      ============================================================ -->
-<section class="section" id="convocatorias">
+<section class="section" id="carta">
+  <div class="shell letter">
+    <div class="letter__aside reveal">
+      <p class="eyebrow eyebrow--turquesa">Queridos hermanos en la fe</p>
+      <h2>Sé parte de la<br><span class="hand">Gran Comisión</span></h2>
+
+      <blockquote class="letter__quote">
+        <p>
+          «Dejen que los niños vengan a mí, porque de ellos es el Reino de los
+          Cielos.»
+        </p>
+        <cite>Mateo 19:14</cite>
+      </blockquote>
+    </div>
+
+    <div class="letter__body reveal" style="--i:1">
+      <p>
+        En un mundo donde los valores parecen desvanecerse y la fe es desafiada,
+        el Gimnasio Cristiano Belén se mantiene firme en su misión: formar
+        corazones que amen a Dios, vivan el Evangelio y sirvan a los demás.
+      </p>
+
+      <p>
+        Nuestra visión es que cada niño crezca con Cristo como su modelo, pero
+        hoy enfrentamos un gran desafío: <strong>50 niños de familias con
+        dificultades económicas</strong> corren el riesgo de no continuar su
+        educación cristiana debido a los crecientes costos operativos impuestos
+        por regulaciones gubernamentales.
+      </p>
+
+      <p>
+        Te invitamos a ser parte de la Gran Comisión, apoyando a un niño para que
+        reciba una educación de calidad impregnada de valores cristianos. Con tu
+        ayuda, estos pequeños podrán conocer el amor de Dios día a día en
+        nuestras aulas, crecer en fe y convertirse en testimonio vivo del
+        Evangelio.
+      </p>
+
+      <p>
+        Si el Señor ha puesto en tu corazón el deseo de servir y las
+        posibilidades para hacerlo, contáctanos y te guiaremos sobre cómo
+        realizar tu donación. Si en este momento no puedes contribuir
+        económicamente, te invitamos a orar para que Dios abra puertas y toque
+        corazones dispuestos a unirse a esta causa.
+      </p>
+
+      <p>
+        Con tu apoyo, estos niños no solo recibirán educación, sino la
+        oportunidad de conocer a Cristo y transformar sus vidas. Seamos
+        instrumentos de Dios para cambiar el rumbo de estos pequeños.
+      </p>
+
+      <p class="letter__sign">
+        Con gratitud y fe,
+        <strong>Gimnasio Cristiano Belén</strong>
+        Montería, Córdoba
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="wave" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 40c180 45 360 45 540 22s360-58 540-35 300 45 360 53v10H0Z"/></svg>
+</div>
+
+<!-- ============================================================
+     CÓMO AYUDAR
+     ============================================================ -->
+<section class="section section--tint" id="como-ayudar">
   <div class="shell">
     <div class="section__head reveal">
-      <p class="eyebrow eyebrow--mostaza">Valor del mes</p>
-      <h2>Convocatorias del <span class="hand">año</span></h2>
+      <p class="eyebrow eyebrow--verde">Tres maneras</p>
+      <h2>Cómo puedes <span class="hand">ayudar</span></h2>
       <p class="lede">
-        Cada mes tiene su valor y su convocatoria, con los grados que participan.
+        Cada aporte, por pequeño que parezca, es una semilla plantada en el
+        corazón de un niño.
       </p>
     </div>
 
-    <div class="convos">
-      <article class="convo convo--rojo reveal">
-        <p class="convo__mes">Febrero</p>
-        <h3>Honra y respeto</h3>
-        <p class="convo__fecha">Feria de la cortesía y convocatoria: viernes 7 de febrero</p>
-        <p class="convo__grados">Administrativos y directivos</p>
+    <div class="ways">
+      <article class="way way--rojo reveal">
+        <span class="way__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6a5 5 0 0 0-8.8-2.9 5 5 0 0 0-8.8 2.9c0 5.2 8.8 10.4 8.8 10.4s8.8-5.2 8.8-10.4Z"/></svg>
+        </span>
+        <h3>Apadrina un año completo</h3>
+        <p class="way__amount">$4.200.000 <span>/ año</span></p>
+        <p>
+          Cubres la educación de un estudiante durante todo el año lectivo, de
+          principio a fin.
+        </p>
+        <a class="link" href="#contacto">
+          Quiero apadrinar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
       </article>
 
-      <article class="convo convo--turquesa reveal" style="--i:1">
-        <p class="convo__mes">Marzo</p>
-        <h3>Responsabilidad</h3>
-        <p class="convo__fecha">Convocatoria: jueves 13 de marzo</p>
-        <p class="convo__grados">Transición y 4.º / 5.º–10.º</p>
+      <article class="way way--turquesa reveal" style="--i:1">
+        <span class="way__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M12 14v4M10 16h4"/></svg>
+        </span>
+        <h3>Aporta cada mes</h3>
+        <p class="way__amount">$350.000 <span>/ mes</span></p>
+        <p>
+          La misma ayuda repartida en doce cuotas, para que puedas sostenerla sin
+          esfuerzo.
+        </p>
+        <a class="link" href="#contacto">
+          Quiero aportar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
       </article>
 
-      <article class="convo convo--mostaza reveal" style="--i:2">
-        <p class="convo__mes">Abril</p>
-        <h3>Fe y justicia</h3>
-        <p class="convo__fecha">Convocatoria: viernes 11 de abril</p>
-        <p class="convo__grados">Jardín y 2.º / 6.º–8.º</p>
+      <article class="way way--verde reveal" style="--i:2">
+        <span class="way__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M6.5 8.5h11"/></svg>
+        </span>
+        <h3>Ora por la causa</h3>
+        <p class="way__amount">Sin costo</p>
+        <p>
+          Si ahora no puedes contribuir económicamente, ora para que Dios abra
+          puertas y toque corazones dispuestos a unirse.
+        </p>
+      </article>
+    </div>
+
+    <div class="callout reveal">
+      <span class="callout__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v4h4"/><path d="m9 14 2 2 4-4"/></svg>
+      </span>
+      <div>
+        <h3>Una doble bendición</h3>
+        <p>
+          Al donar recibirás un <strong>certificado de donación</strong> que
+          podrás presentar ante la DIAN para deducir en tu declaración de renta.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave wave--flip wave--white" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 40c180 45 360 45 540 22s360-58 540-35 300 45 360 53v10H0Z"/></svg>
+</div>
+
+<!-- ============================================================
+     CONTACTO
+     REVISAR: el colegio no publica cuenta bancaria ni pasarela para
+     donar; la donación se coordina por estos tres canales. Si más
+     adelante habilitan una cuenta, va aquí.
+     ============================================================ -->
+<section class="section section--tight" id="contacto">
+  <div class="shell">
+    <div class="section__head reveal">
+      <p class="eyebrow eyebrow--mostaza">Contáctanos hoy</p>
+      <h2>Damos el <span class="hand">siguiente paso</span> contigo</h2>
+      <p class="lede">
+        Escríbenos y te guiamos sobre cómo realizar tu donación.
+      </p>
+    </div>
+
+    <div class="channels">
+      <article class="channel channel--verde reveal">
+        <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6a11.3 11.3 0 0 1-4.4-4c-.3-.5-.7-1.2-.7-2.2s.5-1.5.7-1.7c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.7c.1.1.1.3 0 .5l-.3.4-.3.3c-.1.1-.2.3 0 .5.2.3.7 1.1 1.4 1.8.9.8 1.7 1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6 0 1Z"/></svg></span>
+        <span class="channel__label">WhatsApp</span>
+        <span class="channel__value">Escríbenos</span>
+        <a class="btn btn--sm" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">
+          Abrir WhatsApp
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
       </article>
 
-      <article class="convo convo--verde reveal" style="--i:3">
-        <p class="convo__mes">Mayo</p>
-        <h3>Servicio</h3>
-        <p class="convo__fecha">Convocatoria: martes 6 de mayo</p>
-        <p class="convo__grados">Pre-Jardín y 3.º / 7.º–9.º</p>
+      <article class="channel channel--rojo reveal" style="--i:1">
+        <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+        <span class="channel__label">Teléfono</span>
+        <span class="channel__value">(57) 321 715 6040</span>
+        <a class="btn btn--sm" href="tel:+573217156040">
+          Llamar ahora
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
       </article>
 
-      <article class="convo convo--rojo reveal" style="--i:4">
-        <p class="convo__mes">Junio y julio</p>
-        <h3>Honestidad</h3>
-        <p class="convo__fecha">Convocatoria: jueves 5 de junio</p>
-        <p class="convo__grados">Transición y 1.º / 5.º–8.º</p>
-      </article>
-
-      <article class="convo convo--turquesa reveal" style="--i:5">
-        <p class="convo__mes">Agosto</p>
-        <h3>Obediencia</h3>
-        <p class="convo__fecha">Convocatoria: miércoles 6 de agosto</p>
-        <p class="convo__grados">Jardín y 4.º / 7.º–10.º</p>
-      </article>
-
-      <article class="convo convo--mostaza reveal" style="--i:6">
-        <p class="convo__mes">Septiembre</p>
-        <h3>Amor</h3>
-        <p class="convo__fecha">Convocatoria: martes 2 de septiembre</p>
-        <p class="convo__grados">Pre-Jardín y 2.º / 6.º–9.º</p>
-      </article>
-
-      <article class="convo convo--verde reveal" style="--i:7">
-        <p class="convo__mes">Octubre</p>
-        <h3>Sabiduría</h3>
-        <p class="convo__fecha">Convocatoria: viernes 3 de octubre</p>
-        <p class="convo__grados">Transición y 3.º / 5.º–8.º</p>
-      </article>
-
-      <article class="convo convo--rojo reveal" style="--i:8">
-        <p class="convo__mes">Noviembre</p>
-        <h3>Lealtad</h3>
-        <p class="convo__fecha">Convocatoria: viernes 14 de noviembre</p>
-        <p class="convo__grados">Pre-Jardín, Jardín, 1.º, 2.º y 4.º / 6.º, 7.º, 9.º–10.º</p>
+      <article class="channel channel--turquesa reveal" style="--i:2">
+        <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></span>
+        <span class="channel__label">Correo</span>
+        <span class="channel__value">contacto@gimnasiocristianobelen.edu.co</span>
+        <a class="btn btn--sm" href="mailto:contacto@gimnasiocristianobelen.edu.co">
+          Escribir un correo
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
       </article>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     LÁMINAS ORIGINALES
+     LLAMADO FINAL
      ============================================================ -->
-<section class="section section--tint" id="laminas">
-  <div class="shell">
-    <div class="section__head reveal">
-      <p class="eyebrow eyebrow--verde">Documento original</p>
-      <h2>Descarga el <span class="hand">calendario</span></h2>
-      <p class="lede">
-        Las tres páginas tal como las publica el colegio. Ábrelas para
-        descargarlas o imprimirlas.
-      </p>
-    </div>
+<section class="cta">
+  <span class="cta__dot cta__dot--1" aria-hidden="true"></span>
+  <span class="cta__dot cta__dot--2" aria-hidden="true"></span>
+  <span class="cta__dot cta__dot--3" aria-hidden="true"></span>
+  <span class="cta__dot cta__dot--4" aria-hidden="true"></span>
 
-    <div class="laminas reveal">
-      <a class="lamina" href="assets/img/paginas/Captura-de-pantalla-2025-02-21-172151.png" target="_blank" rel="noopener">
-        <img src="assets/img/paginas/Captura-de-pantalla-2025-02-21-172151.png" alt="Página 1 del calendario académico: períodos I y II" loading="lazy" decoding="async">
-        <span class="lamina__name">Página 1 · Períodos I y II</span>
-      </a>
-      <a class="lamina" href="assets/img/paginas/Captura-de-pantalla-2025-02-21-172256.png" target="_blank" rel="noopener">
-        <img src="assets/img/paginas/Captura-de-pantalla-2025-02-21-172256.png" alt="Página 2 del calendario académico: períodos III y IV" loading="lazy" decoding="async">
-        <span class="lamina__name">Página 2 · Períodos III y IV</span>
-      </a>
-      <a class="lamina" href="assets/img/paginas/Captura-de-pantalla-2025-02-21-172343.png" target="_blank" rel="noopener">
-        <img src="assets/img/paginas/Captura-de-pantalla-2025-02-21-172343.png" alt="Página 3 del calendario académico: cierre del año y certificación de grados" loading="lazy" decoding="async">
-        <span class="lamina__name">Página 3 · Cierre del año</span>
+  <div class="shell cta__inner">
+    <h2 class="cta__title reveal">
+      Una semilla en el<br>
+      corazón de un <span class="hand">niño</span>
+    </h2>
+    <p class="lede reveal" style="--i:1; max-width: 38rem;">
+      Cada aporte, por pequeño que parezca, es una bendición para su futuro.
+    </p>
+    <div class="actions reveal" style="--i:2">
+      <a class="btn btn--lg" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">
+        Quiero donar
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
     </div>
   </div>
 </section>
+
+
 </main>
 
-<!-- ============================================================
-     VISOR DE IMAGEN
-     Lo usa el cuadro de honor y el de promoción: en el móvil las
-     piezas se ven diminutas y los nombres no se pueden leer.
-     ============================================================ -->
-<div class="lightbox" id="visor" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
-  <button class="lightbox__close" type="button" data-lightbox-close aria-label="Cerrar la imagen">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-  </button>
-  <img class="lightbox__img" alt="" data-lightbox-img>
-</div>
+
 
 <!-- ============================================================
      PIE
