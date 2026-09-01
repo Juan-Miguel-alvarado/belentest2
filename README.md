@@ -1,7 +1,7 @@
 # Gimnasio Cristiano Belén — rediseño juvenil
 
 Sitio estático del colegio (Montería, Córdoba) construido a partir del boceto
-en papel: la portada y la página «Nosotros». HTML + CSS + JS vanilla, sin build ni
+en papel: la portada, «Nosotros», «Solicitudes en línea» y «Donaciones». HTML + CSS + JS vanilla, sin build ni
 dependencias: se sube tal cual a cualquier hosting.
 
 Es una segunda propuesta visual sobre el mismo contenido de `../A12`: paleta de
@@ -21,9 +21,13 @@ python3 -m http.server 8080
 ```
 index.html    Portada completa: hero, nosotros, programas, testimonios,
               preguntas frecuentes, noticias, llamado final y pie
-nosotros.html Página institucional: misión y visión, valores, himno,
-              Proyecto Timoteo, cuadro de honor, cuadro de promoción y
-              manual de convivencia
+nosotros.html    Página institucional: misión y visión, valores, himno,
+                 Proyecto Timoteo, cuadro de honor, cuadro de promoción y
+                 manual de convivencia
+solicitudes.html Los cinco trámites en línea, cómo funcionan y los canales
+                 de atención
+donaciones.html  La campaña de apadrinamiento: cifras, carta, formas de
+                 ayudar y contacto
 
 assets/
   css/  fonts.css    @import de Google Fonts (Onest, Gveret Levin, Inter)
@@ -31,7 +35,7 @@ assets/
         base.css     reset, titulares, botones, chips, utilidades
         motion.css   revelado al scroll y prefers-reduced-motion
         layout.css   cabecera, hero, cada sección y el pie
-        nosotros.css bloques propios de nosotros.html (solo la carga esa página)
+        paginas.css  bloques de las páginas interiores (no la carga la portada)
   js/   motion.js    revelado al scroll
         main.js      navegación, menú móvil, acordeón, video, visor de imagen
   img/  estudiantes*.png  retratos por nivel (PNG con fondo transparente)
@@ -82,6 +86,26 @@ cerca del 15 %). Si se cambia la extensión hay que actualizar el `src` en el HT
 Se ven en grande con el visor: cualquier tarjeta nueva solo necesita
 `data-lightbox` y `data-lightbox-src` para heredar ese comportamiento.
 
+**Las páginas interiores.** Las tres comparten cabecera, pie y `paginas.css`, y
+se montan igual: `.pagehead` con foto y degradado, secciones alternas
+`.section` / `.section--tint` separadas por `.wave`, y `.cta` al cierre. El enlace
+del menú que corresponde a la página lleva `aria-current="page"` a mano:
+`initScrollSpy()` solo observa enlaces que empiezan por `#`, así que no lo pisa.
+
+**Solicitudes en línea.** De los cinco trámites que publica el sitio actual, solo
+el de **solicitud de citas** tiene una URL que abre. Lo verifiqué uno a uno:
+inasistencias, certificados y PQRS apuntan a direcciones `/edit` de Google Forms
+—devuelven **401**, solo entra el dueño de la cuenta— y el de retiro ya no existe
+(«No se encontró la página»). Mientras el colegio no comparta las URL `/viewform`
+buenas, esos cuatro se canalizan por WhatsApp. Está anotado con un `REVISAR` en
+la propia sección.
+
+**Donaciones.** Todo el texto —las cifras, la carta y el certificado de la DIAN—
+sale literal de `/donaciones/` del sitio actual. El colegio **no publica cuenta
+bancaria ni pasarela de pago**: la donación se coordina por teléfono, WhatsApp o
+correo, que es lo que ofrece la sección de contacto. Si más adelante habilitan
+una cuenta, va en `#contacto`.
+
 **Los valores.** La sección `#valores` es una rejilla bento: diez tarjetas de
 color y dos piezas fotográficas —una alta y una ancha— que rompen el ritmo. La
 colocación es automática: basta el orden del HTML, y los dos `span` de las fotos
@@ -126,6 +150,9 @@ Marcado en el código con comentarios `REVISAR` y `TODO`:
 | Erratas de la misión y la visión | `#mision-vision` de `nosotros.html` |
 | Foto de grupo del cuerpo docente | tarjeta «Nuestro equipo» de `nosotros.html` |
 | Frases de una línea de los diez valores | `#valores` de `nosotros.html` |
+| URL públicas de 4 de los 5 formularios | `#tramites` de `solicitudes.html` |
+| Datos que exige cada trámite | `#como` de `solicitudes.html` |
+| Cuenta bancaria para donar, si la habilitan | `#contacto` de `donaciones.html` |
 
 **Sobre las erratas del texto oficial.** Al pasar la misión y la visión de imagen
 a texto se corrigieron cuatro: «de los estudiante» → «de los estudiantes»,

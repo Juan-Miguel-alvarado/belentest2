@@ -1,7 +1,8 @@
 /* ============================================================
-   nosotros.css — bloques propios de la página "Nosotros"
+   paginas.css — bloques de las páginas interiores
+   Nosotros · Solicitudes en línea · Donaciones.
    Solo lo que no existe ya en base.css / layout.css.
-   Se carga únicamente en nosotros.html.
+   No la carga la portada.
    ============================================================ */
 
 /* ============================================================
@@ -617,10 +618,377 @@
 .docbar .chips { margin-top: 1.25rem; }
 
 /* ============================================================
+   TRÁMITES  (solicitudes.html)
+   ============================================================ */
+
+.tramites {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.tramite {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: clamp(1.5rem, 2.6vw, 2.1rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: border-color 0.25s var(--ease), transform 0.3s var(--ease-back),
+    box-shadow 0.3s var(--ease);
+}
+
+.tramite:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+
+.tramite__icon {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--r-full);
+}
+
+.tramite__icon svg { width: 1.6rem; height: 1.6rem; }
+.tramite h3 { font-size: var(--step-1); }
+.tramite p { font-size: var(--step--1); }
+
+/* El pie queda abajo aunque las tarjetas tengan textos de distinto
+   largo, para que todos los botones se alineen. */
+.tramite__foot { margin-top: auto; padding-top: 1.1rem; }
+
+/* Etiqueta del canal por el que se tramita. */
+.tramite__via {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+.tramite__via svg { width: 1.05em; height: 1.05em; }
+
+.tramite--rojo:hover     { border-color: var(--rojo); }
+.tramite--turquesa:hover { border-color: var(--turquesa); }
+.tramite--mostaza:hover  { border-color: var(--mostaza); }
+.tramite--verde:hover    { border-color: var(--verde); }
+
+.tramite--rojo     .tramite__icon { background: var(--rojo-tint);     color: var(--rojo-ink); }
+.tramite--turquesa .tramite__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+.tramite--mostaza  .tramite__icon { background: var(--mostaza-tint);  color: var(--mostaza-ink); }
+.tramite--verde    .tramite__icon { background: var(--verde-tint);    color: var(--verde-ink); }
+
+/* El único trámite con formulario propio ocupa el doble y va teñido:
+   es el que queremos que se vea primero. */
+.tramite--destacada {
+  grid-column: span 2;
+  background:
+    radial-gradient(70% 60% at 100% 0%, var(--turquesa-tint), transparent 70%),
+    var(--surface);
+}
+
+/* ============================================================
+   PASOS  (solicitudes.html)
+   ============================================================ */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  counter-reset: paso;
+}
+
+.step { position: relative; padding-top: 3.5rem; }
+
+/* Línea que hilvana los pasos; se corta en el último. */
+.step::before {
+  content: "";
+  position: absolute;
+  top: 1.4rem;
+  left: 3.4rem;
+  right: calc(-1 * clamp(1.25rem, 2.5vw, 2rem));
+  height: 2px;
+  background: var(--line);
+}
+
+.step:last-child::before { display: none; }
+
+.step__num {
+  counter-increment: paso;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 700;
+  color: var(--surface);
+  background: var(--rojo);
+  border-radius: var(--r-full);
+}
+
+.step__num::after { content: counter(paso); }
+.step h3 { font-size: var(--step-1); margin-bottom: 0.5rem; }
+.step p { font-size: var(--step--1); }
+
+/* ============================================================
+   CIFRAS  (donaciones.html)
+   ============================================================ */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.stat {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  text-align: center;
+  border-radius: var(--r-lg);
+  border: 2px solid transparent;
+}
+
+.stat__figure {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.stat__label {
+  display: block;
+  margin-top: 0.75rem;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.stat__note { display: block; margin-top: 0.4rem; font-size: var(--step--1); }
+
+.stat--rojo     { background: var(--rojo-tint); }
+.stat--mostaza  { background: var(--mostaza-tint); }
+.stat--turquesa { background: var(--turquesa-tint); }
+
+.stat--rojo     .stat__figure { color: var(--rojo-ink); }
+.stat--mostaza  .stat__figure { color: var(--mostaza-ink); }
+.stat--turquesa .stat__figure { color: var(--turquesa-ink); }
+
+/* ============================================================
+   CARTA  (donaciones.html)
+   ============================================================ */
+
+.letter {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  align-items: start;
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
+
+.letter__aside { position: sticky; top: 8rem; }
+
+/* La cita se saca del cuerpo del texto y se convierte en la pieza
+   visual de la columna izquierda. */
+.letter__quote {
+  margin: 1.75rem 0 0;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-radius: var(--r-lg);
+  border-left: 6px solid var(--rojo);
+  background: var(--rojo-tint);
+}
+
+.letter__quote p {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.letter__quote cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: var(--step--1);
+  font-style: normal;
+  color: var(--rojo-ink);
+}
+
+.letter__body > p + p { margin-top: 1.1rem; }
+.letter__body strong { color: var(--ink); font-weight: 600; }
+
+.letter__sign {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--line-soft);
+  font-size: var(--step--1);
+}
+
+.letter__sign strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  color: var(--ink);
+}
+
+/* ============================================================
+   FORMAS DE AYUDAR Y CONTACTO
+   ============================================================ */
+
+.ways {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.way {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: clamp(1.6rem, 2.8vw, 2.25rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: border-color 0.25s var(--ease), transform 0.3s var(--ease-back),
+    box-shadow 0.3s var(--ease);
+}
+
+.way:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.way--rojo:hover     { border-color: var(--rojo); }
+.way--turquesa:hover { border-color: var(--turquesa); }
+.way--verde:hover    { border-color: var(--verde); }
+
+.way__icon {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--r-full);
+}
+
+.way__icon svg { width: 1.6rem; height: 1.6rem; }
+.way--rojo     .way__icon { background: var(--rojo-tint);     color: var(--rojo-ink); }
+.way--turquesa .way__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+.way--verde    .way__icon { background: var(--verde-tint);    color: var(--verde-ink); }
+
+.way h3 { font-size: var(--step-1); }
+
+.way .way__amount {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.way .way__amount span { font-size: var(--step--1); font-weight: 400; color: var(--muted); }
+.way p { font-size: var(--step--1); }
+.way .link { margin-top: auto; padding-top: 1rem; }
+
+/* Aviso destacado: el certificado de la DIAN y avisos equivalentes. */
+.callout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 1.25rem;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1.35rem, 2.5vw, 1.9rem);
+  background: var(--verde-tint);
+  border-radius: var(--r-lg);
+}
+
+.callout__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--verde-ink);
+  background: var(--surface);
+  border-radius: var(--r-full);
+}
+
+.callout__icon svg { width: 1.4rem; height: 1.4rem; }
+.callout h3 { font-size: var(--step-1); margin-bottom: 0.35rem; }
+.callout p { font-size: var(--step--1); }
+
+/* --- Tarjetas de contacto ---------------------------------- */
+
+.channels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.channel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: clamp(1.6rem, 2.8vw, 2.25rem);
+  text-align: center;
+  text-decoration: none;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: border-color 0.25s var(--ease), transform 0.3s var(--ease-back),
+    box-shadow 0.3s var(--ease);
+}
+
+.channel:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.channel--rojo:hover     { border-color: var(--rojo); }
+.channel--verde:hover    { border-color: var(--verde); }
+.channel--turquesa:hover { border-color: var(--turquesa); }
+
+.channel__icon {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: 0.4rem;
+  border-radius: var(--r-full);
+}
+
+.channel__icon svg { width: 1.6rem; height: 1.6rem; }
+.channel--rojo     .channel__icon { background: var(--rojo-tint);     color: var(--rojo-ink); }
+.channel--verde    .channel__icon { background: var(--verde-tint);    color: var(--verde-ink); }
+.channel--turquesa .channel__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+
+.channel__label {
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.channel__value {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  color: var(--ink);
+  /* Los correos largos no deben desbordar la tarjeta. */
+  overflow-wrap: anywhere;
+}
+
+.channel__note { font-size: var(--step--1); }
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 
 @media (max-width: 1080px) {
+  .tramites { grid-template-columns: repeat(2, 1fr); }
+  .tramite--destacada { grid-column: span 2; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  /* A dos columnas la línea que une los pasos ya no hilvana nada. */
+  .step::before { display: none; }
   /* A dos columnas las piezas de foto pasan a banda: ocupan la fila
      entera y una sola altura. */
   .values { grid-template-columns: repeat(2, 1fr); }
@@ -629,6 +997,11 @@
 
 @media (max-width: 900px) {
   .pagehead__inner { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr; }
+  .ways { grid-template-columns: 1fr; }
+  .channels { grid-template-columns: 1fr; }
+  .letter { grid-template-columns: 1fr; }
+  .letter__aside { position: static; }
   .pagehead__media { order: -1; max-width: 26rem; }
   .purpose { grid-template-columns: 1fr; }
   .boards--wide { grid-template-columns: 1fr; }
@@ -642,6 +1015,9 @@
 
 @media (max-width: 560px) {
   .values { grid-template-columns: 1fr; }
+  .tramites { grid-template-columns: 1fr; }
+  .tramite--destacada { grid-column: span 1; }
+  .steps { grid-template-columns: 1fr; }
   .value-photo--tall,
   .value-photo--wide { grid-column: span 1; }
 }
@@ -651,6 +1027,9 @@
   .mv__card,
   .value,
   .value__icon,
+  .tramite,
+  .way,
+  .channel,
   .board,
   .board__zoom,
   .lightbox,
@@ -660,6 +1039,9 @@
   .mv__card:hover,
   .value:hover,
   .value:hover .value__icon,
+  .tramite:hover,
+  .way:hover,
+  .channel:hover,
   .lightbox__close:hover { transform: none; }
   .board__zoom { opacity: 1; transform: none; }
 }

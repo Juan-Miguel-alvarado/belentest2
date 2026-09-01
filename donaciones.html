@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Donaciones — Gimnasio Cristiano Belén | Apadrina a un niño</title>
+<meta name="description" content="Cambia una vida con tu apoyo: 50 niños del Gimnasio Cristiano Belén, en Montería, corren el riesgo de no continuar su educación cristiana. Conoce cómo apadrinar y recibe tu certificado de donación deducible ante la DIAN.">
+<meta name="theme-color" content="#e24b4a">
+<link rel="icon" href="assets/img/logotipo.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:title" content="Donaciones — Gimnasio Cristiano Belén">
+<meta property="og:description" content="Lleva a un niño a conocer a Cristo. Apadrina la educación de un estudiante belenista.">
+<meta property="og:image" content="assets/img/estudiantepreescolar.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/paginas.css">
+</head>
+
+
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<!-- ============================================================
+     BARRA SUPERIOR
+     ============================================================ -->
+<div class="topbar">
+  <div class="shell topbar__inner">
+    <span class="topbar__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <span class="topbar__hours-long">Lunes a viernes · 8:00 a.m. – 3:00 p.m.</span>
+      <span class="topbar__hours-short">Lun – Vie · 8:00 a.m. – 3:00 p.m.</span>
+    </span>
+    <!-- TODO: reemplazar por la dirección exacta de la sede -->
+    <span class="topbar__item topbar__item--hide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Montería, Córdoba
+    </span>
+    <a class="topbar__item topbar__phone" href="tel:+573217156040">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      321 715 6040
+    </a>
+  </div>
+</div>
+
+<!-- ============================================================
+     CABECERA
+     Igual que la del index. Solo cambian los destinos: los anclajes
+     de la portada llevan ahora el prefijo index.html.
+     ============================================================ -->
+<header class="masthead">
+  <div class="shell masthead__inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logotipo.png" alt="" width="56" height="56">
+      <span>
+        <span class="brand__name">Gimnasio Cristiano Belén</span>
+        <span class="brand__tag">Educamos para la eternidad</span>
+      </span>
+    </a>
+
+    <div class="masthead__actions">
+      <a class="btn btn--outline btn--sm btn--plataforma" href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
+        Plataforma
+      </a>
+      <a class="btn btn--sm" href="index.html#admisiones">
+        Admisiones 2026
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir el menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="shell navbar" aria-label="Principal">
+    <div class="navwrap">
+      <ul class="menu">
+        <li class="menu__item"><a class="menu__link" href="index.html">Inicio</a></li>
+        <!-- Página actual: se marca a mano. initScrollSpy() solo observa
+             enlaces que empiezan por "#", así que no lo sobrescribe. -->
+        <li class="menu__item"><a class="menu__link" href="nosotros.html">Nosotros</a></li>
+        <li class="menu__item menu__item--has-menu">
+          <button class="menu__link" type="button" aria-expanded="false">
+            Guía escolar
+            <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown">
+            <a href="index.html#programas">Niveles y grados</a>
+            <a href="nosotros.html#mision-vision">Misión y visión</a>
+            <a href="nosotros.html#valores">Valores e himno</a>
+            <a href="assets/docs/manual-convivencia-2026.pdf" target="_blank" rel="noopener">Manual de convivencia</a>
+            <hr>
+            <p class="dropdown__head">Para las familias</p>
+            <a href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">Webcolegios</a>
+            <a href="https://www.psepagos.co/PSEHostingUI/ShowTicketOffice.aspx?ID=7633" target="_blank" rel="noopener">Pagos en línea (PSE)</a>
+          </div>
+        </li>
+        <li class="menu__item"><a class="menu__link" href="solicitudes.html">Solicitudes en línea</a></li>
+        <li class="menu__item"><a class="menu__link" href="donaciones.html" aria-current="page">Donaciones</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="menu-movil">
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <details>
+    <summary>Guía escolar</summary>
+    <div class="mobile-menu__sub">
+      <a href="index.html#programas">Niveles y grados</a>
+      <a href="nosotros.html#mision-vision">Misión y visión</a>
+      <a href="nosotros.html#valores">Valores e himno</a>
+      <a href="assets/docs/manual-convivencia-2026.pdf" target="_blank" rel="noopener">Manual de convivencia</a>
+      <a href="https://www.psepagos.co/PSEHostingUI/ShowTicketOffice.aspx?ID=7633" target="_blank" rel="noopener">Pagos en línea (PSE)</a>
+    </div>
+  </details>
+  <a href="solicitudes.html">Solicitudes en línea</a>
+  <a href="donaciones.html" aria-current="page">Donaciones</a>
+  <div class="mobile-menu__foot">
+    <a class="btn btn--block" href="index.html#admisiones">Admisiones 2026</a>
+    <a class="btn btn--outline btn--block" href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">Plataforma</a>
+  </div>
+</div>
+
+<main id="contenido">
+
+<!-- ============================================================
+     CABECERA DE PÁGINA
+     ============================================================ -->
+<section class="pagehead">
+  <span class="pagehead__blob pagehead__blob--1" aria-hidden="true"></span>
+  <span class="pagehead__blob pagehead__blob--2" aria-hidden="true"></span>
+  <span class="pagehead__blob pagehead__blob--3" aria-hidden="true"></span>
+
+  <div class="shell pagehead__inner">
+    <div class="pagehead__body">
+      <nav class="crumbs reveal" aria-label="Migas de pan">
+        <a href="index.html">Inicio</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        <span>Donaciones</span>
+      </nav>
+
+      <h1 class="pagehead__title reveal" style="--i:1">
+        Cambia una vida<br>
+        con tu <span class="mark">APOYO</span>
+      </h1>
+
+      <p class="lede reveal" style="--i:2">
+        Lleva a un niño a conocer a Cristo. Hoy, 50 niños de familias con
+        dificultades económicas corren el riesgo de no continuar su educación
+        cristiana. Aquí es donde tú puedes marcar la diferencia.
+      </p>
+
+      <ul class="chips reveal" style="--i:3">
+        <li><a class="chip chip--rojo" href="#necesidad">La necesidad</a></li>
+        <li><a class="chip chip--turquesa" href="#carta">La carta</a></li>
+        <li><a class="chip chip--mostaza" href="#como-ayudar">Cómo ayudar</a></li>
+      </ul>
+    </div>
+
+    <div class="pagehead__media reveal-img" style="--i:2">
+      <img src="assets/img/estudiantepreescolar.png" alt="Estudiante de preescolar del Gimnasio Cristiano Belén" width="1536" height="1024" fetchpriority="high" decoding="async">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LA NECESIDAD
+     Cifras tal como las publica el colegio en su página de donaciones.
+     ============================================================ -->
+<section class="section section--tint" id="necesidad">
+  <div class="shell">
+    <div class="section__head reveal">
+      <p class="eyebrow">El desafío de este año</p>
+      <h2>Lo que está en <span class="hand">juego</span></h2>
+      <p class="lede">
+        Los costos operativos que imponen las nuevas regulaciones han puesto en
+        riesgo la permanencia de medio centenar de estudiantes.
+      </p>
+    </div>
+
+    <div class="stats">
+      <article class="stat stat--rojo reveal">
+        <span class="stat__figure">50</span>
+        <span class="stat__label">niños en riesgo</span>
+        <span class="stat__note">De familias con dificultades económicas.</span>
+      </article>
+
+      <article class="stat stat--mostaza reveal" style="--i:1">
+        <span class="stat__figure">$4.200.000</span>
+        <span class="stat__label">cuesta un año</span>
+        <span class="stat__note">La educación completa de un estudiante.</span>
+      </article>
+
+      <article class="stat stat--turquesa reveal" style="--i:2">
+        <span class="stat__figure">$350.000</span>
+        <span class="stat__label">al mes</span>
+        <span class="stat__note">Si prefieres repartirlo en 12 cuotas.</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="wave wave--flip wave--white" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 40c180 45 360 45 540 22s360-58 540-35 300 45 360 53v10H0Z"/></svg>
+</div>
+
+<!-- ============================================================
+     LA CARTA
+     Texto oficial de la página de donaciones del colegio.
+     ============================================================ -->
+<section class="section" id="carta">
+  <div class="shell letter">
+    <div class="letter__aside reveal">
+      <p class="eyebrow eyebrow--turquesa">Queridos hermanos en la fe</p>
+      <h2>Sé parte de la<br><span class="hand">Gran Comisión</span></h2>
+
+      <blockquote class="letter__quote">
+        <p>
+          «Dejen que los niños vengan a mí, porque de ellos es el Reino de los
+          Cielos.»
+        </p>
+        <cite>Mateo 19:14</cite>
+      </blockquote>
+    </div>
+
+    <div class="letter__body reveal" style="--i:1">
+      <p>
+        En un mundo donde los valores parecen desvanecerse y la fe es desafiada,
+        el Gimnasio Cristiano Belén se mantiene firme en su misión: formar
+        corazones que amen a Dios, vivan el Evangelio y sirvan a los demás.
+      </p>
+
+      <p>
+        Nuestra visión es que cada niño crezca con Cristo como su modelo, pero
+        hoy enfrentamos un gran desafío: <strong>50 niños de familias con
+        dificultades económicas</strong> corren el riesgo de no continuar su
+        educación cristiana debido a los crecientes costos operativos impuestos
+        por regulaciones gubernamentales.
+      </p>
+
+      <p>
+        Te invitamos a ser parte de la Gran Comisión, apoyando a un niño para que
+        reciba una educación de calidad impregnada de valores cristianos. Con tu
+        ayuda, estos pequeños podrán conocer el amor de Dios día a día en
+        nuestras aulas, crecer en fe y convertirse en testimonio vivo del
+        Evangelio.
+      </p>
+
+      <p>
+        Si el Señor ha puesto en tu corazón el deseo de servir y las
+        posibilidades para hacerlo, contáctanos y te guiaremos sobre cómo
+        realizar tu donación. Si en este momento no puedes contribuir
+        económicamente, te invitamos a orar para que Dios abra puertas y toque
+        corazones dispuestos a unirse a esta causa.
+      </p>
+
+      <p>
+        Con tu apoyo, estos niños no solo recibirán educación, sino la
+        oportunidad de conocer a Cristo y transformar sus vidas. Seamos
+        instrumentos de Dios para cambiar el rumbo de estos pequeños.
+      </p>
+
+      <p class="letter__sign">
+        Con gratitud y fe,
+        <strong>Gimnasio Cristiano Belén</strong>
+        Montería, Córdoba
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="wave" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 40c180 45 360 45 540 22s360-58 540-35 300 45 360 53v10H0Z"/></svg>
+</div>
+
+<!-- ============================================================
+     CÓMO AYUDAR
+     ============================================================ -->
+<section class="section section--tint" id="como-ayudar">
+  <div class="shell">
+    <div class="section__head reveal">
+      <p class="eyebrow eyebrow--verde">Tres maneras</p>
+      <h2>Cómo puedes <span class="hand">ayudar</span></h2>
+      <p class="lede">
+        Cada aporte, por pequeño que parezca, es una semilla plantada en el
+        corazón de un niño.
+      </p>
+    </div>
+
+    <div class="ways">
+      <article class="way way--rojo reveal">
+        <span class="way__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6a5 5 0 0 0-8.8-2.9 5 5 0 0 0-8.8 2.9c0 5.2 8.8 10.4 8.8 10.4s8.8-5.2 8.8-10.4Z"/></svg>
+        </span>
+        <h3>Apadrina un año completo</h3>
+        <p class="way__amount">$4.200.000 <span>/ año</span></p>
+        <p>
+          Cubres la educación de un estudiante durante todo el año lectivo, de
+          principio a fin.
+        </p>
+        <a class="link" href="#contacto">
+          Quiero apadrinar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <article class="way way--turquesa reveal" style="--i:1">
+        <span class="way__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M12 14v4M10 16h4"/></svg>
+        </span>
+        <h3>Aporta cada mes</h3>
+        <p class="way__amount">$350.000 <span>/ mes</span></p>
+        <p>
+          La misma ayuda repartida en doce cuotas, para que puedas sostenerla sin
+          esfuerzo.
+        </p>
+        <a class="link" href="#contacto">
+          Quiero aportar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <article class="way way--verde reveal" style="--i:2">
+        <span class="way__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M6.5 8.5h11"/></svg>
+        </span>
+        <h3>Ora por la causa</h3>
+        <p class="way__amount">Sin costo</p>
+        <p>
+          Si ahora no puedes contribuir económicamente, ora para que Dios abra
+          puertas y toque corazones dispuestos a unirse.
+        </p>
+        <a class="link" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">
+          Cuéntanos que oras
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+    </div>
+
+    <div class="callout reveal">
+      <span class="callout__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v4h4"/><path d="m9 14 2 2 4-4"/></svg>
+      </span>
+      <div>
+        <h3>Una doble bendición</h3>
+        <p>
+          Al donar recibirás un <strong>certificado de donación</strong> que
+          podrás presentar ante la DIAN para deducir en tu declaración de renta.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave wave--flip wave--white" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 40c180 45 360 45 540 22s360-58 540-35 300 45 360 53v10H0Z"/></svg>
+</div>
+
+<!-- ============================================================
+     CONTACTO
+     REVISAR: el colegio no publica cuenta bancaria ni pasarela para
+     donar; la donación se coordina por estos tres canales. Si más
+     adelante habilitan una cuenta, va aquí.
+     ============================================================ -->
+<section class="section section--tight" id="contacto">
+  <div class="shell">
+    <div class="section__head reveal">
+      <p class="eyebrow eyebrow--mostaza">Contáctanos hoy</p>
+      <h2>Damos el <span class="hand">siguiente paso</span> contigo</h2>
+      <p class="lede">
+        Escríbenos y te guiamos sobre cómo realizar tu donación.
+      </p>
+    </div>
+
+    <div class="channels">
+      <a class="channel channel--verde reveal" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">
+        <span class="channel__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6a11.3 11.3 0 0 1-4.4-4c-.3-.5-.7-1.2-.7-2.2s.5-1.5.7-1.7c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.7c.1.1.1.3 0 .5l-.3.4-.3.3c-.1.1-.2.3 0 .5.2.3.7 1.1 1.4 1.8.9.8 1.7 1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6 0 1Z"/></svg>
+        </span>
+        <span class="channel__label">WhatsApp</span>
+        <span class="channel__value">Escríbenos</span>
+        <span class="channel__note">Te guiamos paso a paso.</span>
+      </a>
+
+      <a class="channel channel--rojo reveal" style="--i:1" href="tel:+573217156040">
+        <span class="channel__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        </span>
+        <span class="channel__label">Teléfono</span>
+        <span class="channel__value">(57) 321 715 6040</span>
+        <span class="channel__note">Lunes a viernes, 8:00 a.m. – 3:00 p.m.</span>
+      </a>
+
+      <a class="channel channel--turquesa reveal" style="--i:2" href="mailto:contacto@gimnasiocristianobelen.edu.co">
+        <span class="channel__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+        </span>
+        <span class="channel__label">Correo</span>
+        <span class="channel__value">contacto@gimnasiocristianobelen.edu.co</span>
+        <span class="channel__note">Para donaciones de empresas y fundaciones.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LLAMADO FINAL
+     ============================================================ -->
+<section class="cta">
+  <span class="cta__dot cta__dot--1" aria-hidden="true"></span>
+  <span class="cta__dot cta__dot--2" aria-hidden="true"></span>
+  <span class="cta__dot cta__dot--3" aria-hidden="true"></span>
+  <span class="cta__dot cta__dot--4" aria-hidden="true"></span>
+
+  <div class="shell cta__inner">
+    <h2 class="cta__title reveal">
+      Una semilla en el<br>
+      corazón de un <span class="hand">niño</span>
+    </h2>
+    <p class="lede reveal" style="--i:1; max-width: 38rem;">
+      Cada aporte, por pequeño que parezca, es una bendición para su futuro.
+    </p>
+    <div class="actions reveal" style="--i:2">
+      <a class="btn btn--lg" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">
+        Quiero donar
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+
+
+<!-- ============================================================
+     PIE
+     ============================================================ -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__top">
+      <div>
+        <div class="brand">
+          <img src="assets/img/logotipo.png" alt="" width="56" height="56">
+          <span>
+            <span class="brand__name">Gimnasio Cristiano Belén</span>
+            <span class="brand__tag">Educamos para la eternidad</span>
+          </span>
+        </div>
+        <p class="footer__about">
+          Formando con valores por dentro, desarrollo por fuera. Establecimiento
+          cristiano evangélico de carácter privado en Montería, Córdoba.
+        </p>
+        <!-- TODO: reemplazar # por las URLs reales de las redes del colegio -->
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg></a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.5 7.5a3 3 0 0 0-2.1-2.1C18.6 5 12 5 12 5s-6.6 0-8.4.4A3 3 0 0 0 1.5 7.5 31 31 0 0 0 1.1 12c0 1.5.1 3 .4 4.5a3 3 0 0 0 2.1 2.1C5.4 19 12 19 12 19s6.6 0 8.4-.4a3 3 0 0 0 2.1-2.1c.3-1.5.4-3 .4-4.5s-.1-3-.4-4.5ZM9.9 15.1V8.9l5.4 3.1-5.4 3.1Z"/></svg></a>
+          <a href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6a11.3 11.3 0 0 1-4.4-4c-.3-.5-.7-1.2-.7-2.2s.5-1.5.7-1.7c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.7c.1.1.1.3 0 .5l-.3.4-.3.3c-.1.1-.2.3 0 .5.2.3.7 1.1 1.4 1.8.9.8 1.7 1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6 0 1Z"/></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Enlaces</h4>
+        <ul class="footer__links">
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="index.html#programas">Nuestros programas</a></li>
+          <li><a href="index.html#eventos">Vida belenista</a></li>
+          <li><a href="index.html#faq">Preguntas frecuentes</a></li>
+          <li><a href="assets/docs/manual-convivencia-2026.pdf" target="_blank" rel="noopener">Manual de convivencia</a></li>
+        </ul>
+      </div>
+
+      <div id="solicitudes">
+        <h4><a href="solicitudes.html">Solicitudes en línea</a></h4>
+        <ul class="footer__links">
+          <!-- REVISAR: el colegio solo tiene URL pública para la solicitud de
+               citas; los demás trámites se canalizan por WhatsApp y correo. -->
+          <li><a href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">Permisos e inasistencias</a></li>
+          <li><a href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">Certificados y constancias</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfktVcPh3qPJSOV4INPRyshr9utwn-ykQxyAY7E8_elnt7wIQ/viewform" target="_blank" rel="noopener">Solicitud de citas</a></li>
+          <li><a href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">PQRS</a></li>
+          <li><a href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">Webcolegios</a></li>
+        </ul>
+      </div>
+
+      <div id="donaciones">
+        <h4>Contáctanos</h4>
+        <ul class="footer__links">
+          <li><a href="tel:+573217156040">321 715 6040</a></li>
+          <li><a href="mailto:contacto@gimnasiocristianobelen.edu.co">Correo institucional</a></li>
+          <li><a href="https://www.psepagos.co/PSEHostingUI/ShowTicketOffice.aspx?ID=7633" target="_blank" rel="noopener">Pagos en línea (PSE)</a></li>
+          <li>Lunes a viernes, 8:00 a.m. – 3:00 p.m.</li>
+        </ul>
+        <div class="footer__pills">
+          <a class="footer__pill" href="donaciones.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 8.6a5 5 0 0 0-8.8-2.9 5 5 0 0 0-8.8 2.9c0 5.2 8.8 10.4 8.8 10.4s8.8-5.2 8.8-10.4Z"/></svg>
+            ¿Quieres donar?
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>Copyright © <span data-year>2026</span> Gimnasio Cristiano Belén</p>
+      <p>Desarrollado por Lina y Juan <span class="heart" aria-hidden="true">♥</span></p>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6a11.3 11.3 0 0 1-4.4-4c-.3-.5-.7-1.2-.7-2.2s.5-1.5.7-1.7c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.7c.1.1.1.3 0 .5l-.3.4-.3.3c-.1.1-.2.3 0 .5.2.3.7 1.1 1.4 1.8.9.8 1.7 1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6 0 1Z"/></svg>
+</a>
+<script src="assets/js/motion.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
