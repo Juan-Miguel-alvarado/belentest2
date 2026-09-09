@@ -1,40 +1,59 @@
 /* ============================================================
    Gimnasio Cristiano Belén — Design tokens
-   Paleta juvenil: 4 colores + neutros
-     rojo #e24b4a · azul turquesa #3eb8a1
-     mostaza #d99a2b · verde suave #9bc77e
-     gris claro #f1efe8 · gris medio #888780 · blanco #ffffff
+   Paleta juvenil y muy colorida: 6 colores + neutros fríos
+     rojo #ec3d4a · turquesa #17bfa4 · mostaza #f7a325
+     verde #6dc24b · azul #2f6df0
+   El amarillo suave (#fff8db) es solo fondo de sección.
+   Sin beige: los neutros son grises azulados (#f4f7ff, #dde3f2).
    ============================================================ */
 
 :root {
   /* --- Marca --------------------------------------------- */
-  --rojo: #e24b4a;
-  --turquesa: #3eb8a1;
-  --mostaza: #d99a2b;
-  --verde: #9bc77e;
+  --rojo: #ec3d4a;
+  --turquesa: #17bfa4;
+  --mostaza: #f7a325;
+  --verde: #6dc24b;
+  --azul: #2f6df0;
+  /* El morado entró para una sola tarjeta (permisos e inasistencias en
+     solicitudes.html); si se usa en más sitios, aquí está la familia. */
+  --morado: #8b5cf6;
 
-  /* Derivados oscurecidos: los cuatro colores puros no alcanzan
+  /* Derivados oscurecidos: los colores puros no alcanzan
      4.5:1 sobre blanco, así que el texto y los enlaces usan estos. */
-  --rojo-ink: #c2302f;
-  --turquesa-ink: #1f7a68;
-  --mostaza-ink: #96660f;
-  --verde-ink: #4f7d33;
+  --rojo-ink: #c81e2c;
+  --turquesa-ink: #0f7d6c;
+  --mostaza-ink: #9a5f04;
+  --verde-ink: #3f7d27;
+  --azul-ink: #1c4fc4;
+  --morado-ink: #6d28d9;
 
-  /* Tintes al 10-14% para fondos de sección y chips */
-  --rojo-tint: #fdeeed;
-  --turquesa-tint: #e8f6f3;
-  --mostaza-tint: #fbf1e1;
-  --verde-tint: #eef6e8;
+  /* Tintes claros para fondos de sección, tarjetas y chips.
+     Todos van hacia el color, nunca hacia el beige. */
+  --rojo-tint: #ffe8e9;
+  /* Aún más suave que --rojo-tint: es el fondo de los hover del menú,
+     que se encienden y apagan constantemente al recorrerlo con el ratón
+     y no deben parpadear. */
+  --rojo-tint-suave: #fff4f4;
+  --turquesa-tint: #d9f6f0;
+  --mostaza-tint: #ffe7ad;
+  --verde-tint: #e6f7dc;
+  --azul-tint: #e4edff;
+  --morado-tint: #f0e9ff;
 
-  /* --- Neutros ------------------------------------------- */
-  --ink: #23221f;            /* titulares */
-  --body: #46443f;           /* cuerpo de texto, 9.2:1 */
-  --muted: #6d6c66;          /* gris medio oscurecido a 4.9:1 */
-  --grey: #888780;           /* gris medio puro, usos decorativos */
+  /* Amarillo suave: el fondo de sección más claro de la paleta. No es
+     un color de marca, no se usa en texto ni en botones. */
+  --amarillo-suave: #fff8db;
+
+  /* --- Neutros (fríos, sin beige) ------------------------ */
+  --ink: #1b2135;            /* titulares */
+  --body: #3f4459;           /* cuerpo de texto */
+  --muted: #5f657c;          /* gris azulado, 6.2:1 sobre blanco */
+  --grey: #8b90a5;           /* gris medio, usos decorativos */
+  --gris-suave: #ebedf2;     /* fondo de las pistas de uso */
   --surface: #ffffff;
-  --surface-2: #f1efe8;      /* gris claro, secciones alternas */
-  --line: #e2dfd5;
-  --line-soft: #eeebe3;
+  --surface-2: #eef3ff;      /* azul pálido, secciones alternas */
+  --line: #dbe3f5;
+  --line-soft: #ecf1fc;
 
   /* --- Tipografía ---------------------------------------- */
   /* Onest sostiene los titulares; Gveret Levin marca la palabra
@@ -46,19 +65,24 @@
     Roboto, sans-serif;
   --font-hand: "Gveret Levin", "Onest", cursive;
 
-  /* Piso tipográfico: ningún texto baja de 16px (1rem). */
-  --step--1: clamp(1rem, 0.98rem + 0.1vw, 1.05rem);
-  --step-0:  clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
-  --step-1:  clamp(1.15rem, 1.08rem + 0.35vw, 1.38rem);
-  --step-2:  clamp(1.45rem, 1.28rem + 0.8vw, 2rem);
-  --step-3:  clamp(1.9rem, 1.55rem + 1.7vw, 2.9rem);
-  --step-4:  clamp(2.4rem, 1.8rem + 2.9vw, 4rem);
-  --step-5:  clamp(2.9rem, 2rem + 4.4vw, 5.2rem);
+  /* Piso tipográfico: ningún texto baja de 17px. La página la usan
+     personas mayores y con poca práctica en internet. */
+  --step--1: clamp(1.05rem, 1rem + 0.15vw, 1.12rem);
+  --step-0:  clamp(1.08rem, 1.02rem + 0.25vw, 1.18rem);
+  --step-1:  clamp(1.22rem, 1.12rem + 0.4vw, 1.45rem);
+  --step-2:  clamp(1.5rem, 1.3rem + 0.85vw, 2.05rem);
+  --step-3:  clamp(1.95rem, 1.58rem + 1.75vw, 2.95rem);
+  --step-4:  clamp(2.45rem, 1.82rem + 2.95vw, 4rem);
+  --step-5:  clamp(2.95rem, 2rem + 4.4vw, 5.2rem);
 
   /* --- Espacio ------------------------------------------- */
   --shell: 1400px;
   --gutter: clamp(1.15rem, 4.5vw, 3rem);
   --section-y: clamp(4rem, 8vw, 7.5rem);
+
+  /* Alto mínimo de todo lo que se toca: 56px, el tamaño de dedo
+     que recomienda WCAG para objetivos táctiles cómodos. */
+  --tap: 3.5rem;
 
   /* --- Forma --------------------------------------------- */
   /* A diferencia del sitio anterior, aquí el redondeo es parte del
@@ -71,9 +95,11 @@
   /* Curva de las esquinas inferiores de la barra de navegación. */
   --r-nav: clamp(28px, 4vw, 56px);
 
-  --shadow-sm: 0 2px 10px -4px rgb(35 34 31 / 0.18);
-  --shadow-md: 0 14px 34px -22px rgb(35 34 31 / 0.45);
-  --shadow-lg: 0 30px 70px -40px rgb(35 34 31 / 0.5);
+  --shadow-sm: 0 2px 10px -4px rgb(27 33 53 / 0.18);
+  --shadow-md: 0 14px 34px -22px rgb(27 33 53 / 0.45);
+  --shadow-lg: 0 30px 70px -40px rgb(27 33 53 / 0.5);
+  /* Sombra sólida de color: da a los botones aspecto de tecla. */
+  --shadow-btn: 0 4px 0 rgb(27 33 53 / 0.22);
 
   /* --- Movimiento ---------------------------------------- */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);

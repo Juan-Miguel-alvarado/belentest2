@@ -35,7 +35,7 @@
     <span class="topbar__item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
       <span class="topbar__hours-long">Lunes a viernes · 8:00 a.m. – 3:00 p.m.</span>
-      <span class="topbar__hours-short">Lun – Vie · 8:00 a.m. – 3:00 p.m.</span>
+      <span class="topbar__hours-short"><span class="topbar__dias">Lun – Vie · </span>8:00 a.m. – 3:00 p.m.</span>
     </span>
     <!-- TODO: reemplazar por la dirección exacta de la sede -->
     <span class="topbar__item topbar__item--hide">
@@ -65,12 +65,12 @@
     </a>
 
     <div class="masthead__actions">
-      <a class="btn btn--outline btn--sm btn--plataforma" href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">
+      <a class="btn btn--ink btn--sm btn--plataforma" href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
-        Plataforma
+        Entrar a Plataforma
       </a>
       <a class="btn btn--sm" href="index.html#admisiones">
-        Admisiones 2026
+        Pedir cupo 2027
         <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
       <button class="burger" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir el menú">
@@ -86,6 +86,7 @@
         <!-- Página actual: se marca a mano. initScrollSpy() solo observa
              enlaces que empiezan por "#", así que no lo sobrescribe. -->
         <li class="menu__item"><a class="menu__link" href="nosotros.html" aria-current="page">Nosotros</a></li>
+        <li class="menu__item"><a class="menu__link" href="admisiones.html">Admisiones</a></li>
         <li class="menu__item menu__item--has-menu">
           <button class="menu__link" type="button" aria-expanded="false">
             Guía escolar
@@ -112,6 +113,7 @@
 <div class="mobile-menu" id="menu-movil">
   <a href="index.html">Inicio</a>
   <a href="nosotros.html" aria-current="page">Nosotros</a>
+  <a href="admisiones.html">Admisiones</a>
   <details>
     <summary>Guía escolar</summary>
     <div class="mobile-menu__sub">
@@ -125,8 +127,8 @@
   <a href="solicitudes.html">Solicitudes en línea</a>
   <a href="donaciones.html">Donaciones</a>
   <div class="mobile-menu__foot">
-    <a class="btn btn--block" href="index.html#admisiones">Admisiones 2026</a>
-    <a class="btn btn--outline btn--block" href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">Plataforma</a>
+    <a class="btn btn--block btn--latido" href="admisiones.html">Toca aquí para pedir un cupo</a>
+    <a class="btn btn--ink btn--block" href="https://www.servidor2.webcolegios.com/cristianobelen" target="_blank" rel="noopener">Toca aquí para entrar a la Plataforma</a>
   </div>
 </div>
 
@@ -162,8 +164,8 @@
         <li><a class="chip chip--rojo" href="#mision-vision">Misión y visión</a></li>
         <li><a class="chip chip--turquesa" href="#valores">Valores</a></li>
         <li><a class="chip chip--mostaza" href="#himno">Himno</a></li>
-        <li><a class="chip chip--rojo" href="#timoteo">Proyecto Timoteo</a></li>
-        <li><a class="chip chip--turquesa" href="#reconocimientos">Reconocimientos</a></li>
+        <li><a class="chip chip--verde" href="#timoteo">Proyecto Timoteo</a></li>
+        <li><a class="chip chip--rojo" href="#reconocimientos">Reconocimientos</a></li>
         <li><a class="chip chip--mostaza" href="#manual">Manual de convivencia</a></li>
       </ul>
     </div>
@@ -182,9 +184,9 @@
      misión; "cientifica" → "científica" y "a traves" → "a través"
      en la visión). Confirmar con el colegio antes de publicar.
      ============================================================ -->
-<section class="section section--tint" id="mision-vision">
+<section class="section section--azul" id="mision-vision">
   <div class="shell">
-    <div class="section__head reveal">
+    <div class="section__head section__head--tight reveal">
       <p class="eyebrow">Horizonte institucional</p>
       <h2>Misión y <span class="hand">visión</span></h2>
       <p class="lede">
@@ -194,9 +196,6 @@
     </div>
 
     <div class="purpose">
-      <!-- TODO: cuando el colegio comparta una foto de grupo del cuerpo
-           docente, sustituye estos tres retratos por esa fotografía. Los
-           de ahora están recortados del cuadro de promoción 2025. -->
       <article class="team reveal">
         <p class="eyebrow eyebrow--verde team__eyebrow">Quienes lo sostienen</p>
         <h3 class="team__title">Nuestro <span class="hand">equipo</span></h3>
@@ -205,16 +204,13 @@
           es lo que hace que la misión y la visión no se queden en el papel.
         </p>
 
-        <div class="team__faces">
-          <img src="assets/img/equipo-rector.jpg" alt="Eder García, pastor y rector" width="256" height="256" loading="lazy" decoding="async">
-          <img src="assets/img/equipo-coordinadora.jpg" alt="Jeinny Esquivel, coordinadora académica" width="256" height="256" loading="lazy" decoding="async">
-          <img src="assets/img/equipo-directora.jpg" alt="María Pastrana, directora de grupo" width="256" height="256" loading="lazy" decoding="async">
-        </div>
+        <img class="team__foto" src="assets/img/equipo-imagen.jpeg"
+             alt="Docentes del Gimnasio Cristiano Belén reunidos"
+             width="1600" height="1200" loading="lazy" decoding="async">
 
         <ul class="team__names">
           <li><strong>Eder García</strong> <span>Pastor · Rector</span></li>
           <li><strong>Jeinny Esquivel</strong> <span>Coordinadora académica</span></li>
-          <li><strong>María Pastrana</strong> <span>Directora de grupo</span></li>
         </ul>
       </article>
 
@@ -392,7 +388,7 @@
   </div>
 </section>
 
-<div class="wave" aria-hidden="true">
+<div class="wave wave--turquesa" aria-hidden="true">
   <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 40c180 45 360 45 540 22s360-58 540-35 300 45 360 53v10H0Z"/></svg>
 </div>
 
@@ -401,7 +397,7 @@
      Letra completa. Hasta ahora solo existía dentro de una imagen:
      aquí es texto real, seleccionable y accesible.
      ============================================================ -->
-<section class="section section--tint" id="himno">
+<section class="section section--turquesa" id="himno">
   <div class="shell hymn">
     <div class="hymn__aside reveal">
       <img src="assets/img/logotipo.png" alt="" width="112" height="112">
@@ -500,7 +496,7 @@
 
       <div class="actions u-mt-lg">
         <a class="btn btn--outline" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">
-          Pregunta por el proyecto
+          Toca aquí para preguntar por el proyecto
           <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -512,7 +508,7 @@
   </div>
 </section>
 
-<div class="wave" aria-hidden="true">
+<div class="wave wave--amarillo" aria-hidden="true">
   <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 40c180 45 360 45 540 22s360-58 540-35 300 45 360 53v10H0Z"/></svg>
 </div>
 
@@ -522,14 +518,14 @@
      Basta con sobrescribir el archivo en assets/img/ y actualizar
      el <figcaption>. Todo lo demás se queda igual.
      ============================================================ -->
-<section class="section section--tint" id="reconocimientos">
+<section class="section section--amarillo" id="reconocimientos">
   <div class="shell">
     <div class="section__head reveal">
       <p class="eyebrow eyebrow--mostaza">Excelencia académica</p>
       <h2>Cuadro de <span class="hand">honor</span></h2>
       <p class="lede">
         A los estudiantes sobresalientes por promedio durante el IV periodo
-        escolar. Toca una imagen para verla en grande.
+        escolar.
       </p>
     </div>
 
@@ -653,7 +649,7 @@
       </div>
 
       <a class="btn btn--lg" href="assets/docs/manual-convivencia-2026.pdf" target="_blank" rel="noopener">
-        Descargar el PDF
+        Toca aquí para descargar el PDF
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>
       </a>
     </div>
@@ -679,12 +675,12 @@
       preciado: sus hijos.
     </p>
     <div class="actions reveal" style="--i:2">
-      <a class="btn btn--lg" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">
-        Solicita tu cupo
+      <a class="btn btn--lg" href="admisiones.html">
+        Toca aquí para pedir un cupo
         <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
       <a class="btn btn--outline btn--lg" href="index.html#programas">
-        Ver los programas
+        Toca aquí para ver los programas
         <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -699,10 +695,12 @@
      piezas se ven diminutas y los nombres no se pueden leer.
      ============================================================ -->
 <div class="lightbox" id="visor" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
-  <button class="lightbox__close" type="button" data-lightbox-close aria-label="Cerrar la imagen">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-  </button>
-  <img class="lightbox__img" alt="" data-lightbox-img>
+  <figure class="lightbox__figura">
+    <img class="lightbox__img" alt="" data-lightbox-img>
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="Cerrar la imagen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </figure>
 </div>
 
 <!-- ============================================================
@@ -736,9 +734,10 @@
         <h4>Enlaces</h4>
         <ul class="footer__links">
           <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="admisiones.html">Admisiones</a></li>
           <li><a href="index.html#programas">Nuestros programas</a></li>
-          <li><a href="index.html#eventos">Vida belenista</a></li>
-          <li><a href="index.html#faq">Preguntas frecuentes</a></li>
+          <li><a href="lista-uniforme.html">Lista y uniforme</a></li>
+          <li><a href="noticias-eventos.html">Noticias y eventos</a></li>
           <li><a href="assets/docs/manual-convivencia-2026.pdf" target="_blank" rel="noopener">Manual de convivencia</a></li>
         </ul>
       </div>
@@ -774,14 +773,18 @@
     </div>
 
     <div class="footer__bottom">
-      <p>Copyright © <span data-year>2026</span> Gimnasio Cristiano Belén</p>
+      <p>
+        Copyright © <span data-year>2026</span> Gimnasio Cristiano Belén<br>
+        <span class="footer__sede">Cra. 20 #7-23 B/ 6 · Montería, Córdoba</span>
+      </p>
       <p>Desarrollado por Lina y Juan <span class="heart" aria-hidden="true">♥</span></p>
     </div>
   </div>
 </footer>
 
-<a class="wa-fab" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+<a class="wa-fab" href="https://wa.me/message/7YWCVETQ3TKVC1" target="_blank" rel="noopener">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6a11.3 11.3 0 0 1-4.4-4c-.3-.5-.7-1.2-.7-2.2s.5-1.5.7-1.7c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.7c.1.1.1.3 0 .5l-.3.4-.3.3c-.1.1-.2.3 0 .5.2.3.7 1.1 1.4 1.8.9.8 1.7 1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6 0 1Z"/></svg>
+  <span class="wa-fab__texto">Escríbenos<span class="sr-only"> por WhatsApp</span></span>
 </a>
 <script src="assets/js/motion.js" defer></script>
 <script src="assets/js/main.js" defer></script>
