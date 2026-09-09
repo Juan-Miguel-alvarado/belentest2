@@ -8,7 +8,7 @@
 
 .topbar {
   background: var(--ink);
-  color: #d9d7cf;
+  color: #ccd3e6;
   font-size: var(--step--1);
 }
 
@@ -55,6 +55,15 @@ a.topbar__item:hover { color: var(--surface); }
   .topbar__inner { gap: 0.75rem; }
   .topbar__item svg { display: none; }
   .topbar__hours-long { display: none; }
+}
+
+/* Más abajo de 430 px ni el horario abreviado y el teléfono caben en un
+   renglón, y los dos van con white-space: nowrap, así que lo que sobra
+   empuja la página entera de lado. Se cae el rango de días, que además
+   está repetido en el pie. */
+@media (max-width: 430px) {
+  .topbar__dias { display: none; }
+  .topbar__inner { gap: 0.6rem; }
 }
 
 @media (min-width: 621px) {
@@ -176,8 +185,10 @@ a.topbar__item:hover { color: var(--surface); }
   transition: background 0.2s var(--ease), color 0.2s var(--ease);
 }
 
+/* Todo el menú se enciende con el mismo rojo suave: el escritorio, el
+   desplegable y la versión móvil. */
 .menu__link:hover,
-.menu__item.is-open > .menu__link { background: var(--surface-2); color: var(--rojo-ink); }
+.menu__item.is-open > .menu__link { background: var(--rojo-tint-suave); color: var(--rojo-ink); }
 
 .menu__link[aria-current="page"] { color: var(--rojo-ink); font-weight: 600; }
 
@@ -221,7 +232,7 @@ a.topbar__item:hover { color: var(--surface); }
   transition: background 0.18s var(--ease), color 0.18s var(--ease);
 }
 
-.dropdown a:hover { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+.dropdown a:hover { background: var(--rojo-tint-suave); color: var(--rojo-ink); }
 
 .dropdown hr { margin: 0.5rem 0.85rem; border: 0; border-top: 1px solid var(--line-soft); }
 
@@ -284,16 +295,27 @@ a.topbar__item:hover { color: var(--surface); }
 
 .mobile-menu.is-open { opacity: 1; visibility: visible; transform: none; }
 
-.mobile-menu a,
+/* El relleno lateral y el margen negativo se compensan: el texto sigue
+   alineado con el resto de la página, pero el fondo del hover tiene
+   dónde respirar en vez de quedar pegado a las letras. */
+.mobile-menu a:not(.btn),
 .mobile-menu summary {
   display: block;
-  padding: 0.9rem 0;
+  padding: 0.9rem 0.75rem;
+  margin-inline: -0.75rem;
   font-family: var(--font-display);
   font-size: var(--step-1);
   font-weight: 600;
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--line-soft);
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.mobile-menu a:not(.btn):hover,
+.mobile-menu summary:hover {
+  background: var(--rojo-tint-suave);
+  color: var(--rojo-ink);
 }
 
 .mobile-menu summary { cursor: pointer; list-style: none; }
@@ -307,11 +329,15 @@ a.topbar__item:hover { color: var(--surface); }
 }
 .mobile-menu details[open] summary::after { content: "–"; }
 
-.mobile-menu__sub { padding-left: 1rem; }
-.mobile-menu__sub a { font-size: var(--step-0); font-weight: 400; color: var(--muted); }
+/* 1,75rem menos los 0,75rem de margen negativo del enlace: la sangría
+   efectiva sigue siendo 1rem, como antes de dar sitio al hover. */
+.mobile-menu__sub { padding-left: 1.75rem; }
+/* El :not(.btn) iguala la especificidad de la regla de arriba; sin él,
+   los enlaces del submenú heredarían el tamaño y el negro de los
+   principales. */
+.mobile-menu__sub a:not(.btn) { font-size: var(--step-0); font-weight: 400; color: var(--muted); }
 
 .mobile-menu__foot { display: grid; gap: 0.75rem; margin-top: 2rem; }
-.mobile-menu__foot a { border: 0; padding: 0.85rem 1.6rem; }
 
 /* ============================================================
    HERO
@@ -472,11 +498,11 @@ a.topbar__item:hover { color: var(--surface); }
 .hero__chips .chip--turquesa { background: var(--turquesa-tint); border-color: var(--turquesa); color: var(--turquesa-ink); }
 .hero__chips .chip--mostaza  { background: var(--mostaza-tint);  border-color: var(--mostaza);  color: var(--mostaza-ink); }
 
-/* Al pasar el cursor pasan a color pleno; se usa el derivado -ink
-   porque el color puro no aguanta texto blanco encima. */
-.hero__chips .chip--rojo:hover     { background: var(--rojo-ink);     border-color: var(--rojo-ink);     color: var(--surface); }
-.hero__chips .chip--turquesa:hover { background: var(--turquesa-ink); border-color: var(--turquesa-ink); color: var(--surface); }
-.hero__chips .chip--mostaza:hover  { background: var(--mostaza-ink);  border-color: var(--mostaza-ink);  color: var(--surface); }
+/* El relleno no cambia al pasar el cursor: solo se oscurece el borde,
+   como en los chips del resto del sitio. */
+.hero__chips .chip--rojo:hover     { border-color: var(--rojo-ink); }
+.hero__chips .chip--turquesa:hover { border-color: var(--turquesa-ink); }
+.hero__chips .chip--mostaza:hover  { border-color: var(--mostaza-ink); }
 
 .hero__actions { margin-top: 2rem; }
 
@@ -659,6 +685,22 @@ a.topbar__item:hover { color: var(--surface); }
 .wave--flip svg { transform: rotate(180deg); }
 .wave--white path { fill: var(--surface); }
 
+/* Cada onda toma el color de la sección hacia la que cae. */
+.wave--turquesa path { fill: var(--turquesa-tint); }
+.wave--amarillo path { fill: var(--amarillo-suave); }
+.wave--azul path     { fill: var(--azul-tint); }
+.wave--verde path    { fill: var(--verde-tint); }
+.wave--mostaza path  { fill: var(--mostaza-tint); }
+.wave--rojo path     { fill: var(--rojo-tint); }
+
+/* Onda de salida: la curva blanca solo se ve si detrás queda el color de
+   la sección que termina, y el div de la onda es transparente. Este
+   modificador se lo pinta. */
+.wave--desde-tint     { background: var(--surface-2); }
+.wave--desde-turquesa { background: var(--turquesa-tint); }
+.wave--desde-amarillo { background: var(--amarillo-suave); }
+.wave--desde-azul     { background: var(--azul-tint); }
+
 /* ============================================================
    SOBRE EL COLEGIO
    ============================================================ */
@@ -747,9 +789,23 @@ a.topbar__item:hover { color: var(--surface); }
 }
 
 .player__play:hover span { transform: scale(1.08); }
-.player__play svg { width: 40%; height: 40%; fill: var(--rojo); margin-left: 8%; }
+/* El triángulo ya va centrado en su viewBox (antes empezaba en x=8 y
+   se salía 1,5 unidades a la derecha). Este empujón es solo la
+   corrección óptica: un triángulo que apunta a la derecha tiene la masa
+   a la izquierda y sin él se ve retrasado dentro del círculo. Va en
+   transform y no en margin porque el margen de un elemento centrado con
+   place-items lo desplaza a medias y el ajuste se vuelve imposible de
+   razonar. */
+.player__play svg {
+  width: 40%;
+  height: 40%;
+  fill: var(--rojo);
+  transform: translateX(4%);
+}
 
-/* Marco decorativo tras el video, como el trazo suelto del boceto. */
+/* Marco decorativo suelto detrás de una imagen, como el trazo del boceto.
+   Lo usa la foto de nosotros.html; el video de la portada lo llevaba y se
+   le quitó a propósito, así que ese envoltorio ya no tiene la clase. */
 .player-frame { position: relative; }
 .player-frame::before {
   content: "";
@@ -774,6 +830,9 @@ a.topbar__item:hover { color: var(--surface); }
 .section__head { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
 .section__head .eyebrow { justify-content: center; }
 .section__head .lede { max-width: 46rem; margin-inline: auto; margin-top: 1rem; }
+/* Cabecera pegada a lo que viene debajo, para bloques que ya empiezan
+   con su propio aire (una tarjeta con relleno, un texto pequeño). */
+.section__head--tight { margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
 
 .programs {
   display: grid;
@@ -991,7 +1050,12 @@ a.topbar__item:hover { color: var(--surface); }
 }
 
 .testimonial__play:hover span { transform: scale(1.12); }
-.testimonial__play svg { width: 40%; height: 40%; fill: var(--rojo); margin-left: 8%; }
+.testimonial__play svg {
+  width: 40%;
+  height: 40%;
+  fill: var(--rojo);
+  transform: translateX(4%);
+}
 
 /* El video sustituye a la foto dentro de la propia tarjeta: ocupa el
    mismo hueco y el botón desaparece al arrancar. */
@@ -1058,6 +1122,9 @@ a.topbar__item:hover { color: var(--surface); }
 
 .faq__list { display: grid; gap: 0.85rem; }
 
+/* La pista es una fila más de la lista: el hueco lo pone el gap. */
+.faq__list > .pista { justify-self: start; margin-block: 0; }
+
 .faq__item {
   background: var(--surface);
   border: 2px solid var(--line);
@@ -1066,6 +1133,9 @@ a.topbar__item:hover { color: var(--surface); }
   transition: border-color 0.25s var(--ease);
 }
 
+/* Igual que las dimensiones: al pasar por encima se enciende el borde,
+   sin rellenar la tarjeta. */
+.faq__item:hover { border-color: var(--turquesa); }
 .faq__item.is-open { border-color: var(--turquesa); }
 
 .faq__q {
@@ -1074,10 +1144,11 @@ a.topbar__item:hover { color: var(--surface); }
   justify-content: space-between;
   gap: 1.25rem;
   width: 100%;
+  min-height: var(--tap);
   padding: 1.15rem 1.4rem;
   font-family: var(--font-display);
   font-size: var(--step-0);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--ink);
   text-align: left;
 }
@@ -1109,98 +1180,81 @@ a.topbar__item:hover { color: var(--surface); }
 }
 
 /* ============================================================
-   FORMACIÓN INTEGRAL
+   RAZONES POR LAS CUALES NOS ESCOGEN
    ============================================================ */
 
-/* Acordeón de una sola abierta. Cada dimensión toma uno de los cuatro
-   colores de marca, que es lo que la hace legible de un vistazo. */
-.dims { display: grid; gap: 0.75rem; }
+/* Tarjeta apaisada: el disco de la foto sobresale por el borde
+   izquierdo y el texto ocupa el resto.
 
-.dim {
+   `min(100%, 30rem)` en el minmax es lo que evita los puntos de ruptura:
+   en pantalla ancha caben dos columnas, y en el móvil el mínimo se
+   convierte en el 100% disponible, así que la tarjeta nunca fuerza un
+   scroll horizontal. */
+.razones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
+  /* El hueco entre columnas tiene que ser mayor que lo que sobresale el
+     disco; si no, el de una tarjeta se monta sobre la anterior. */
+  column-gap: clamp(2.75rem, 4vw, 4rem);
+  row-gap: clamp(1.5rem, 3vw, 2.25rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.razon {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(1.5rem, 3vw, 2rem);
   background: var(--surface);
   border: 2px solid var(--line);
-  border-radius: var(--r-md);
-  overflow: hidden;
-  transition: border-color 0.3s var(--ease), background 0.3s var(--ease),
+  border-radius: var(--r-lg);
+  transition: transform 0.3s var(--ease-back), border-color 0.25s var(--ease),
     box-shadow 0.3s var(--ease);
 }
 
-.dim h3 { margin: 0; font-size: inherit; }
+.razon:hover {
+  transform: translateY(-4px);
+  border-color: var(--turquesa);
+  box-shadow: var(--shadow-md);
+}
 
-.dim__head {
+/* Redonda y recortada por el CSS: así una foto rectangular puesta más
+   adelante encaja sin reencuadrarla a mano. El margen negativo la saca
+   de la tarjeta; lo que sobresale es esa medida menos el relleno, y cabe
+   dentro del margen lateral de la página. */
+.razon__img {
+  flex: none;
+  width: clamp(5.5rem, 11vw, 8rem);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--r-full);
+  margin-left: calc(-1 * clamp(2rem, 5.5vw, 4rem));
+  box-shadow: var(--shadow-md);
+}
+
+.razon__cuerpo {
   display: flex;
-  align-items: center;
-  gap: clamp(0.85rem, 2vw, 1.5rem);
-  width: 100%;
-  padding: clamp(1rem, 2vw, 1.4rem) clamp(1rem, 2.5vw, 1.75rem);
-  text-align: left;
-  color: var(--ink);
-  background: none;
-  border: 0;
-  cursor: pointer;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
-.dim__num {
-  flex: none;
-  font-family: var(--font-display);
+.razon__titulo {
   font-size: var(--step-1);
-  font-weight: 700;
-  line-height: 1;
-  color: var(--line);
-  transition: color 0.3s var(--ease);
+  line-height: 1.2;
+  text-wrap: balance;
 }
 
-.dim__name {
-  flex: 1;
-  font-family: var(--font-display);
-  font-size: var(--step-2);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
-}
-
-.dim__caret {
-  flex: none;
-  width: 1.4rem;
-  height: 1.4rem;
-  transition: transform 0.3s var(--ease);
-}
-
-.dim.is-open .dim__caret { transform: rotate(180deg); }
-
-/* Mismo plegado que el acordeón de preguntas: 0fr → 1fr anima la altura
-   sin tener que fijarla a mano. */
-.dim__panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.35s var(--ease);
-}
-
-.dim.is-open .dim__panel { grid-template-rows: 1fr; }
-.dim__panel > div { overflow: hidden; }
-
-.dim__panel p {
-  max-width: 62ch;
-  padding: 0 clamp(1rem, 2.5vw, 1.75rem) clamp(1.1rem, 2vw, 1.5rem);
+.razon__texto {
+  font-size: var(--step--1);
+  line-height: 1.5;
   color: var(--muted);
 }
 
-/* Al abrirse, la fila se viste de su color: borde pleno, fondo en tinte
-   y el número en el derivado -ink, que es el que aguanta texto. */
-.dim--rojo:hover     { border-color: var(--rojo); }
-.dim--turquesa:hover { border-color: var(--turquesa); }
-.dim--mostaza:hover  { border-color: var(--mostaza); }
-.dim--verde:hover    { border-color: var(--verde); }
-
-.dim--rojo.is-open     { border-color: var(--rojo);     background: var(--rojo-tint); }
-.dim--turquesa.is-open { border-color: var(--turquesa); background: var(--turquesa-tint); }
-.dim--mostaza.is-open  { border-color: var(--mostaza);  background: var(--mostaza-tint); }
-.dim--verde.is-open    { border-color: var(--verde);    background: var(--verde-tint); }
-
-.dim--rojo.is-open     .dim__num { color: var(--rojo-ink); }
-.dim--turquesa.is-open .dim__num { color: var(--turquesa-ink); }
-.dim--mostaza.is-open  .dim__num { color: var(--mostaza-ink); }
-.dim--verde.is-open    .dim__num { color: var(--verde-ink); }
+@media (prefers-reduced-motion: reduce) {
+  .razon:hover { transform: none; }
+}
 
 /* ============================================================
    VIDA BELENISTA — collage
@@ -1275,8 +1329,7 @@ a.topbar__item:hover { color: var(--surface); }
 }
 
 .collage__item:hover .collage__label,
-.collage__item:focus-visible .collage__label,
-.collage__item.is-open .collage__label {
+.collage__item:focus-visible .collage__label {
   transform: none;
   opacity: 1;
 }
@@ -1302,17 +1355,6 @@ a.topbar__item:hover { color: var(--surface); }
   color: var(--surface);
 }
 
-/* Pieza abierta: crece sobre el propio collage, sin ventana encima ni
-   reflujo de la retícula. Crece con transform, que no toca el layout, así
-   que las demás piezas no se mueven de su sitio. */
-.collage__item.is-open {
-  transform: rotate(0deg) scale(1.32);
-  box-shadow: var(--shadow-lg);
-  z-index: 3;
-}
-
-.collage.has-open .collage__item:not(.is-open) { opacity: 0.55; }
-
 @media (max-width: 900px) {
   .collage { grid-template-columns: repeat(2, 1fr); }
   .collage__item--1,
@@ -1321,7 +1363,6 @@ a.topbar__item:hover { color: var(--surface); }
   .collage__item--6 { grid-column: span 2; grid-row: span 2; }
   .collage__item--3,
   .collage__item--4 { grid-column: span 1; grid-row: span 1; }
-  .collage__item.is-open { transform: rotate(0deg) scale(1.18); }
 }
 
 /* Sin inclinaciones ni crecimiento para quien pide menos movimiento. */
@@ -1329,6 +1370,90 @@ a.topbar__item:hover { color: var(--surface); }
   .collage__item { transform: none; }
   .collage__item:hover,
   .collage__item:focus-visible { transform: none; }
+}
+
+/* ============================================================
+   COBERTURAS Y CONVENIOS
+   ============================================================ */
+
+/* Fila centrada, no rejilla: son once, así que la última línea siempre
+   queda incompleta y con `auto-fit` se pegaría a la izquierda dejando un
+   hueco. En flex, lo que sobra se centra. Las tarjetas no son enlaces
+   —no hay páginas a donde llevar—, así que no llevan hover: nada debe
+   insinuar que se pueden tocar. */
+.convenios {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(0.7rem, 1.4vw, 1rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Sin tarjeta alrededor: la única caja es el marco del logo. El
+   elemento de la lista solo apila marco y nombre y los alinea arriba,
+   para que todos los marcos queden a la misma altura aunque un nombre
+   ocupe dos líneas y el de al lado una. */
+.convenio {
+  flex: 0 1 11.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: center;
+}
+
+/* Los logos vienen de todo: escudos cuadrados, marcas apaisadas de 5:1,
+   unos con fondo blanco y otros transparente. El marco es la caja fija
+   que los iguala; dentro, cada uno entra entero y centrado. */
+.convenio__marco {
+  /* Flex y no grid: contra una fila de rejilla de alto automático el
+     `max-height: 100%` del logo no resuelve —la fila crece con la imagen
+     y el tope no llega a aplicarse—, y los escudos cuadrados se salían
+     del marco. En flex el porcentaje sí cuenta contra el alto fijo. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: clamp(5rem, 8.5vw, 6rem);
+  padding: 0.6rem;
+  /* Blanco, no tintado: la mitad de los logos llega en JPG con su propio
+     fondo blanco, y sobre un marco de color se verían como recortes
+     pegados. */
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-md);
+}
+
+.convenio__logo {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Única excepción al piso de 17px del sitio: el nombre no aporta nada que
+   el logo no diga ya, y a tamaño de cuerpo competía con él. */
+.convenio__nombre {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--body);
+  text-wrap: balance;
+}
+
+/* En el móvil se fijan dos columnas: 11.5rem no caben dos veces y la
+   lista se estiraría a once tarjetas en vertical. */
+@media (max-width: 620px) {
+  .convenios { gap: 0.65rem; }
+  .convenio {
+    flex: 0 1 calc(50% - 0.65rem);
+    gap: 0.5rem;
+  }
+  .convenio__nombre { font-size: 0.95rem; }
 }
 
 /* ============================================================
@@ -1374,7 +1499,7 @@ a.topbar__item:hover { color: var(--surface); }
 .footer {
   padding-block: clamp(3rem, 6vw, 4.5rem) 0;
   background: var(--ink);
-  color: #b9b7ae;
+  color: #b3bcd4;
 }
 
 .footer__top {
@@ -1464,6 +1589,9 @@ a.topbar__item:hover { color: var(--surface); }
 
 .footer__bottom .heart { color: var(--rojo); }
 
+/* La dirección de la sede, media tinta bajo el copyright. */
+.footer__sede { color: rgb(255 255 255 / 0.55); }
+
 @media (max-width: 900px) {
   .footer__top { grid-template-columns: 1fr 1fr; }
   .footer__top > :first-child { grid-column: 1 / -1; }
@@ -1478,19 +1606,29 @@ a.topbar__item:hover { color: var(--surface); }
    BOTÓN FLOTANTE DE WHATSAPP
    ============================================================ */
 
+/* El botón lleva rótulo, no solo el icono: mucha gente no reconoce el
+   símbolo de WhatsApp fuera de la propia aplicación, y este es el
+   camino más corto que tiene para pedir ayuda. */
 .wa-fab {
   position: fixed;
-  right: clamp(1rem, 3vw, 2rem);
-  bottom: clamp(1rem, 3vw, 2rem);
+  right: clamp(0.75rem, 3vw, 2rem);
+  bottom: clamp(0.75rem, 3vw, 2rem);
   z-index: 50;
-  display: grid;
-  place-items: center;
-  width: 3.5rem;
-  height: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: var(--tap);
+  padding: 0.75rem 1.35rem 0.75rem 1rem;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
   color: var(--surface);
-  background: #25d366;
+  background: #128c4a;
+  border: 3px solid var(--surface);
   border-radius: var(--r-full);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-md), 0 4px 0 rgb(27 33 53 / 0.25);
   opacity: 0;
   visibility: hidden;
   transform: translateY(1rem) scale(0.9);
@@ -1498,5 +1636,12 @@ a.topbar__item:hover { color: var(--surface); }
 }
 
 .wa-fab.is-in { opacity: 1; visibility: visible; transform: none; }
-.wa-fab:hover { transform: scale(1.08); }
-.wa-fab svg { width: 1.75rem; height: 1.75rem; }
+.wa-fab:hover { transform: scale(1.05); background: #0b6f39; }
+.wa-fab svg { width: 1.6rem; height: 1.6rem; flex: none; }
+/* El rótulo es una sola palabra, así que no necesita recorte: el icono
+   verde de al lado ya dice por dónde se escribe. */
+.wa-fab__texto { display: block; white-space: nowrap; }
+
+@media (max-width: 400px) {
+  .wa-fab { padding: 0.7rem 1.1rem 0.7rem 0.9rem; }
+}

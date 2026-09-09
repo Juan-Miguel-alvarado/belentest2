@@ -37,3 +37,9 @@
   .reveal,
   .reveal-img { opacity: 1; transform: none; }
 }
+
+/* El latido del botón principal también se apaga cuando el sistema
+   pide menos movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  .btn--latido { animation: none; }
+}

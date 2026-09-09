@@ -123,15 +123,22 @@
   gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 
+/* Las dos tarjetas se estiran hasta igualar la columna del equipo, que
+   con la foto cuadrada es más alta. Con `align-content: start` se
+   quedaban arriba y dejaban un hueco vacío debajo de «Visión». */
 .purpose__cards {
   display: grid;
   gap: clamp(1.25rem, 2.5vw, 2rem);
-  align-content: start;
 }
 
 .mv__card {
   position: relative;
   overflow: hidden;
+  /* El texto va centrado en vertical: al estirarse la tarjeta, el aire
+     que sobra se reparte arriba y abajo en vez de amontonarse al final. */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: clamp(1.75rem, 3vw, 2.5rem);
   background: var(--surface);
   border: 2px solid var(--line);
@@ -204,27 +211,24 @@
 
 .team__eyebrow { margin-bottom: 0.75rem; }
 .team__title { font-size: var(--step-2); }
-.team__intro { margin-top: 0.85rem; }
+/* El margen inferior es lo que separa el texto de la foto: el
+   `margin-top: auto` de la foto solo reparte el aire que sobra, y cuando
+   la tarjeta va justa de alto se queda en cero y el texto queda pegado. */
+.team__intro { margin-top: 0.85rem; margin-bottom: 1.75rem; }
 
-/* Los retratos se solapan como en una foto de grupo. */
-.team__faces {
-  display: flex;
-  margin-top: auto;
-  padding-top: 2rem;
-}
-
-.team__faces img {
-  width: clamp(4.5rem, 8vw, 6rem);
-  height: clamp(4.5rem, 8vw, 6rem);
+/* Foto de grupo del cuerpo docente, en cuadrado dentro de la tarjeta.
+   El `margin-top: auto` la empuja abajo: la tarjeta se estira hasta la
+   altura de la columna de al lado y el hueco sobrante queda arriba, no
+   partiendo la foto de los nombres. El recorte lo hace `object-fit`, así
+   que sirve cualquier foto sin reencuadrarla. */
+.team__foto {
+  width: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  object-position: 50% 18%;
-  border-radius: var(--r-full);
-  border: 4px solid var(--surface);
-  background: var(--surface);
+  margin-top: auto;
+  border-radius: var(--r-md);
   box-shadow: var(--shadow-sm);
 }
-
-.team__faces img + img { margin-left: -1.25rem; }
 
 .team__names {
   display: grid;
@@ -453,8 +457,9 @@
 .hymn__verse--coro .hymn__label { color: var(--rojo-ink); }
 .hymn__verse--coro p { color: var(--ink); font-style: normal; font-weight: 500; }
 
-/* Fotografía dentro del marco decorativo .player-frame, que ya existe
-   en layout.css y hasta ahora solo envolvía el reproductor de video. */
+/* Fotografía dentro del marco decorativo .player-frame, que se define en
+   layout.css. Es el único sitio que lo usa: el reproductor de la portada
+   lo llevaba y se le quitó. */
 .photo {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -555,53 +560,6 @@
 .boards + .section__head { margin-top: clamp(3rem, 6vw, 5rem); }
 
 /* ============================================================
-   VISOR DE IMAGEN (lightbox)
-   ============================================================ */
-
-.lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  display: grid;
-  place-items: center;
-  padding: clamp(1rem, 4vw, 3rem);
-  background: rgb(35 34 31 / 0.88);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.25s var(--ease), visibility 0.25s;
-}
-
-.lightbox.is-open { opacity: 1; visibility: visible; }
-
-.lightbox__img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  border-radius: var(--r-md);
-  box-shadow: var(--shadow-lg);
-  /* Permite acercarse a los nombres en pantallas pequeñas. */
-  object-fit: contain;
-}
-
-.lightbox__close {
-  position: absolute;
-  top: clamp(0.75rem, 2vw, 1.5rem);
-  right: clamp(0.75rem, 2vw, 1.5rem);
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  color: var(--ink);
-  background: var(--surface);
-  border-radius: var(--r-full);
-  box-shadow: var(--shadow-md);
-  transition: transform 0.25s var(--ease-back);
-}
-
-.lightbox__close:hover { transform: scale(1.08); }
-.lightbox__close svg { width: 1.35rem; height: 1.35rem; }
-
-/* ============================================================
    MANUAL DE CONVIVENCIA
    ============================================================ */
 
@@ -679,15 +637,18 @@
 
 .tramite__via svg { width: 1.05em; height: 1.05em; }
 
-.tramite--rojo:hover     { border-color: var(--rojo); }
-.tramite--turquesa:hover { border-color: var(--turquesa); }
-.tramite--mostaza:hover  { border-color: var(--mostaza); }
-.tramite--verde:hover    { border-color: var(--verde); }
+/* El borde de color va puesto siempre, no solo al pasar el ratón. */
+.tramite--rojo     { border-color: var(--rojo); }
+.tramite--turquesa { border-color: var(--turquesa); }
+.tramite--mostaza  { border-color: var(--mostaza); }
+.tramite--verde    { border-color: var(--verde); }
+.tramite--morado   { border-color: var(--morado); }
 
 .tramite--rojo     .tramite__icon { background: var(--rojo-tint);     color: var(--rojo-ink); }
 .tramite--turquesa .tramite__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
 .tramite--mostaza  .tramite__icon { background: var(--mostaza-tint);  color: var(--mostaza-ink); }
 .tramite--verde    .tramite__icon { background: var(--verde-tint);    color: var(--verde-ink); }
+.tramite--morado   .tramite__icon { background: var(--morado-tint);   color: var(--morado-ink); }
 
 /* Trámite cuyo formulario todavía no tiene URL publicada. */
 .btn[disabled] {
@@ -780,9 +741,11 @@
 
 .stat__note { display: block; margin-top: 0.4rem; font-size: var(--step--1); }
 
-.stat--rojo     { background: var(--rojo-tint); }
-.stat--mostaza  { background: var(--mostaza-tint); }
-.stat--turquesa { background: var(--turquesa-tint); }
+/* El borde de color sostiene la tarjeta cuando el fondo de la sección
+   es claro: sin él, la de mostaza se pierde sobre el amarillo suave. */
+.stat--rojo     { background: var(--rojo-tint);     border-color: var(--rojo); }
+.stat--mostaza  { background: var(--mostaza-tint);  border-color: var(--mostaza); }
+.stat--turquesa { background: var(--turquesa-tint); border-color: var(--turquesa); }
 
 .stat--rojo     .stat__figure { color: var(--rojo-ink); }
 .stat--mostaza  .stat__figure { color: var(--mostaza-ink); }
@@ -907,7 +870,13 @@
   gap: 1.25rem;
   margin-top: clamp(1.5rem, 3vw, 2.5rem);
   padding: clamp(1.35rem, 2.5vw, 1.9rem);
-  background: var(--verde-tint);
+  /* Blanco con filete, no un tinte: este bloque cae sobre secciones ya
+     tintadas —el amarillo de solicitudes, el turquesa de donaciones— y
+     un tinte sobre otro tinte no se distingue del fondo. */
+  background: var(--surface);
+  /* Verde oscuro, no el puro: sobre estos tintes el filete claro da 2:1
+     contra el fondo y el borde se pierde; el oscuro pasa de 4:1. */
+  border: 2px solid var(--verde-ink);
   border-radius: var(--r-lg);
 }
 
@@ -917,7 +886,7 @@
   width: 2.75rem;
   height: 2.75rem;
   color: var(--verde-ink);
-  background: var(--surface);
+  background: var(--verde-tint);
   border-radius: var(--r-full);
 }
 
@@ -1039,9 +1008,7 @@
   .way,
   .channel,
   .board,
-  .board__zoom,
-  .lightbox,
-  .lightbox__close {
+  .board__zoom {
     transition: none;
   }
   .mv__card:hover,
@@ -1049,8 +1016,7 @@
   .value:hover .value__icon,
   .tramite:hover,
   .way:hover,
-  .channel:hover,
-  .lightbox__close:hover { transform: none; }
+  .channel:hover { transform: none; }
   .board__zoom { opacity: 1; transform: none; }
 }
 
@@ -1157,7 +1123,8 @@
 }
 
 .listas__tab {
-  padding: 0.6rem 1.4rem;
+  min-height: var(--tap);
+  padding: 0.7rem 1.6rem;
   font-family: var(--font-display);
   font-size: var(--step-0);
   font-weight: 600;
@@ -1172,15 +1139,21 @@
 
 .listas__tab:hover { border-color: var(--turquesa); color: var(--turquesa-ink); }
 
+/* El nivel elegido va en el azul oscuro del pie de página: es el color
+   más contrastado de la paleta y aquí lo que importa es que se vea de un
+   vistazo cuál de los tres está activo. */
 .listas__tab.is-active {
   color: var(--surface);
-  background: var(--rojo);
-  border-color: var(--rojo);
+  background: var(--ink);
+  border-color: var(--ink);
 }
 
+/* El mínimo de columna lo manda el rótulo «Toca para ver la lista»: va en
+   una sola línea (.grado__cta) y la tarjeta tiene que caberlo entero con
+   su relleno. Con 15rem se salía por la derecha. */
 .listas__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr));
   gap: clamp(1rem, 2vw, 1.5rem);
 }
 
@@ -1212,12 +1185,16 @@
   align-items: flex-start;
   gap: 0.35rem;
   width: 100%;
+  min-height: var(--tap);
   padding: clamp(1.1rem, 2vw, 1.5rem);
   text-align: left;
   background: none;
   border: 0;
   cursor: pointer;
 }
+
+/* La tarjeta ya se levanta al pasar por encima (.grado:hover): no hace
+   falta además rellenar el botón de fondo. */
 
 .grado__name {
   font-family: var(--font-display);
@@ -1229,25 +1206,101 @@
 
 .grado__meta { font-size: var(--step--1); color: var(--muted); }
 
+/* El pie de cada grado es el botón secundario del sitio: subrayado y
+   flecha, sin fondo ni recuadro. Con catorce tarjetas juntas, catorce
+   pastillas rojas saturaban la sección. */
 .grado__cta {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  margin-top: 0.6rem;
+  margin-top: 0.75rem;
+  padding: 0;
   font-family: var(--font-display);
   font-size: var(--step--1);
   font-weight: 700;
   color: var(--rojo-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
 }
+
+.grado:hover .grado__cta { color: var(--rojo); }
+
+/* El rótulo no se parte en dos líneas: la tarjeta crece si hace falta.
+   Por eso el mínimo de la rejilla (.listas__grid) tiene que dar de sí lo
+   que mida este pill; si se cambia el texto, hay que revisarlo. */
+.grado__cta { white-space: nowrap; }
 
 .grado__cta svg { width: 1em; height: 1em; transition: transform 0.25s var(--ease-back); }
 .grado:hover .grado__cta svg { transform: translateX(4px); }
 
 /* ============================================================
+   HORARIOS
+   ============================================================ */
+
+/* Una fila por nivel: a la izquierda quién, a la derecha cuándo. En el
+   móvil la fila se parte y la hora cae debajo del nivel. */
+.horarios {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 46rem;
+  margin-inline: auto;
+  list-style: none;
+  padding: 0;
+}
+
+.horario {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding: clamp(0.9rem, 2vw, 1.25rem) clamp(1rem, 2vw, 1.5rem);
+  border: 2px solid;
+  border-radius: var(--r-md);
+}
+
+/* Un color por nivel, en el mismo orden que las tarjetas de grado de más
+   abajo. El rótulo de la hora usa la variante oscura del color: sobre el
+   tono puro el texto blanco no llegaría al contraste mínimo. */
+.horario--rojo     { background: var(--rojo-tint);     border-color: var(--rojo); }
+.horario--turquesa { background: var(--turquesa-tint); border-color: var(--turquesa); }
+.horario--mostaza  { background: var(--mostaza-tint);  border-color: var(--mostaza); }
+.horario--verde    { background: var(--verde-tint);    border-color: var(--verde); }
+
+.horario--rojo     .horario__hora { background: var(--rojo-ink); }
+.horario--turquesa .horario__hora { background: var(--turquesa-ink); }
+.horario--mostaza  .horario__hora { background: var(--mostaza-ink); }
+.horario--verde    .horario__hora { background: var(--verde-ink); }
+
+.horario__label {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.horario__grados { font-size: var(--step--1); color: var(--body); }
+
+/* La hora va en su propio rótulo rojo, como en la lámina del colegio, y
+   nunca se parte: es el dato que se viene a buscar. */
+.horario__hora {
+  flex: none;
+  padding: 0.5rem 1.1rem;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--surface);
+  border-radius: var(--r-full);
+}
+
+/* ============================================================
    DOCUMENTO DE LISTA
 
    La lista en HTML, maquetada como la lámina del colegio: marco rojo,
-   papel crema y casillas para marcar. Es lo que se ve en el visor y lo
+   papel blanco y casillas para marcar. Es lo que se ve en el visor y lo
    que sale al imprimir, así que el PDF conserva el diseño.
    ============================================================ */
 
@@ -1282,7 +1335,7 @@
   padding: clamp(1.25rem, 3vw, 2.5rem);
   color: var(--ink);
   /* El marco rojo del original, resuelto con un borde grueso. */
-  background: #fdf8e4;
+  background: var(--surface);
   border: clamp(0.75rem, 2vw, 1.5rem) solid var(--rojo);
   border-radius: var(--r-md);
 }
@@ -1311,7 +1364,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink);
-  background: #e2dfd5;
+  background: var(--mostaza);
   border-radius: var(--r-full);
 }
 
@@ -1477,10 +1530,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.5rem 0.9rem;
+  min-height: var(--tap);
+  padding: 0.65rem 1.2rem;
   font-family: var(--font-display);
   font-size: var(--step--1);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--ink);
   text-decoration: none;
   background: var(--surface);
@@ -1495,19 +1549,23 @@
 .viewer__btn svg { width: 1.05em; height: 1.05em; }
 .viewer__btn[hidden] { display: none; }
 
-.viewer__btn--main {
-  color: var(--surface);
-  background: var(--rojo);
-  border-color: var(--rojo);
-}
+/* Los dos botones de descarga —el PDF y el archivo original— comparten
+   estilo: son la misma acción sobre el mismo documento y destacar uno
+   hacía pensar que el otro daba algo distinto. Por eso ya no hay
+   modificador `--main`.
 
-.viewer__btn--main:hover {
+   El de cerrar sí se distingue, con el azul oscuro del pie: es la única
+   acción que no descarga nada. Lleva la palabra escrita, no solo la X. */
+.viewer__btn--icon {
   color: var(--surface);
-  background: var(--rojo-ink);
-  border-color: var(--rojo-ink);
+  background: var(--ink);
+  border-color: var(--ink);
 }
-
-.viewer__btn--icon { padding: 0.5rem; }
+.viewer__btn--icon:hover {
+  color: var(--surface);
+  background: #2c3450;
+  border-color: #2c3450;
+}
 
 .viewer__body {
   flex: 1;
@@ -1605,6 +1663,7 @@
   align-items: center;
   gap: clamp(0.85rem, 2vw, 1.5rem);
   width: 100%;
+  min-height: var(--tap);
   padding: clamp(1rem, 2vw, 1.4rem) clamp(1rem, 2.5vw, 1.75rem);
   text-align: left;
   color: var(--ink);
@@ -1686,6 +1745,13 @@
   border-radius: var(--r-full);
   background: var(--line);
 }
+
+/* El borde de color se enciende al pasar por encima; el relleno queda
+   para la fila abierta. */
+.periodo--rojo:hover     { border-color: var(--rojo); }
+.periodo--turquesa:hover { border-color: var(--turquesa); }
+.periodo--mostaza:hover  { border-color: var(--mostaza); }
+.periodo--verde:hover    { border-color: var(--verde); }
 
 .periodo--rojo.is-open     { border-color: var(--rojo);     background: var(--rojo-tint); }
 .periodo--turquesa.is-open { border-color: var(--turquesa); background: var(--turquesa-tint); }
@@ -1911,4 +1977,344 @@
 
 @media (max-width: 700px) {
   .agenda__item { grid-template-columns: 1fr; gap: 0.35rem; }
+}
+
+/* ============================================================
+   ADMISIONES  (admisiones.html)
+   ============================================================ */
+
+/* --- Los dos caminos --------------------------------------- */
+
+/* Estudiante nuevo o antiguo: el proceso no se parece en nada de un
+   caso al otro, así que la página se bifurca aquí en vez de mezclarlo
+   todo en una sola lista. */
+.eleccion {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.eleccion__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+}
+
+.eleccion__card h3 { font-size: var(--step-1); }
+.eleccion__card p { font-size: var(--step--1); }
+
+/* El botón queda abajo aunque un texto sea más largo que el otro. */
+.eleccion__pie { margin-top: auto; padding-top: 0.9rem; }
+
+.eleccion__icon {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--r-full);
+}
+
+.eleccion__icon svg { width: 1.6rem; height: 1.6rem; }
+
+.eleccion__card--nuevo   { border-color: var(--turquesa); }
+.eleccion__card--antiguo { border-color: var(--mostaza); }
+.eleccion__card--nuevo   .eleccion__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+.eleccion__card--antiguo .eleccion__icon { background: var(--mostaza-tint);  color: var(--mostaza-ink); }
+
+/* --- La ruta de pasos --------------------------------------- */
+
+/* Los pasos van en vertical, no en fila como los de solicitudes.html:
+   aquí son siete y cada uno lleva su botón o sus datos bancarios, y en
+   cuatro columnas no cabrían ni se leerían en el móvil. */
+.ruta {
+  counter-reset: paso;
+  display: grid;
+  gap: clamp(0.85rem, 1.8vw, 1.15rem);
+  max-width: 58rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.ruta__paso {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(0.9rem, 2vw, 1.35rem);
+  padding: clamp(1.15rem, 2.4vw, 1.6rem);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-lg);
+}
+
+.ruta__num {
+  counter-increment: paso;
+  display: grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 700;
+  color: var(--surface);
+  background: var(--rojo);
+  border-radius: var(--r-full);
+}
+
+.ruta__num::after { content: counter(paso); }
+
+.ruta--mostaza .ruta__num { background: var(--mostaza-ink); }
+
+.ruta__cuerpo h3 { font-size: var(--step-1); margin-bottom: 0.35rem; }
+.ruta__cuerpo p { font-size: var(--step--1); }
+
+.ruta__acciones { margin-top: 1rem; }
+
+/* Advertencia dentro de un paso: lo que la gente da por hecho y no es
+   así («inscribirse no garantiza el cupo»). */
+/* Plazo de la preinscripción: es lo primero que necesita saber una
+   familia que ya tiene cupo, así que va encima de los pasos y no
+   dentro de uno. Blanco con filete oscuro porque cae sobre el amarillo
+   de la sección y un tinte sobre otro tinte no se ve. */
+.plazo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  max-width: 58rem;
+  margin: 0 auto clamp(1rem, 2vw, 1.5rem);
+  padding: 0.9rem 1.15rem;
+  font-size: var(--step--1);
+  background: var(--surface);
+  border: 2px solid var(--mostaza-ink);
+  border-radius: var(--r-md);
+}
+
+.plazo svg {
+  flex: none;
+  width: 1.4rem;
+  height: 1.4rem;
+  color: var(--mostaza-ink);
+}
+
+.ruta__aviso {
+  margin-top: 0.85rem;
+  padding-left: 0.85rem;
+  border-left: 3px solid var(--mostaza);
+  color: var(--muted);
+}
+
+/* En el móvil el número se va encima del texto: reservarle una columna
+   deja el renglón corriendo por bastante menos del ancho de la tarjeta,
+   y con siete pasos eso es mucho alto desaprovechado. */
+@media (max-width: 560px) {
+  .ruta__paso { grid-template-columns: 1fr; gap: 0.7rem; }
+}
+
+/* --- Datos que hay que copiar ------------------------------- */
+
+/* Cuenta bancaria, NIT, dirección: van en su propia caja porque son
+   datos que la gente copia a mano y no deben perderse en el párrafo. */
+.dato {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0.9rem 0 0;
+  padding: 0.85rem 1rem;
+  font-size: var(--step--1);
+  background: var(--surface-2);
+  border-radius: var(--r-sm);
+}
+
+/* En fila cuando son datos cortos y van sueltos, no dentro de un paso. */
+.dato--fila {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.dato div { display: grid; gap: 0.1rem; }
+.dato dt { color: var(--muted); }
+.dato dd { margin: 0; font-weight: 600; color: var(--ink); }
+
+/* Cada dato con su propio botón: en la app del banco se pega primero la
+   cuenta y después el NIT, así que copiarlos juntos no sirve. */
+.dato__valor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.copiar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.8rem;
+  font-family: inherit;
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-full);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.copiar svg { width: 1.05rem; height: 1.05rem; }
+
+.copiar:hover { color: var(--rojo-ink); border-color: var(--rojo); }
+
+/* Copiado: verde un par de segundos, para que se note que algo pasó. */
+.copiar.is-hecho,
+.copiar.is-hecho:hover { color: var(--verde-ink); border-color: var(--verde-ink); }
+
+/* --- Documentos --------------------------------------------- */
+
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.docs-grid__titulo {
+  font-size: var(--step-1);
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--line);
+}
+
+/* La lista de la portada, apretada: aquí son catorce documentos y con
+   el espaciado original la sección se hacía interminable. */
+.features--compacta { margin-top: 1.1rem; gap: 0.8rem; }
+.features--compacta li { font-size: var(--step--1); }
+
+/* --- Tablas -------------------------------------------------- */
+
+/* Una tabla no se puede encoger más allá de su contenido, así que se
+   desliza dentro de su caja en vez de empujar la página entera. */
+.tabla-scroll {
+  overflow-x: auto;
+  border-radius: var(--r-md);
+  border: 2px solid var(--line);
+  background: var(--surface);
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--step--1);
+}
+
+.tabla th,
+.tabla td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.tabla thead th {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--surface);
+  background: var(--ink);
+  border-bottom: 0;
+  white-space: nowrap;
+}
+
+.tabla tbody th {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.tabla tbody tr:last-child th,
+.tabla tbody tr:last-child td { border-bottom: 0; }
+
+.tabla tbody tr:nth-child(even) th,
+.tabla tbody tr:nth-child(even) td { background: var(--surface-2); }
+
+/* Las cifras no se parten: un valor cortado en dos líneas se lee mal. */
+.tabla__num { white-space: nowrap; font-weight: 600; color: var(--ink); }
+
+.tabla__titulo {
+  margin: clamp(1.75rem, 3vw, 2.5rem) 0 0.85rem;
+  font-size: var(--step-1);
+}
+
+/* En el móvil la tabla deja de ser tabla: cada fila se vuelve una
+   tarjeta con el dato debajo de su etiqueta. Deslizar una tabla de lado
+   con el dedo se siente como si se moviera la página entera, y con dos
+   o tres columnas de fechas largas no hay ancho que alcance. La etiqueta
+   viaja en el data-col de cada celda, porque el encabezado se esconde. */
+@media (max-width: 560px) {
+  .tabla-scroll {
+    overflow-x: visible;
+    background: none;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .tabla,
+  .tabla tbody,
+  .tabla tbody tr,
+  .tabla tbody th,
+  .tabla tbody td { display: block; }
+
+  .tabla thead { display: none; }
+
+  .tabla tbody tr {
+    padding: 0.9rem 1.1rem;
+    background: var(--surface);
+    border: 2px solid var(--line);
+    border-radius: var(--r-md);
+  }
+
+  .tabla tbody tr + tr { margin-top: 0.7rem; }
+
+  /* El rayado de filas alternas no tiene sentido cuando cada fila es
+     una tarjeta suelta. */
+  .tabla tbody tr:nth-child(even) th,
+  .tabla tbody tr:nth-child(even) td { background: none; }
+
+  .tabla tbody th,
+  .tabla tbody td {
+    padding: 0;
+    border-bottom: 0;
+    white-space: normal;
+  }
+
+  /* La primera celda titula la tarjeta. */
+  .tabla tbody tr > :first-child {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .tabla tbody [data-col] { margin-top: 0.45rem; }
+
+  .tabla tbody [data-col]::before {
+    content: attr(data-col);
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+}
+
+/* Primera tabla de una sección: no necesita el margen de arriba. */
+.section__head + .tabla__titulo { margin-top: 0; }
+
+.notas {
+  display: grid;
+  gap: 0.5rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--step--1);
+  color: var(--muted);
 }

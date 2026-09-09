@@ -230,63 +230,12 @@
     });
   }
 
+  /* La sección «Razones por las cuales nos escogen» sustituyó al
+     acordeón de las cuatro dimensiones: son tarjetas sin interacción,
+     así que no hay nada que inicializar aquí. */
 
-  /* --- 8. Dimensiones de la formación integral --------------- */
-  /* Acordeón de una sola abierta: al desplegar una se cierran las demás,
-     a diferencia del de preguntas frecuentes, que admite varias. */
-  function initDims() {
-    const items = $$(".dim");
-    if (!items.length) return;
-
-    items.forEach((item) => {
-      const head = $(".dim__head", item);
-      if (!head) return;
-
-      head.addEventListener("click", () => {
-        const open = !item.classList.contains("is-open");
-
-        items.forEach((other) => {
-          other.classList.remove("is-open");
-          const btn = $(".dim__head", other);
-          if (btn) btn.setAttribute("aria-expanded", "false");
-        });
-
-        if (open) {
-          item.classList.add("is-open");
-          head.setAttribute("aria-expanded", "true");
-        }
-      });
-    });
-  }
-  /* --- 9. Collage de vida belenista -------------------------- */
-  /* Al pulsar una pieza crece dentro del propio collage; no se abre
-     ninguna ventana encima. Solo puede haber una abierta a la vez. */
-  function initCollage() {
-    const collage = $(".collage");
-    if (!collage) return;
-
-    const items = $$(".collage__item", collage);
-    if (!items.length) return;
-
-    const setOpen = (target) => {
-      items.forEach((item) => {
-        const open = item === target;
-        item.classList.toggle("is-open", open);
-        item.setAttribute("aria-expanded", String(open));
-      });
-      collage.classList.toggle("has-open", Boolean(target));
-    };
-
-    items.forEach((item) => {
-      item.addEventListener("click", () => {
-        setOpen(item.classList.contains("is-open") ? null : item);
-      });
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && collage.classList.contains("has-open")) setOpen(null);
-    });
-  }
+  /* El collage de «Vida belenista» ya no tiene código propio: sus piezas
+     son disparadores del visor compartido (initLightbox). */
 
   /* --- 10. Botón flotante de WhatsApp ------------------------- */
   function initFab() {
@@ -461,7 +410,7 @@
 
         /* Nombre del PDF, sin tildes ni espacios: viaja mejor por correo
            y por WhatsApp, que es como lo van a compartir. */
-        pdfName = "lista-utiles-2026-" + slug(grado) + ".pdf";
+        pdfName = "lista-utiles-" + slug(grado) + ".pdf";
       } else {
         /* Lámina de uniforme: solo la imagen. */
         const img = document.createElement("img");
@@ -519,7 +468,7 @@
         }
 
         pdfBtn.disabled = true;
-        pdfLabel.textContent = "Generando…";
+        pdfLabel.textContent = "Espera un momento…";
 
         /* El documento se clona a un lienzo de ancho fijo en vez de usar el
            que está en el visor, cuyo ancho depende del tamaño de la ventana
@@ -588,7 +537,7 @@
       if (!window.html2pdf) return;
 
       btn.disabled = true;
-      label.textContent = "Generando…";
+      label.textContent = "Espera un momento…";
 
       /* Las hojas van en un bloque normal dentro del lienzo, no colgando de
          él: el lienzo está en position:fixed y html2canvas mide cero de alto
@@ -715,6 +664,29 @@
       opener = null;
     };
 
+    /* El pie solo existe donde hay algo que contar: en la portada, las
+       piezas del collage traen etiqueta y descripción; los cuadros de
+       honor no, y entonces el visor va sin pie. */
+    const pie = $("[data-lightbox-pie]", box);
+    const pieTag = $("[data-lightbox-tag]", box);
+    const pieTexto = $("[data-lightbox-texto]", box);
+
+    const pintarPie = (btn) => {
+      if (!pie) return;
+      const tag = $(".collage__tag", btn);
+      const texto = $(".collage__text", btn);
+      pie.hidden = !tag && !texto;
+      if (pie.hidden) return;
+      if (pieTag) {
+        // Copiar la clase entera trae también el color de la etiqueta
+        // (collage__tag--rojo, --turquesa…), sin repetir la paleta aquí.
+        pieTag.className = tag ? tag.className : "";
+        pieTag.textContent = tag ? tag.textContent.trim() : "";
+        pieTag.hidden = !tag;
+      }
+      if (pieTexto) pieTexto.textContent = texto ? texto.textContent.trim() : "";
+    };
+
     triggers.forEach((btn) => {
       btn.addEventListener("click", () => {
         const src = btn.getAttribute("data-lightbox-src");
@@ -722,6 +694,7 @@
         opener = btn;
         img.src = src;
         img.alt = $("img", btn) ? $("img", btn).alt : "";
+        pintarPie(btn);
         box.classList.add("is-open");
         document.body.classList.add("is-locked");
         const closeBtn = $("[data-lightbox-close]", box);
@@ -746,6 +719,64 @@
     });
   }
 
+  /* --- 15. Copiar un dato al portapapeles -------------------- */
+  function initCopiar() {
+    const botones = $$("[data-copiar]");
+    if (!botones.length) return;
+
+    // navigator.clipboard solo existe con HTTPS; abierta la página desde
+    // un archivo o por http sigue haciendo falta el textarea de siempre.
+    const alPortapapeles = (texto) => {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(texto);
+      }
+      return new Promise((bien, mal) => {
+        const caja = document.createElement("textarea");
+        caja.value = texto;
+        caja.setAttribute("readonly", "");
+        caja.style.position = "fixed";
+        caja.style.top = "0";
+        caja.style.opacity = "0";
+        document.body.appendChild(caja);
+        caja.select();
+        let hecho = false;
+        try {
+          hecho = document.execCommand("copy");
+        } catch (e) {
+          hecho = false;
+        }
+        document.body.removeChild(caja);
+        hecho ? bien() : mal();
+      });
+    };
+
+    botones.forEach((btn) => {
+      const etiqueta = $(".copiar__texto", btn);
+      const original = etiqueta ? etiqueta.textContent : "";
+      let reloj = null;
+
+      // El botón vuelve a su estado normal a los dos segundos.
+      const avisar = (mensaje, ok) => {
+        if (etiqueta) etiqueta.textContent = mensaje;
+        btn.classList.toggle("is-hecho", ok);
+        clearTimeout(reloj);
+        reloj = setTimeout(() => {
+          if (etiqueta) etiqueta.textContent = original;
+          btn.classList.remove("is-hecho");
+        }, 2000);
+      };
+
+      btn.addEventListener("click", () => {
+        const dato = btn.getAttribute("data-copiar");
+        if (!dato) return;
+        alPortapapeles(dato).then(
+          () => avisar("¡Copiado!", true),
+          () => avisar("Cópialo a mano", false)
+        );
+      });
+    });
+  }
+
   const boot = () => {
     initStickyHeader();
     initDropdowns();
@@ -754,8 +785,6 @@
     initHero();
     initPlayer();
     initInlineVideo();
-    initDims();
-    initCollage();
     initFab();
     initScrollSpy();
     initLightbox();
@@ -764,6 +793,7 @@
     initViewer();
     initLaminasPdf();
     initMisc();
+    initCopiar();
   };
 
   if (document.readyState === "loading") {
