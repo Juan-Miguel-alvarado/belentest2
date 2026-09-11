@@ -8,7 +8,7 @@
 
 .topbar {
   background: var(--ink);
-  color: #ccd3e6;
+  color: #c8cad0;
   font-size: var(--step--1);
 }
 
@@ -372,9 +372,9 @@ a.topbar__item:hover { color: var(--surface); }
    sección blanca que sigue. */
 .hero__slide--intro {
   background:
-    radial-gradient(60% 50% at 0% 0%,    var(--turquesa-tint), transparent 68%),
-    radial-gradient(55% 45% at 100% 0%,  var(--rojo-tint),     transparent 68%),
-    radial-gradient(80% 32% at 50% 100%, var(--mostaza-tint),  transparent 76%),
+    radial-gradient(60% 50% at 0% 0%,    var(--mostaza-tint), transparent 68%),
+    radial-gradient(55% 45% at 100% 0%,  var(--rojo-tint),    transparent 68%),
+    radial-gradient(80% 32% at 50% 100%, var(--gris-suave),   transparent 76%),
     var(--surface);
 }
 
@@ -393,15 +393,15 @@ a.topbar__item:hover { color: var(--surface); }
   width: 42vw; height: 42vw;
   max-width: 520px; max-height: 520px;
   top: 4%; left: -6%;
-  background: var(--turquesa);
+  background: var(--mostaza);
 }
 
 .hero__blob--2 {
   width: 30vw; height: 30vw;
   max-width: 380px; max-height: 380px;
   bottom: 6%; left: 16%;
-  background: var(--mostaza);
-  opacity: 0.4;
+  background: var(--rojo);
+  opacity: 0.28;
 }
 
 /* Derecha: las dos completan la paleta, pero van pegadas al borde y
@@ -419,7 +419,7 @@ a.topbar__item:hover { color: var(--surface); }
   width: 24vw; height: 24vw;
   max-width: 320px; max-height: 320px;
   bottom: -6%; right: -8%;
-  background: var(--verde);
+  background: var(--grey);
   opacity: 0.32;
 }
 
@@ -523,24 +523,25 @@ a.topbar__item:hover { color: var(--surface); }
   object-fit: cover;
 }
 
-/* El velo lleva el color: dos tintes de marca sobre la mitad blanca, que
-   se apagan justo en la zona de transición y tiñen el borde del video sin
-   llegar a lavar la mitad de la derecha. */
+/* El velo solo cubre la columna del texto y se corta antes de llegar al
+   video: a partir del 56% la imagen va a todo color, sin lavar.
+
+   Los dos tintes radiales que llevaba encima se quitaron: se extendían
+   por todo el lienzo y dejaban el video con una neblina rosada. El
+   blanco sólido de la izquierda es lo único que necesita el titular
+   para leerse. */
 .hero__veil {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background:
-    radial-gradient(55% 78% at 4% 18%, var(--turquesa-tint), transparent 66%),
-    radial-gradient(48% 58% at 0% 98%, var(--mostaza-tint),  transparent 68%),
-    linear-gradient(
-      to right,
-      var(--surface) 0%,
-      var(--surface) 36%,
-      rgb(255 255 255 / 0.72) 52%,
-      transparent 72%
-    );
+  background: linear-gradient(
+    to right,
+    var(--surface) 0%,
+    var(--surface) 34%,
+    rgb(255 255 255 / 0.55) 45%,
+    transparent 56%
+  );
 }
 
 /* Una sola columna: el texto ocupa la mitad blanca y deja ver el video. */
@@ -555,9 +556,9 @@ a.topbar__item:hover { color: var(--surface); }
 .hero__inner--film .hero__body { max-width: 34rem; }
 .hero__inner--film .hero__title { font-size: var(--step-4); }
 
-/* La palabra rotulada va en turquesa, y una regla de color abre el bloque:
+/* La palabra rotulada va en rojo, y una regla de color abre el bloque:
    son los dos golpes de color que sostienen el texto sobre el blanco. */
-.hero__inner--film .hand { color: var(--turquesa-ink); }
+.hero__inner--film .hand { color: var(--rojo-ink); }
 
 .hero__inner--film .hero__title::before {
   content: "";
@@ -631,17 +632,14 @@ a.topbar__item:hover { color: var(--surface); }
   .hero__veil {
     /* En vertical el velo se apoya arriba: blanco sólido tras el texto y
        transparente en la mitad de abajo, que es donde queda el video a
-       todo color. Los tintes suben con él. */
-    background:
-      radial-gradient(80% 30% at 14% 8%,  var(--turquesa-tint), transparent 70%),
-      radial-gradient(70% 26% at 90% 30%, var(--mostaza-tint),  transparent 72%),
-      linear-gradient(
-        to bottom,
-        var(--surface) 0%,
-        var(--surface) 42%,
-        rgb(255 255 255 / 0.78) 58%,
-        transparent 80%
-      );
+       todo color. */
+    background: linear-gradient(
+      to bottom,
+      var(--surface) 0%,
+      var(--surface) 40%,
+      rgb(255 255 255 / 0.6) 52%,
+      transparent 66%
+    );
   }
 
   .hero__inner--film {
@@ -765,16 +763,17 @@ a.topbar__item:hover { color: var(--surface); }
   object-fit: cover;
 }
 
+/* Sin velo: el video y su póster se ven a todo color. El botón blanco
+   del centro es lo que se toca, y ya destaca por sí solo; oscurecer la
+   imagen entera solo la apagaba. */
 .player__play {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgb(35 34 31 / 0.28);
-  transition: background 0.25s var(--ease), opacity 0.25s var(--ease);
+  background: none;
+  transition: opacity 0.25s var(--ease);
 }
-
-.player__play:hover { background: rgb(35 34 31 / 0.14); }
 .player.is-playing .player__play { opacity: 0; visibility: hidden; }
 
 .player__play span {
@@ -813,7 +812,7 @@ a.topbar__item:hover { color: var(--surface); }
   inset: auto -1.25rem -1.25rem auto;
   width: 62%;
   height: 62%;
-  border: 3px solid var(--turquesa);
+  border: 3px solid var(--mostaza);
   border-radius: var(--r-lg);
   z-index: -1;
 }
@@ -1344,8 +1343,10 @@ a.topbar__item:hover { color: var(--surface); }
   border-radius: var(--r-full);
 }
 
+/* El rojo y el gris medio son oscuros: sobre ellos la etiqueta va en
+   blanco. El mostaza y el gris claro se quedan con el texto oscuro. */
 .collage__tag--rojo     { background: var(--rojo); color: var(--surface); }
-.collage__tag--turquesa { background: var(--turquesa); }
+.collage__tag--turquesa { background: var(--turquesa); color: var(--surface); }
 .collage__tag--mostaza  { background: var(--mostaza); }
 .collage__tag--verde    { background: var(--verde); }
 
@@ -1482,7 +1483,7 @@ a.topbar__item:hover { color: var(--surface); }
   opacity: 0.45;
 }
 
-.cta__dot--1 { width: 7rem;   height: 7rem;   top: 12%;    left: 5%;   background: var(--turquesa); }
+.cta__dot--1 { width: 7rem;   height: 7rem;   top: 12%;    left: 5%;   background: var(--mostaza); }
 .cta__dot--2 { width: 4rem;   height: 4rem;   bottom: 14%; left: 15%;  background: var(--mostaza); }
 .cta__dot--3 { width: 9.5rem; height: 9.5rem; top: 8%;     right: 6%;  background: var(--verde); }
 .cta__dot--4 { width: 3.5rem; height: 3.5rem; bottom: 12%; right: 17%; background: var(--rojo); opacity: 0.3; }
@@ -1499,7 +1500,7 @@ a.topbar__item:hover { color: var(--surface); }
 .footer {
   padding-block: clamp(3rem, 6vw, 4.5rem) 0;
   background: var(--ink);
-  color: #b3bcd4;
+  color: #b5b8bf;
 }
 
 .footer__top {
@@ -1538,7 +1539,9 @@ a.topbar__item:hover { color: var(--surface); }
   transition: color 0.2s var(--ease);
 }
 
-.footer__links a:hover { color: var(--verde); }
+/* Sobre el gris oscuro del pie el acento tiene que ser claro: el
+   mostaza es el único color de la paleta que se lee bien ahí. */
+.footer__links a:hover { color: var(--mostaza); }
 
 .footer__pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
 
@@ -1556,7 +1559,7 @@ a.topbar__item:hover { color: var(--surface); }
   transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 
-.footer__pill:hover { border-color: var(--verde); color: var(--verde); }
+.footer__pill:hover { border-color: var(--mostaza); color: var(--mostaza); }
 .footer__pill svg { width: 1em; height: 1em; }
 
 .socials { display: flex; gap: 0.6rem; margin-top: 1.75rem; }
@@ -1573,7 +1576,7 @@ a.topbar__item:hover { color: var(--surface); }
     color 0.2s var(--ease);
 }
 
-.socials a:hover { background: var(--verde); border-color: var(--verde); color: var(--ink); }
+.socials a:hover { background: var(--mostaza); border-color: var(--mostaza); color: var(--ink); }
 .socials svg { width: 1.15rem; height: 1.15rem; }
 
 .footer__bottom {
@@ -1624,11 +1627,11 @@ a.topbar__item:hover { color: var(--surface); }
   font-weight: 700;
   line-height: 1.2;
   text-decoration: none;
-  color: var(--surface);
-  background: #128c4a;
+  color: var(--ink);
+  background: var(--mostaza);
   border: 3px solid var(--surface);
   border-radius: var(--r-full);
-  box-shadow: var(--shadow-md), 0 4px 0 rgb(27 33 53 / 0.25);
+  box-shadow: var(--shadow-md), 0 4px 0 rgb(30 32 36 / 0.25);
   opacity: 0;
   visibility: hidden;
   transform: translateY(1rem) scale(0.9);
@@ -1636,7 +1639,7 @@ a.topbar__item:hover { color: var(--surface); }
 }
 
 .wa-fab.is-in { opacity: 1; visibility: visible; transform: none; }
-.wa-fab:hover { transform: scale(1.05); background: #0b6f39; }
+.wa-fab:hover { transform: scale(1.05); background: #c98d12; }
 .wa-fab svg { width: 1.6rem; height: 1.6rem; flex: none; }
 /* El rótulo es una sola palabra, así que no necesita recorte: el icono
    verde de al lado ya dice por dónde se escribe. */

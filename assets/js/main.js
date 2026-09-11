@@ -335,49 +335,26 @@
     });
   }
 
-  /* Visor compartido: abre en un modal la lámina de un uniforme o la
-     lista digital de un grado, con sus botones de descarga.
+  /* Visor compartido: abre en un modal la lámina de un uniforme, la
+     lista escolar de un grado o una lámina del calendario. Siempre es
+     una imagen, con su botón de descarga y el de cerrar.
 
-     Los documentos de lista viven en la página (ocultos) y el visor los
-     mueve dentro; al cerrar vuelven a su sitio. Se mueven en vez de
-     clonarse para que las casillas que el visitante haya marcado no se
-     pierdan y para no duplicar ids en el documento. */
+     Antes las listas vivían además como documento HTML dentro de la
+     página y el visor las movía adentro para generar un PDF. Se quitó:
+     la lista es una sola lámina y lo que las familias hacen con ella es
+     bajarla y llevarla a la papelería. */
   function initViewer() {
     const viewer = $("[data-viewer]");
     if (!viewer) return;
 
     const body = $("[data-viewer-body]", viewer);
     const title = $("[data-viewer-title]", viewer) || $("#viewer-title", viewer);
-    const pdfBtn = $("[data-viewer-pdf]", viewer);
-    const pdfLabel = $("[data-viewer-pdf-label]", viewer);
     const download = $("[data-viewer-download]", viewer);
     const downloadLabel = $("[data-viewer-download-label]", viewer);
 
     let lastFocus = null;
-    let borrowed = null;   // documento prestado de la página
-    let home = null;       // dónde estaba, para devolverlo
-    let pdfName = "";      // nombre del archivo PDF que se genera
-
-    /* «Pre-Jardín» → «pre-jardin». Se descomponen las tildes con NFD y se
-       descartan las marcas diacríticas por código, que evita meter
-       escapes unicode en la expresión regular. */
-    const slug = (s) => s
-      .normalize("NFD")
-      .split("")
-      .filter((c) => c.charCodeAt(0) < 768 || c.charCodeAt(0) > 879)
-      .join("")
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
 
     const close = () => {
-      if (borrowed && home) {
-        borrowed.hidden = true;
-        home.appendChild(borrowed);
-      }
-      borrowed = null;
-      home = null;
-
       body.textContent = "";
       viewer.hidden = true;
       document.body.classList.remove("is-locked");
@@ -385,47 +362,22 @@
     };
 
     const open = (btn) => {
+      const imagen = btn.dataset.verImagen;
+      if (!imagen) return;
+
       lastFocus = btn;
       body.textContent = "";
 
-      const docId = btn.dataset.verDoc;
-      const imagen = btn.dataset.verImagen;
-      const archivo = btn.dataset.verArchivo || "";
+      const img = document.createElement("img");
+      img.src = imagen;
+      img.alt = btn.dataset.verTitulo || "";
+      body.appendChild(img);
 
-      if (docId) {
-        /* Lista digital: se presta el documento de la tarjeta. */
-        const doc = document.getElementById(docId);
-        if (!doc) return;
-
-        home = doc.parentNode;
-        borrowed = doc;
-        doc.hidden = false;
-        body.appendChild(doc);
-
-        const name = $(".doc__grade", doc);
-        const grado = name ? name.textContent : "";
-        title.textContent = grado ? "Lista de " + grado : "Lista escolar";
-        pdfBtn.hidden = false;
-        downloadLabel.textContent = "Descargar imagen";
-
-        /* Nombre del PDF, sin tildes ni espacios: viaja mejor por correo
-           y por WhatsApp, que es como lo van a compartir. */
-        pdfName = "lista-utiles-" + slug(grado) + ".pdf";
-      } else {
-        /* Lámina de uniforme: solo la imagen. */
-        const img = document.createElement("img");
-        img.src = imagen;
-        img.alt = btn.dataset.verTitulo || "";
-        body.appendChild(img);
-
-        title.textContent = btn.dataset.verTitulo || "";
-        pdfBtn.hidden = true;
-        downloadLabel.textContent = "Descargar imagen";
-        pdfName = "";
-      }
+      title.textContent = btn.dataset.verTitulo || "";
+      if (downloadLabel) downloadLabel.textContent = "Descargar imagen";
 
       download.href = imagen;
-      download.setAttribute("download", archivo);
+      download.setAttribute("download", btn.dataset.verArchivo || "");
 
       viewer.hidden = false;
       document.body.classList.add("is-locked");
@@ -435,82 +387,13 @@
       if (cerrar) cerrar.focus();
     };
 
-    $$("[data-ver-doc], [data-ver-imagen]").forEach((btn) => {
+    $$("[data-ver-imagen]").forEach((btn) => {
       btn.addEventListener("click", () => open(btn));
     });
 
     $$("[data-viewer-close]", viewer).forEach((btn) => {
       btn.addEventListener("click", close);
     });
-
-    /* Genera el PDF con html2pdf y lo baja de un clic. Si la librería no
-       llegó a cargar, se cae al diálogo de impresión del sistema, que con
-       la hoja @media print produce el mismo documento.
-
-       Hay dos cosas aquí que parecen rodeos y no lo son:
-
-       1. La página se lleva arriba del todo antes de generar. html2pdf
-          monta su propio contenedor con position:fixed, pero html2canvas
-          mide en coordenadas del documento: con la página desplazada
-          captura la franja equivocada y el PDF sale en blanco. Es el
-          motivo real de las hojas vacías, no la posición del clon.
-       2. El documento se clona a un lienzo de ancho fijo en vez de usar el
-          que está en el visor, cuyo ancho depende del tamaño de la ventana
-          y cuyo contenedor tiene scroll propio. */
-    if (pdfBtn) {
-      pdfBtn.addEventListener("click", () => {
-        const paper = $(".doc__paper", body);
-        if (!paper) return;
-
-        if (!window.html2pdf) {
-          window.print();
-          return;
-        }
-
-        pdfBtn.disabled = true;
-        pdfLabel.textContent = "Espera un momento…";
-
-        /* El documento se clona a un lienzo de ancho fijo en vez de usar el
-           que está en el visor, cuyo ancho depende del tamaño de la ventana
-           y cuyo contenedor tiene scroll propio. */
-        const stage = document.createElement("div");
-        stage.className = "pdf-stage";
-        const clone = paper.cloneNode(true);
-        stage.appendChild(clone);
-        document.body.appendChild(stage);
-
-        /* La página del PDF se hace del tamaño exacto del documento, así
-           que la lista entra completa en una sola hoja y no se parte.
-           Margen blanco alrededor: sin él el marco rojo llega al borde de
-           la hoja y en el visor no se lee como una página. */
-        const margen = 26;
-        const w = clone.offsetWidth;
-        /* Dos píxeles de holgura: si el alto de la página coincidiera al
-           milímetro con el del contenido, un redondeo podía sacar una
-           segunda hoja casi vacía. */
-        const h = clone.offsetHeight + 2;
-
-        generarPdf(clone, {
-          margin: margen,
-          filename: pdfName || "lista-escolar.pdf",
-          image: { type: "jpeg", quality: 0.98 },
-          /* scale 2 para que el texto no salga pixelado. */
-          html2canvas: { scale: 2, backgroundColor: "#ffffff", useCORS: true },
-          jsPDF: {
-            unit: "px",
-            format: [w + margen * 2, h + margen * 2],
-            orientation: h >= w ? "portrait" : "landscape",
-            /* px_scaling hace que un píxel del documento sea un píxel del
-               PDF; sin él jsPDF reescala y el encuadre no cuadra. */
-            hotfixes: ["px_scaling"]
-          }
-        }).then(() => {
-          stage.remove();
-          pdfBtn.disabled = false;
-          pdfLabel.textContent = "Descargar PDF";
-        });
-      });
-    }
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && !viewer.hidden) close();

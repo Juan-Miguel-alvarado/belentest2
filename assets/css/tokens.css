@@ -1,59 +1,66 @@
 /* ============================================================
    Gimnasio Cristiano Belén — Design tokens
-   Paleta juvenil y muy colorida: 6 colores + neutros fríos
-     rojo #ec3d4a · turquesa #17bfa4 · mostaza #f7a325
-     verde #6dc24b · azul #2f6df0
-   El amarillo suave (#fff8db) es solo fondo de sección.
-   Sin beige: los neutros son grises azulados (#f4f7ff, #dde3f2).
+   Paleta institucional: rojo · blanco · grises · mostaza.
+     rojo #d62839 · mostaza #e0a526
+   Los grises hacen de tercer color: sostienen las tarjetas y los
+   bloques que antes iban en turquesa, verde, azul o morado.
+   El amarillo suave (#fdf6e3) es solo fondo de sección.
+   Los neutros son grises puros, sin azul y sin beige.
    ============================================================ */
 
 :root {
   /* --- Marca --------------------------------------------- */
-  --rojo: #ec3d4a;
-  --turquesa: #17bfa4;
-  --mostaza: #f7a325;
-  --verde: #6dc24b;
-  --azul: #2f6df0;
-  /* El morado entró para una sola tarjeta (permisos e inasistencias en
-     solicitudes.html); si se usa en más sitios, aquí está la familia. */
-  --morado: #8b5cf6;
+  /* Solo hay dos colores de marca: el rojo manda y el mostaza
+     acompaña. Todo lo demás de la página es blanco o gris. */
+  --rojo: #d62839;
+  --mostaza: #e0a526;
+
+  /* Los nombres turquesa / verde / azul / morado se conservan porque
+     los usan decenas de clases (.value--turquesa, .grado--verde,
+     .section--azul…). Ya no son colores: son los cuatro peldaños de
+     gris que rotan por la página. Renombrarlos obligaría a tocar los
+     diez HTML sin cambiar nada de lo que se ve. */
+  --turquesa: #6f757e;   /* gris medio, el acento neutro principal */
+  --verde: #9aa0a9;      /* gris claro, el que cae sobre fondo oscuro */
+  --azul: #5b616a;       /* gris oscuro */
+  --morado: #7d838d;     /* gris medio-claro */
 
   /* Derivados oscurecidos: los colores puros no alcanzan
      4.5:1 sobre blanco, así que el texto y los enlaces usan estos. */
-  --rojo-ink: #c81e2c;
-  --turquesa-ink: #0f7d6c;
-  --mostaza-ink: #9a5f04;
-  --verde-ink: #3f7d27;
-  --azul-ink: #1c4fc4;
-  --morado-ink: #6d28d9;
+  --rojo-ink: #a81828;
+  --mostaza-ink: #8a5b05;
+  --turquesa-ink: #4a4f57;
+  --verde-ink: #565b64;
+  --azul-ink: #474c54;
+  --morado-ink: #4a4f57;
 
   /* Tintes claros para fondos de sección, tarjetas y chips.
-     Todos van hacia el color, nunca hacia el beige. */
-  --rojo-tint: #ffe8e9;
+     Los dos primeros van hacia su color; los grises, hacia el gris. */
+  --rojo-tint: #fdebed;
   /* Aún más suave que --rojo-tint: es el fondo de los hover del menú,
      que se encienden y apagan constantemente al recorrerlo con el ratón
      y no deben parpadear. */
-  --rojo-tint-suave: #fff4f4;
-  --turquesa-tint: #d9f6f0;
-  --mostaza-tint: #ffe7ad;
-  --verde-tint: #e6f7dc;
-  --azul-tint: #e4edff;
-  --morado-tint: #f0e9ff;
+  --rojo-tint-suave: #fef6f7;
+  --mostaza-tint: #fbeecb;
+  --turquesa-tint: #eef0f2;
+  --verde-tint: #f0f1f3;
+  --azul-tint: #f1f2f4;
+  --morado-tint: #eff0f2;
 
   /* Amarillo suave: el fondo de sección más claro de la paleta. No es
      un color de marca, no se usa en texto ni en botones. */
-  --amarillo-suave: #fff8db;
+  --amarillo-suave: #fdf6e3;
 
-  /* --- Neutros (fríos, sin beige) ------------------------ */
-  --ink: #1b2135;            /* titulares */
-  --body: #3f4459;           /* cuerpo de texto */
-  --muted: #5f657c;          /* gris azulado, 6.2:1 sobre blanco */
-  --grey: #8b90a5;           /* gris medio, usos decorativos */
-  --gris-suave: #ebedf2;     /* fondo de las pistas de uso */
+  /* --- Neutros (grises puros, sin azul y sin beige) ------- */
+  --ink: #23262b;            /* titulares */
+  --body: #44484f;           /* cuerpo de texto */
+  --muted: #5f646d;          /* gris medio, 6:1 sobre blanco */
+  --grey: #8c9199;           /* gris claro, usos decorativos */
+  --gris-suave: #eeeeef;     /* fondo de las pistas de uso */
   --surface: #ffffff;
-  --surface-2: #eef3ff;      /* azul pálido, secciones alternas */
-  --line: #dbe3f5;
-  --line-soft: #ecf1fc;
+  --surface-2: #f4f4f5;      /* gris pálido, secciones alternas */
+  --line: #dcdde0;
+  --line-soft: #eeeff1;
 
   /* --- Tipografía ---------------------------------------- */
   /* Onest sostiene los titulares; Gveret Levin marca la palabra
@@ -95,11 +102,11 @@
   /* Curva de las esquinas inferiores de la barra de navegación. */
   --r-nav: clamp(28px, 4vw, 56px);
 
-  --shadow-sm: 0 2px 10px -4px rgb(27 33 53 / 0.18);
-  --shadow-md: 0 14px 34px -22px rgb(27 33 53 / 0.45);
-  --shadow-lg: 0 30px 70px -40px rgb(27 33 53 / 0.5);
+  --shadow-sm: 0 2px 10px -4px rgb(30 32 36 / 0.18);
+  --shadow-md: 0 14px 34px -22px rgb(30 32 36 / 0.45);
+  --shadow-lg: 0 30px 70px -40px rgb(30 32 36 / 0.5);
   /* Sombra sólida de color: da a los botones aspecto de tecla. */
-  --shadow-btn: 0 4px 0 rgb(27 33 53 / 0.22);
+  --shadow-btn: 0 4px 0 rgb(30 32 36 / 0.22);
 
   /* --- Movimiento ---------------------------------------- */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);

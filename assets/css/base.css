@@ -43,7 +43,7 @@ button { background: none; border: 0; cursor: pointer; }
 a { color: var(--rojo-ink); }
 
 :focus-visible {
-  outline: 3px solid var(--turquesa-ink);
+  outline: 3px solid var(--rojo-ink);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -194,14 +194,14 @@ p { text-wrap: pretty; }
   background: var(--rojo-ink);
   border-color: var(--rojo-ink);
   transform: translateY(-2px);
-  box-shadow: 0 6px 0 rgb(27 33 53 / 0.22), var(--shadow-md);
+  box-shadow: 0 6px 0 rgb(30 32 36 / 0.22), var(--shadow-md);
 }
 
 /* Al pulsar, el botón se hunde: la respuesta física ayuda a entender
    que algo pasó, sobre todo en pantallas táctiles lentas. */
 .btn:active {
   transform: translateY(3px);
-  box-shadow: 0 1px 0 rgb(27 33 53 / 0.22);
+  box-shadow: 0 1px 0 rgb(30 32 36 / 0.22);
 }
 
 .btn svg { width: 1.15em; height: 1.15em; flex: none; }
@@ -232,8 +232,8 @@ p { text-wrap: pretty; }
   border-color: var(--ink);
 }
 .btn--ink:hover {
-  background: #2c3450;
-  border-color: #2c3450;
+  background: #3a3f47;
+  border-color: #3a3f47;
 }
 
 .btn--verde {
@@ -241,8 +241,8 @@ p { text-wrap: pretty; }
   border-color: var(--verde-ink);
 }
 .btn--verde:hover {
-  background: #35691f;
-  border-color: #35691f;
+  background: #43474f;
+  border-color: #43474f;
 }
 
 .btn--mostaza {
@@ -251,20 +251,24 @@ p { text-wrap: pretty; }
   color: var(--ink);
 }
 .btn--mostaza:hover {
-  background: #e08f13;
-  border-color: #e08f13;
+  background: #c98d12;
+  border-color: #c98d12;
   color: var(--ink);
 }
 
-/* Verde de WhatsApp: la gente lo reconoce por el color antes que por
-   la palabra, así que el botón lo usa tal cual. */
+/* WhatsApp va en mostaza, no en el verde de la aplicación: la paleta
+   del colegio es rojo, blanco, grises y mostaza, y el verde ajeno
+   rompía la página entera. El mostaza cumple el mismo papel —separar
+   el canal de WhatsApp de las llamadas rojas— sin salirse de ella. */
 .btn--wa {
-  background: #128c4a;
-  border-color: #128c4a;
+  background: var(--mostaza);
+  border-color: var(--mostaza);
+  color: var(--ink);
 }
 .btn--wa:hover {
-  background: #0b6f39;
-  border-color: #0b6f39;
+  background: #c98d12;
+  border-color: #c98d12;
+  color: var(--ink);
 }
 
 .btn--light {
@@ -540,7 +544,7 @@ a.chip:hover { transform: translateY(-2px); }
   display: grid;
   place-items: center;
   padding: clamp(1rem, 4vw, 3rem);
-  background: rgb(27 33 53 / 0.94);
+  background: rgb(30 32 36 / 0.94);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s var(--ease), visibility 0.25s;
@@ -585,7 +589,7 @@ a.chip:hover { transform: translateY(-2px); }
   padding: 3rem 1.25rem 1.25rem;
   text-align: left;
   color: var(--surface);
-  background: linear-gradient(to top, rgb(27 33 53 / 0.88), transparent);
+  background: linear-gradient(to top, rgb(30 32 36 / 0.88), transparent);
   border-radius: 0 0 var(--r-md) var(--r-md);
 }
 
