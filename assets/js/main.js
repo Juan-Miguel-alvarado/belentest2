@@ -98,7 +98,7 @@
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 1080) setOpen(false);
+      if (window.innerWidth > 1280) setOpen(false);
     });
   }
 

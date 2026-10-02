@@ -112,6 +112,9 @@ p { text-wrap: pretty; }
 /* Franjas de color: cada sección larga toma un tinte distinto para
    que se vea de un vistazo dónde empieza y dónde termina cada tema. */
 .section--rojo     { background: var(--rojo-tint); }
+/* Un rojo claro más subido que el tinte, para la sección que quiere
+   destacar sin llegar al rojo pleno. */
+.section--rojo-vivo { background: color-mix(in srgb, var(--rojo) 20%, var(--surface)); }
 .section--turquesa { background: var(--turquesa-tint); }
 .section--mostaza  { background: var(--mostaza-tint); }
 .section--verde    { background: var(--verde-tint); }
@@ -241,8 +244,8 @@ p { text-wrap: pretty; }
   border-color: var(--verde-ink);
 }
 .btn--verde:hover {
-  background: #43474f;
-  border-color: #43474f;
+  background: #5e4500;
+  border-color: #5e4500;
 }
 
 .btn--mostaza {
@@ -251,23 +254,23 @@ p { text-wrap: pretty; }
   color: var(--ink);
 }
 .btn--mostaza:hover {
-  background: #c98d12;
-  border-color: #c98d12;
+  background: var(--mostaza-hover);
+  border-color: var(--mostaza-hover);
   color: var(--ink);
 }
 
-/* WhatsApp va en mostaza, no en el verde de la aplicación: la paleta
-   del colegio es rojo, blanco, grises y mostaza, y el verde ajeno
-   rompía la página entera. El mostaza cumple el mismo papel —separar
-   el canal de WhatsApp de las llamadas rojas— sin salirse de ella. */
+/* WhatsApp va en el verde de la aplicación: es la única excepción a
+   la paleta del colegio, porque ese verde es lo que la gente reconoce
+   como «aquí se escribe por WhatsApp». El texto va oscuro: el blanco
+   sobre este verde no alcanza el contraste mínimo. */
 .btn--wa {
-  background: var(--mostaza);
-  border-color: var(--mostaza);
+  background: var(--whatsapp);
+  border-color: var(--whatsapp);
   color: var(--ink);
 }
 .btn--wa:hover {
-  background: #c98d12;
-  border-color: #c98d12;
+  background: var(--whatsapp-hover);
+  border-color: var(--whatsapp-hover);
   color: var(--ink);
 }
 
@@ -352,7 +355,7 @@ p { text-wrap: pretty; }
 /* --- Pistas de uso ----------------------------------------- */
 
 /* Frase corta que explica qué hacer, pegada al elemento que hay que
-   tocar. Va en gris, no en color: es una acotación al margen y no debe
+   tocar. Va en gris y sin fondo: es una acotación al margen y no debe
    competir con el botón al que está señalando. El borde discontinuo la
    separa del fondo de cualquier sección, que cambia de color según la
    página. */
@@ -366,7 +369,7 @@ p { text-wrap: pretty; }
   font-weight: 600;
   line-height: 1.35;
   color: var(--muted);
-  background: var(--gris-suave);
+  background: none;
   margin-block: 1rem;
   border: 2px dashed var(--grey);
   border-radius: var(--r-full);
