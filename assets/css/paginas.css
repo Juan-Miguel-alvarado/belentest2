@@ -2271,3 +2271,31 @@
   font-size: var(--step--1);
   color: var(--muted);
 }
+
+/* ============================================================
+   PÁGINA EN CONSTRUCCIÓN
+   Aviso de las páginas que la versión provisional aún no publica.
+   ============================================================ */
+
+.obra {
+  background:
+    radial-gradient(60% 50% at 0% 0%, var(--mostaza-tint), transparent 68%),
+    radial-gradient(55% 45% at 100% 100%, var(--rojo-tint), transparent 70%),
+    var(--surface);
+}
+
+/* Alto mínimo para que el pie no suba hasta media pantalla: el aviso
+   es corto y sin él la página quedaría casi vacía. */
+.obra__inner {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 1.25rem;
+  min-height: 52vh;
+  text-align: center;
+}
+
+.obra__title { font-size: var(--step-4); }
+.obra__inner .lede { max-width: 42rem; }
+.obra__actions { justify-content: center; margin-top: 0.75rem; }
+.obra__volver { margin-top: 0.5rem; }
