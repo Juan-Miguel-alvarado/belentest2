@@ -199,6 +199,9 @@ a.topbar__item:hover { color: var(--surface); }
 }
 .menu__item.is-open .caret { transform: rotate(180deg); }
 
+/* Icono que acompaña a un enlace del menú, a la derecha del texto. */
+.menu__icono { width: 1.15em; height: 1.15em; flex: none; }
+
 .dropdown {
   position: absolute;
   top: calc(100% + 0.75rem);
@@ -271,7 +274,9 @@ a.topbar__item:hover { color: var(--surface); }
 .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 1080px) {
+/* Con siete enlaces el menú necesita unos 1250 px: por debajo de eso se
+   sale por la derecha, así que la hamburguesa entra antes. */
+@media (max-width: 1280px) {
   .burger { display: flex; }
   .navbar { display: none; }
   /* Sin barra de menú, la línea de cierre la lleva la franja superior. */
@@ -1187,6 +1192,12 @@ a.topbar__item:hover { color: var(--surface); }
 
 .faq__a > div { overflow: hidden; }
 .faq__a p { padding: 0 1.4rem 1.3rem; color: var(--muted); }
+/* Las respuestas con varias fechas o valores van en lista. */
+.faq__a ul { margin: 0; padding: 0 1.4rem 1.3rem 2.6rem; color: var(--muted); }
+.faq__a li + li { margin-top: 0.35rem; }
+
+/* Enlace a la página con todas las preguntas, bajo la lista del inicio. */
+.faq__mas { margin: 0.4rem 0 0; }
 .faq__a a { color: var(--turquesa-ink); }
 
 @media (max-width: 900px) {
