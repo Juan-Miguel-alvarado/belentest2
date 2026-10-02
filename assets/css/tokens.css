@@ -1,66 +1,77 @@
 /* ============================================================
    Gimnasio Cristiano Belén — Design tokens
-   Paleta institucional: rojo · blanco · grises · mostaza.
-     rojo #d62839 · mostaza #e0a526
-   Los grises hacen de tercer color: sostienen las tarjetas y los
-   bloques que antes iban en turquesa, verde, azul o morado.
+   Paleta institucional: rojo · blanco · mostaza, y sus gamas.
+     rojo #d62839 · mostaza #f7b928
+   Del rojo salen el vino y el coral; del mostaza, el naranja teja
+   y el amarillo claro. Esas cuatro gamas sostienen las tarjetas y
+   los bloques que antes iban en turquesa, verde, azul o morado.
    El amarillo suave (#fdf6e3) es solo fondo de sección.
-   Los neutros son grises puros, sin azul y sin beige.
+   El gris queda para el texto; los fondos neutros son crema.
    ============================================================ */
 
 :root {
   /* --- Marca --------------------------------------------- */
   /* Solo hay dos colores de marca: el rojo manda y el mostaza
-     acompaña. Todo lo demás de la página es blanco o gris. */
+     acompaña. Todo lo demás de la página sale de esos dos. */
   --rojo: #d62839;
-  --mostaza: #e0a526;
+  --mostaza: #f7b928;
+  /* El mostaza un punto más oscuro, para los hover de sus botones. */
+  --mostaza-hover: #e5a511;
+
+  /* El verde de WhatsApp. No es color de marca: solo lo llevan los
+     botones que abren el chat, para que se reconozcan de un vistazo. */
+  --whatsapp: #25d366;
+  --whatsapp-hover: #1ebe5a;
 
   /* Los nombres turquesa / verde / azul / morado se conservan porque
      los usan decenas de clases (.value--turquesa, .grado--verde,
-     .section--azul…). Ya no son colores: son los cuatro peldaños de
-     gris que rotan por la página. Renombrarlos obligaría a tocar los
-     diez HTML sin cambiar nada de lo que se ve. */
-  --turquesa: #6f757e;   /* gris medio, el acento neutro principal */
-  --verde: #9aa0a9;      /* gris claro, el que cae sobre fondo oscuro */
-  --azul: #5b616a;       /* gris oscuro */
-  --morado: #7d838d;     /* gris medio-claro */
+     .section--azul…). Ya no son esos colores: son las cuatro gamas
+     de rojo y de amarillo que rotan por la página. Renombrarlos
+     obligaría a tocar los diez HTML sin cambiar nada de lo que se ve.
+     Turquesa y azul llevan texto blanco encima, así que son oscuros. */
+  --turquesa: #9c1f36;   /* vino, el acento secundario principal */
+  --verde: #ffd65c;      /* amarillo claro, lleva texto oscuro encima */
+  --azul: #c2410c;       /* naranja teja */
+  --morado: #f0826c;     /* coral, solo en bordes */
 
   /* Derivados oscurecidos: los colores puros no alcanzan
      4.5:1 sobre blanco, así que el texto y los enlaces usan estos. */
   --rojo-ink: #a81828;
   --mostaza-ink: #8a5b05;
-  --turquesa-ink: #4a4f57;
-  --verde-ink: #565b64;
-  --azul-ink: #474c54;
-  --morado-ink: #4a4f57;
+  --turquesa-ink: #7d172b;
+  --verde-ink: #7a5a00;
+  --azul-ink: #9a3412;
+  --morado-ink: #a4391f;
 
-  /* Tintes claros para fondos de sección, tarjetas y chips.
-     Los dos primeros van hacia su color; los grises, hacia el gris. */
+  /* Tintes claros para fondos de sección, tarjetas y chips: cada uno
+     va hacia su color. */
   --rojo-tint: #fdebed;
   /* Aún más suave que --rojo-tint: es el fondo de los hover del menú,
      que se encienden y apagan constantemente al recorrerlo con el ratón
      y no deben parpadear. */
   --rojo-tint-suave: #fef6f7;
-  --mostaza-tint: #fbeecb;
-  --turquesa-tint: #eef0f2;
-  --verde-tint: #f0f1f3;
-  --azul-tint: #f1f2f4;
-  --morado-tint: #eff0f2;
+  --mostaza-tint: #fef1c7;
+  --turquesa-tint: #fbe8ec;
+  --verde-tint: #fff8dc;
+  --azul-tint: #fff0e3;
+  --morado-tint: #fdece7;
 
   /* Amarillo suave: el fondo de sección más claro de la paleta. No es
      un color de marca, no se usa en texto ni en botones. */
   --amarillo-suave: #fdf6e3;
 
-  /* --- Neutros (grises puros, sin azul y sin beige) ------- */
+  /* --- Neutros ------------------------------------------- */
+  /* El texto sigue en gris oscuro, que es lo que mejor se lee. Los
+     fondos y las líneas, en cambio, son crema: tiran al amarillo. */
   --ink: #23262b;            /* titulares */
   --body: #44484f;           /* cuerpo de texto */
   --muted: #5f646d;          /* gris medio, 6:1 sobre blanco */
   --grey: #8c9199;           /* gris claro, usos decorativos */
-  --gris-suave: #eeeeef;     /* fondo de las pistas de uso */
+  --gris-suave: #fbefd6;     /* fondo de las pistas de uso */
   --surface: #ffffff;
-  --surface-2: #f4f4f5;      /* gris pálido, secciones alternas */
-  --line: #dcdde0;
-  --line-soft: #eeeff1;
+  --surface-2: #fff9ec;      /* crema pálido, secciones alternas */
+  --line: #eadfcd;
+  --line-soft: #f5eee2;
 
   /* --- Tipografía ---------------------------------------- */
   /* Onest sostiene los titulares; Gveret Levin marca la palabra

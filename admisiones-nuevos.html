@@ -166,7 +166,8 @@
       <ul class="chips reveal" style="--i:3">
         <li><a class="chip chip--turquesa" href="#nuevos">Los pasos</a></li>
         <li><a class="chip chip--rojo" href="#documentos">Documentos</a></li>
-        <li><a class="chip chip--azul" href="#fechas">Fechas</a></li>
+        <li><a class="chip chip--mostaza" href="#fechas">Fechas</a></li>
+        <li><a class="chip chip--verde" href="#costos">Costos</a></li>
       </ul>
 
     </div>
@@ -179,13 +180,13 @@
 
 <!-- ============================================================
      ESTUDIANTES NUEVOS
+     Contenido tomado de la Circular N.º 06 del 22 de septiembre de
+     2026 (admisiones abiertas, año lectivo 2027).
 
-     REVISAR — el enlace del formulario de interés que pasó el colegio
-     terminaba en /edit, que es la vista de edición: cualquiera que
-     entrara podría modificar el formulario. Aquí se publica la misma
-     dirección terminada en /viewform, que es la de responder. Falta
-     confirmar que abre sin sesión iniciada, porque a tres formularios
-     de solicitudes.html les pasa que devuelven 401.
+     REVISAR — la circular escribe el NIT de la cuenta como
+     900.273.217-1, pero el encabezado de la misma circular dice
+     900273217-7, y ese es el que cuadra con el dígito de verificación.
+     Aquí se publica el terminado en 7. Confirmar con el colegio.
      ============================================================ -->
 <section class="section section--turquesa" id="nuevos">
   <div class="shell">
@@ -193,7 +194,7 @@
       <p class="eyebrow eyebrow--turquesa">Estudiantes nuevos</p>
       <h2>El proceso, <span class="hand">paso a paso</span></h2>
       <p class="lede">
-        Son siete pasos, en este orden. Cada uno dice qué hay que hacer y dónde
+        Son cuatro pasos, en este orden. Cada uno dice qué hay que hacer y dónde
         hacerlo.
       </p>
     </div>
@@ -202,36 +203,20 @@
       <li class="ruta__paso">
         <span class="ruta__num" aria-hidden="true"></span>
         <div class="ruta__cuerpo">
-          <h3>Diligencia el formulario de interés</h3>
+          <h3>Paga el PIN de inscripción</h3>
           <p>
-            Con eso recibes información personalizada, la cita para el Open Day
-            —un día en el que te contamos más sobre el colegio y nos visitas— y
-            el acceso al grupo de WhatsApp. Es gratis y no compromete a nada.
-          </p>
-          <p class="ruta__acciones">
-            <a class="btn btn--sm" href="https://docs.google.com/forms/d/1mLlGIz249UvzCbbqhKwbxdr5JlQT3M3H9SGJDo1zLgo/viewform" target="_blank" rel="noopener">
-              Toca aquí para llenar el formulario de interés
-              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-            </a>
-          </p>
-        </div>
-      </li>
-
-      <li class="ruta__paso">
-        <span class="ruta__num" aria-hidden="true"></span>
-        <div class="ruta__cuerpo">
-          <h3>Paga el pin de admisión</h3>
-          <p>
-            Cuesta <strong>$90.000</strong> y <strong>no es reembolsable</strong>.
-            Incluye las pruebas psicológicas y académicas. Puedes pagarlo en el
-            banco o en las oficinas.
+            Cuesta <strong>$90.000 por estudiante</strong>. Es un único pago
+            para iniciar el proceso, incluye las pruebas académicas y
+            psicológicas y <strong>no es reembolsable</strong>. Puedes pagarlo
+            por transferencia o consignación, o en efectivo en nuestras
+            oficinas.
           </p>
           <dl class="dato">
-            <div><dt>Banco</dt><dd>Davivienda</dd></div>
+            <div><dt>Banco</dt><dd>Bancolombia, cuenta de ahorros</dd></div>
             <div>
               <dt>Número de cuenta</dt>
-              <dd class="dato__valor">156200083475
-                <button class="copiar" type="button" data-copiar="156200083475">
+              <dd class="dato__valor">091-740145-39
+                <button class="copiar" type="button" data-copiar="09174014539">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                   <span class="copiar__texto" aria-live="polite">Copiar</span>
                   <span class="sr-only">&nbsp;el número de cuenta</span>
@@ -241,7 +226,7 @@
             <div><dt>A nombre de</dt><dd>Fundación Gestión Solidaria</dd></div>
             <div>
               <dt>NIT</dt>
-              <dd class="dato__valor">900273217-7
+              <dd class="dato__valor">900.273.217-7
                 <button class="copiar" type="button" data-copiar="900273217-7">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                   <span class="copiar__texto" aria-live="polite">Copiar</span>
@@ -249,36 +234,11 @@
                 </button>
               </dd>
             </div>
-            <div><dt>En persona</dt><dd>Cra. 16A #11B-23</dd></div>
+            <div><dt>En efectivo</dt><dd>Cra. 16A #11B-23, barrio 6 de Marzo, Montería</dd></div>
           </dl>
           <p class="ruta__aviso">
-            Guarda el comprobante del pago: hay que subirlo en el formulario de
-            inscripción, en el paso 4.
-          </p>
-        </div>
-      </li>
-
-      <li class="ruta__paso">
-        <span class="ruta__num" aria-hidden="true"></span>
-        <div class="ruta__cuerpo">
-          <h3>Firma el consentimiento y el formato del colegio anterior</h3>
-          <p>
-            Son dos: el <strong>consentimiento informado</strong>, que lees y
-            firmas tú, y el <strong>formato del colegio anterior</strong>, que
-            diligencia el colegio de donde viene el estudiante. Los dos se
-            adjuntan después al formulario de inscripción.
-          </p>
-          <!-- TODO: cada botón necesita el enlace directo a su documento. Por
-               ahora los dos abren la carpeta de Drive, que los tiene juntos. -->
-          <p class="ruta__acciones actions">
-            <a class="btn btn--claro btn--sm" href="https://drive.google.com/drive/folders/1-T0IG1Y1XoS7yqn71T43gNgjIKY8c4El" target="_blank" rel="noopener">
-              Abrir el consentimiento
-              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-            </a>
-            <a class="btn btn--claro btn--sm" href="https://drive.google.com/drive/folders/1-T0IG1Y1XoS7yqn71T43gNgjIKY8c4El" target="_blank" rel="noopener">
-              Abrir el formato del colegio anterior
-              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-            </a>
+            Guarda el comprobante del pago en PDF o en una foto que se lea
+            bien: lo necesitas para el formulario del paso 2.
           </p>
         </div>
       </li>
@@ -288,36 +248,44 @@
         <div class="ruta__cuerpo">
           <h3>Llena el formulario de inscripción</h3>
           <p>
-            Aquí agregarás el comprobante del pago, el consentimiento y el
-            formato del colegio anterior, además de otros datos del estudiante y
-            de la familia.
+            Diligéncialo completo y adjunta estos documentos en PDF:
           </p>
-          <p class="ruta__acciones">
+          <ul class="features features--compacta">
+            <li><span class="dot dot--rojo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Comprobante de pago</strong> del PIN.</span></li>
+            <li><span class="dot dot--mostaza"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Informe académico o boletín</strong> actual, del año en curso.</span></li>
+            <li><span class="dot dot--turquesa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Documento de identidad</strong> del acudiente.</span></li>
+            <li><span class="dot dot--verde"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Formato de colegio de procedencia,</strong> si aplica. Lo diligencia el colegio de donde viene el estudiante.</span></li>
+          </ul>
+          <!-- TODO: el botón del formato abre la carpeta de Drive; falta el
+               enlace directo al documento. -->
+          <p class="ruta__acciones actions">
             <a class="btn btn--sm" href="https://forms.gle/JoHwuMN4yL41Z9Uq7" target="_blank" rel="noopener">
               Toca aquí para hacer la inscripción
               <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </a>
+            <a class="btn btn--claro btn--sm" href="https://drive.google.com/drive/folders/1-T0IG1Y1XoS7yqn71T43gNgjIKY8c4El" target="_blank" rel="noopener">
+              Abrir el formato de colegio de procedencia
+              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
           </p>
-          <p class="ruta__aviso">Inscribirse no garantiza el cupo: es lo que da inicio a la revisión.</p>
+          <p class="ruta__aviso">
+            Muy importante: hacer este paso y pagar el PIN no garantiza el
+            cupo. Solo inicia la revisión y la entrevista por parte del comité
+            de admisiones.
+          </p>
         </div>
       </li>
 
       <li class="ruta__paso">
         <span class="ruta__num" aria-hidden="true"></span>
         <div class="ruta__cuerpo">
-          <h3>Asiste a las pruebas y la entrevista</h3>
+          <h3>Asiste a la evaluación y la entrevista</h3>
           <p>
-            Te avisamos por correo electrónico el día y la hora. Revisa también
-            la carpeta de correo no deseado.
+            Te avisamos por correo electrónico la fecha de los exámenes y de la
+            entrevista familiar; revisa también la carpeta de correo no
+            deseado. Los resultados se entregan cada semana, después de tu
+            entrevista.
           </p>
-        </div>
-      </li>
-
-      <li class="ruta__paso">
-        <span class="ruta__num" aria-hidden="true"></span>
-        <div class="ruta__cuerpo">
-          <h3>Recibe el resultado</h3>
-          <p>Los resultados se entregan por correo.</p>
         </div>
       </li>
 
@@ -326,8 +294,10 @@
         <div class="ruta__cuerpo">
           <h3>Si es admitido, haz la matrícula</h3>
           <p>
-            ¡Felicidades! Para cerrar el proceso hay que subir los documentos
-            finales a la plataforma. Están todos en la lista de aquí abajo.
+            ¡Felicidades! Ya puedes matricular. Debes subir un solo archivo PDF
+            de máximo 2 MB a nuestra plataforma, Webcolegios, con el usuario
+            que creaste. Los documentos que van en ese archivo están en la
+            lista de aquí abajo.
           </p>
           <p class="ruta__acciones">
             <a class="btn btn--ink btn--sm" href="#documentos">
@@ -350,7 +320,8 @@
       <p class="eyebrow eyebrow--rojo">Matrícula</p>
       <h2>Documentos que hay que <span class="hand">subir</span></h2>
       <p class="lede">
-        Van todos juntos en <strong>un solo archivo PDF de máximo 2 MB</strong>.
+        Una vez admitido, van todos juntos en <strong>un solo archivo PDF de
+        máximo 2 MB</strong>.
       </p>
     </div>
 
@@ -358,32 +329,31 @@
       <div class="docs-grid__col">
         <h3 class="docs-grid__titulo">Del estudiante</h3>
         <ul class="features features--compacta">
-          <li><span class="dot dot--rojo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Documento de identidad:</strong> registro civil o tarjeta de identidad, ampliada por las dos caras.</span></li>
-          <li><span class="dot dot--rojo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Registro de vacunas</strong> (solo preescolar) y copia del carné de salud o certificación de la EPS.</span></li>
-          <li><span class="dot dot--rojo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Certificado médico</strong> de la EPS o de una entidad acreditada, con menos de 30 días.</span></li>
-          <li><span class="dot dot--rojo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Examen visual</strong> con menos de 30 días. No aplica para menores de 5 años.</span></li>
-          <li><span class="dot dot--rojo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Foto 3x4</strong> reciente, con fondo rojo.</span></li>
-        </ul>
-      </div>
-
-      <div class="docs-grid__col">
-        <h3 class="docs-grid__titulo">Del colegio anterior</h3>
-        <ul class="features features--compacta">
-          <li><span class="dot dot--turquesa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Certificado de retiro del SIMAT.</strong></span></li>
-          <li><span class="dot dot--turquesa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Certificados de notas</strong> de los dos últimos años.</span></li>
-          <li><span class="dot dot--turquesa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Informe académico</strong> del último periodo.</span></li>
-          <li><span class="dot dot--turquesa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Certificado de convivencia.</strong></span></li>
-          <li><span class="dot dot--turquesa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Paz y salvo</strong> del colegio de procedencia.</span></li>
+          <li><span class="dot dot--rojo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Documento de identidad,</strong> ampliado al 150 % por ambas caras.</span></li>
+          <li><span class="dot dot--rojo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Certificados de notas finales</strong> del año anterior cursado. No aplica para Pre-Jardín.</span></li>
+          <li><span class="dot dot--rojo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Boletín académico</strong> del último periodo del año en curso, 2026.</span></li>
+          <li><span class="dot dot--rojo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Certificado de convivencia y paz y salvo</strong> del colegio anterior.</span></li>
+          <li><span class="dot dot--rojo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Certificado de retiro del SIMAT.</strong></span></li>
+          <li><span class="dot dot--rojo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Para preescolar:</strong> carné de vacunas y carné de salud o de la EPS.</span></li>
+          <li><span class="dot dot--rojo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Certificado médico general y examen visual,</strong> con vigencia no mayor a 30 días. El examen visual no aplica para menores de 5 años.</span></li>
         </ul>
       </div>
 
       <div class="docs-grid__col">
         <h3 class="docs-grid__titulo">Del responsable económico</h3>
         <ul class="features features--compacta">
-          <li><span class="dot dot--mostaza"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Cédula</strong> del responsable económico, ampliada al 150 %.</span></li>
-          <li><span class="dot dot--mostaza"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Si es empleado:</strong> carta laboral con el salario y el tiempo de servicio.</span></li>
-          <li><span class="dot dot--mostaza"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Si es independiente:</strong> certificado de ingresos firmado por un contador, con copia de su tarjeta profesional y su cédula.</span></li>
-          <li><span class="dot dot--mostaza"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Desprendible de matrícula, pagaré y contrato,</strong> con los espacios sombreados diligenciados y firmados.</span></li>
+          <li><span class="dot dot--mostaza"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Cédula,</strong> ampliada al 150 %.</span></li>
+          <li><span class="dot dot--mostaza"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Si es empleado:</strong> carta laboral con el salario.</span></li>
+          <li><span class="dot dot--mostaza"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Si es independiente:</strong> certificado de ingresos, con la tarjeta profesional del contador.</span></li>
+        </ul>
+      </div>
+
+      <div class="docs-grid__col">
+        <h3 class="docs-grid__titulo">Formatos institucionales</h3>
+        <ul class="features features--compacta">
+          <li><span class="dot dot--turquesa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Contrato.</strong></span></li>
+          <li><span class="dot dot--turquesa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Pagaré.</strong></span></li>
+          <li><span class="dot dot--turquesa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span><span><strong>Desprendible de matrícula.</strong></span></li>
         </ul>
       </div>
     </div>
@@ -411,17 +381,12 @@
 
 <!-- ============================================================
      FECHAS
+     Las de la Circular N.º 06 de 2026.
 
-     REVISAR — estas fechas son las de la circular del año lectivo 2026
-     corridas un año, no las que publicó el colegio para 2027. Hay que
-     confirmarlas una por una antes de darlas por buenas. Cuatro caen en
-     fin de semana:
-       · Cierre del proceso: sábado 17 de octubre de 2026.
-       · Fin de entrevistas y exámenes: domingo 1 de noviembre de 2026.
-       · Fin de la matrícula extraordinaria: sábado 19 de diciembre de 2026.
-       · Reunión de padres: sábado 13 de febrero de 2027.
-     Los días de la semana salieron de la tabla porque el corrimiento los
-     dejó todos mal (el 29 de enero de 2027 es viernes, no jueves).
+     REVISAR — la circular dice «lunes 16 de febrero de 2027» para la
+     reunión de padres, pero el 16 de febrero de 2027 es martes. Aquí va
+     la fecha sin el día de la semana hasta que el colegio confirme cuál
+     de los dos datos es el bueno.
      ============================================================ -->
 <section class="section" id="fechas">
   <div class="shell">
@@ -438,11 +403,11 @@
           <tr><th scope="col">Actividad</th><th scope="col">Fecha</th></tr>
         </thead>
         <tbody>
-          <tr><td>Apertura del proceso</td><td data-col="Fecha">23 de septiembre de 2026</td></tr>
-          <tr><td>Open Day — reunión de puertas abiertas</td><td data-col="Fecha">23 de septiembre de 2026</td></tr>
-          <tr><td>Cierre del proceso</td><td data-col="Fecha">17 de octubre de 2026</td></tr>
-          <tr><td>Entrevistas y exámenes</td><td data-col="Fecha">Del 21 de octubre al 1 de noviembre de 2026</td></tr>
-          <tr><td>Entrega de resultados</td><td data-col="Fecha">Cada semana</td></tr>
+          <tr><td>Inicio del proceso de admisión</td><td data-col="Fecha">Miércoles 23 de septiembre de 2026</td></tr>
+          <tr><td>Open Day — reunión de puertas abiertas para familias nuevas</td><td data-col="Fecha">2 de octubre de 2026</td></tr>
+          <tr><td>Último día para inscribirse</td><td data-col="Fecha">Viernes 30 de octubre de 2026</td></tr>
+          <tr><td>Entrevistas y exámenes</td><td data-col="Fecha">Del 12 de octubre al 20 de noviembre de 2026</td></tr>
+          <tr><td>Entrega de resultados</td><td data-col="Fecha">Cada semana, después de tu entrevista</td></tr>
         </tbody>
       </table>
     </div>
@@ -454,25 +419,108 @@
           <tr><th scope="col">Tipo</th><th scope="col">Fecha</th><th scope="col">Recargo</th></tr>
         </thead>
         <tbody>
-          <tr><td>Ordinaria</td><td data-col="Fecha">Del 2 al 9 de diciembre de 2026</td><td data-col="Recargo">Sin recargo</td></tr>
-          <tr><td>Extraordinaria</td><td data-col="Fecha">Del 10 al 19 de diciembre de 2026</td><td class="tabla__num" data-col="Recargo">$30.000</td></tr>
+          <tr><td>Ordinaria</td><td data-col="Fecha">Del 1 al 9 de diciembre de 2026</td><td data-col="Recargo">Sin recargo</td></tr>
+          <tr><td>Extraordinaria</td><td data-col="Fecha">Del 11 al 18 de diciembre de 2026</td><td class="tabla__num" data-col="Recargo">$30.000</td></tr>
           <tr><td>Extemporánea</td><td data-col="Fecha">13 de enero de 2027</td><td class="tabla__num" data-col="Recargo">$50.000</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3 class="tabla__titulo">Otras fechas importantes</h3>
+    <h3 class="tabla__titulo">Inicio de clases</h3>
     <div class="tabla-scroll reveal">
       <table class="tabla">
         <thead>
           <tr><th scope="col">Qué</th><th scope="col">Cuándo</th></tr>
         </thead>
         <tbody>
-          <tr><td>Inicio del curso complementario</td><td data-col="Cuándo">27 de enero de 2027</td></tr>
-          <tr><td>Inicio de clases</td><td data-col="Cuándo">29 de enero de 2027</td></tr>
-          <tr><td>Entrada de estudiantes nuevos</td><td data-col="Cuándo">29 de enero de 2027, 7:00 a.m.</td></tr>
-          <tr><td>Entrada de estudiantes antiguos</td><td data-col="Cuándo">2 de febrero de 2027, 6:20 a.m.</td></tr>
-          <tr><td>Reunión de padres de familia</td><td data-col="Cuándo">13 de febrero de 2027</td></tr>
+          <tr><td>Curso complementario</td><td data-col="Cuándo">Martes 26 de enero de 2027</td></tr>
+          <tr><td>Entrada de estudiantes nuevos</td><td data-col="Cuándo">Jueves 28 de enero de 2027, 7:00 a.m.</td></tr>
+          <tr><td>Entrada de estudiantes antiguos</td><td data-col="Cuándo">Lunes 1 de febrero de 2027, 6:20 a.m.</td></tr>
+          <tr><td>Reunión de padres de familia</td><td data-col="Cuándo">16 de febrero de 2027</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COSTOS
+     Tabla de la «Propuesta de costos académicos» de la Circular N.º 06.
+     Es una propuesta: queda sujeta a la resolución de costos de la
+     Secretaría de Educación Municipal.
+     ============================================================ -->
+<section class="section section--amarillo" id="costos">
+  <div class="shell">
+    <div class="section__head reveal">
+      <p class="eyebrow eyebrow--mostaza">Propuesta 2027</p>
+      <h2>Costos <span class="hand">académicos</span></h2>
+      <p class="lede">
+        Esta es la propuesta de matrículas y pensiones para 2027. Puede cambiar
+        según la resolución de costos educativos que emita la Secretaría de
+        Educación Municipal para el nuevo año lectivo.
+      </p>
+    </div>
+
+    <h3 class="tabla__titulo">Matrícula y pensión</h3>
+    <div class="tabla-scroll reveal">
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th scope="col">Grado</th>
+            <th scope="col">Matrícula</th>
+            <th scope="col">Pensión mensual (valor máximo)</th>
+            <th scope="col">Tarifa especial con subsidio*</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Pre-Jardín</td><td class="tabla__num" data-col="Matrícula">$600.000</td><td class="tabla__num" data-col="Pensión mensual">$900.000</td><td class="tabla__num" data-col="Con subsidio*">$450.000</td></tr>
+          <tr><td>Jardín</td><td class="tabla__num" data-col="Matrícula">$600.000</td><td class="tabla__num" data-col="Pensión mensual">$862.960</td><td class="tabla__num" data-col="Con subsidio*">$450.000</td></tr>
+          <tr><td>Transición</td><td class="tabla__num" data-col="Matrícula">$600.000</td><td class="tabla__num" data-col="Pensión mensual">$805.908</td><td class="tabla__num" data-col="Con subsidio*">$450.000</td></tr>
+          <tr><td>1°</td><td class="tabla__num" data-col="Matrícula">$600.000</td><td class="tabla__num" data-col="Pensión mensual">$742.586</td><td class="tabla__num" data-col="Con subsidio*">$450.000</td></tr>
+          <tr><td>2°</td><td class="tabla__num" data-col="Matrícula">$600.000</td><td class="tabla__num" data-col="Pensión mensual">$698.093</td><td class="tabla__num" data-col="Con subsidio*">$450.000</td></tr>
+          <tr><td>3°</td><td class="tabla__num" data-col="Matrícula">$600.000</td><td class="tabla__num" data-col="Pensión mensual">$512.990</td><td class="tabla__num" data-col="Con subsidio*">$450.000</td></tr>
+          <tr><td>4°</td><td class="tabla__num" data-col="Matrícula">$600.000</td><td class="tabla__num" data-col="Pensión mensual">$442.000</td><td data-col="Con subsidio*">No aplica</td></tr>
+          <tr><td>5°</td><td class="tabla__num" data-col="Matrícula">$600.000</td><td class="tabla__num" data-col="Pensión mensual">$371.000</td><td data-col="Con subsidio*">No aplica</td></tr>
+          <tr><td>6°</td><td class="tabla__num" data-col="Matrícula">$650.000</td><td class="tabla__num" data-col="Pensión mensual">$350.000</td><td data-col="Con subsidio*">No aplica</td></tr>
+          <tr><td>7°</td><td class="tabla__num" data-col="Matrícula">$650.000</td><td class="tabla__num" data-col="Pensión mensual">$350.000</td><td data-col="Con subsidio*">No aplica</td></tr>
+          <tr><td>8°</td><td class="tabla__num" data-col="Matrícula">$670.000</td><td class="tabla__num" data-col="Pensión mensual">$340.000</td><td data-col="Con subsidio*">No aplica</td></tr>
+          <tr><td>9°</td><td class="tabla__num" data-col="Matrícula">$670.000</td><td class="tabla__num" data-col="Pensión mensual">$340.000</td><td data-col="Con subsidio*">No aplica</td></tr>
+          <tr><td>10°</td><td class="tabla__num" data-col="Matrícula">$700.000</td><td class="tabla__num" data-col="Pensión mensual">$335.000</td><td data-col="Con subsidio*">No aplica</td></tr>
+          <tr><td>11°</td><td class="tabla__num" data-col="Matrícula">$700.000</td><td class="tabla__num" data-col="Pensión mensual">$335.000</td><td data-col="Con subsidio*">No aplica</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout reveal">
+      <span class="callout__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.5"/></svg>
+      </span>
+      <div>
+        <h3>Qué incluye la matrícula</h3>
+        <p>
+          Carné, seguro estudiantil, servicio de enfermería (área protegida
+          AMI), proyecto de innovación y tecnología, y la sistematización de
+          los procesos de seguimiento formativo, administrativo, financiero y
+          académico.
+        </p>
+        <p class="u-mt">
+          * La tarifa especial con subsidio es un descuento que se aplica por
+          única vez. Hay que solicitarlo por escrito, con la debida
+          justificación, ante el comité, que decide si lo aprueba.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="tabla__titulo">Otros trámites</h3>
+    <div class="tabla-scroll reveal">
+      <table class="tabla">
+        <thead>
+          <tr><th scope="col">Trámite</th><th scope="col">Valor</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Constancias</td><td class="tabla__num" data-col="Valor">$25.000</td></tr>
+          <tr><td>Certificados de notas</td><td class="tabla__num" data-col="Valor">$25.000</td></tr>
+          <tr><td>Curso complementario</td><td class="tabla__num" data-col="Valor">$300.000</td></tr>
         </tbody>
       </table>
     </div>
@@ -483,7 +531,7 @@
      DUDAS
 
      REVISAR — el horario presencial de la circular de admisiones
-     (7:00 a.m.–12:00 m. y 2:30–4:30 p.m.) no coincide con el que
+     (7:00 a.m.–12:30 p.m. y 3:00–4:30 p.m., Circular N.º 06 de 2026) no coincide con el que
      publica el resto del sitio (8:00 a.m.–3:00 p.m., en la barra
      superior y en el pie). Hay que unificarlos.
      ============================================================ -->
@@ -530,14 +578,14 @@
       </article>
     </div>
 
-    <div class="callout reveal">
+    <div class="callout callout--amarillo reveal">
       <span class="callout__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
       </span>
       <div>
         <h3>Atención presencial en admisiones</h3>
         <p>
-          De lunes a viernes, de 7:00 a.m. a 12:00 m. y de 2:30 p.m. a
+          De lunes a viernes, de 7:00 a.m. a 12:30 p.m. y de 3:00 p.m. a
           4:30 p.m., en Cra. 20 #7-23 B/ 6, Montería.
         </p>
       </div>

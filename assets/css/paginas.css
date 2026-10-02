@@ -129,17 +129,19 @@
 .purpose__cards {
   display: grid;
   gap: clamp(1.25rem, 2.5vw, 2rem);
+  /* Contenedor de consulta: las tarjetas deciden si la foto va al lado
+     o debajo según el ancho de esta columna, no el de la pantalla. */
+  container-type: inline-size;
 }
 
 .mv__card {
   position: relative;
   overflow: hidden;
-  /* El texto arranca arriba y la foto se pega abajo con su margin-top
-     automático, igual que en la tarjeta del equipo: al estirarse la
-     tarjeta, el aire que sobra queda entre el párrafo y la imagen. */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  /* Texto a la izquierda y foto a la derecha. La foto llena el alto que
+     marque el texto, así que nunca agranda la tarjeta. */
+  display: grid;
+  grid-template-columns: 1fr 38%;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
   padding: clamp(1.75rem, 3vw, 2.5rem);
   background: var(--surface);
   border: 2px solid var(--line);
@@ -151,20 +153,6 @@
 .mv__card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-}
-
-/* Número grande al fondo, como marca de agua: da jerarquía sin
-   competir con el texto. */
-.mv__card::after {
-  content: attr(data-num);
-  position: absolute;
-  top: -1.5rem;
-  right: 0.5rem;
-  font-family: var(--font-display);
-  font-size: clamp(6rem, 12vw, 9rem);
-  font-weight: 700;
-  line-height: 1;
-  pointer-events: none;
 }
 
 .mv__head {
@@ -186,37 +174,38 @@
 .mv__icon svg { width: 1.6rem; height: 1.6rem; }
 
 .mv__card h3 { font-size: var(--step-2); }
-.mv__card p { position: relative; z-index: 1; }
 
-/* Cuadro de imagen dentro de la tarjeta, el mismo recurso que sostiene
-   la tarjeta del equipo (.team__foto). El `margin-top: auto` la empuja
-   al fondo, así que las dos tarjetas alinean sus fotos aunque los
-   textos de misión y visión no midan lo mismo. El z-index la sube por
-   encima del número gigante que hace de marca de agua. */
-.mv__foto {
+/* Marco de la foto, a la derecha del texto. La imagen va en absoluto
+   dentro de él: así su tamaño propio no cuenta para el alto de la
+   tarjeta y se limita a llenar el que ya tiene. */
+.mv__media {
   position: relative;
-  z-index: 1;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  margin-top: auto;
-  padding-top: 0;
+  min-height: 11rem;
+  overflow: hidden;
   border-radius: var(--r-md);
   box-shadow: var(--shadow-sm);
 }
 
-/* El aire entre el párrafo y la foto lo pone la propia foto: con
-   `margin-top: auto` el hueco sobrante ya queda ahí, pero cuando la
-   tarjeta va justa de alto ese hueco es cero y el texto se pegaría. */
-.mv__card p + .mv__foto { margin-top: 1.5rem; }
+.mv__foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Cuando la columna es estrecha no caben texto y foto lado a lado: la
+   foto baja y vuelve a ser una franja apaisada. */
+@container (max-width: 34rem) {
+  .mv__card { grid-template-columns: 1fr; }
+  .mv__media { min-height: 0; aspect-ratio: 16 / 9; }
+}
 
 .mv__card--mision:hover { border-color: var(--rojo); }
 .mv__card--mision .mv__icon { background: var(--rojo-tint); color: var(--rojo-ink); }
-.mv__card--mision::after { color: var(--rojo-tint); }
 
 .mv__card--vision:hover { border-color: var(--turquesa); }
 .mv__card--vision .mv__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
-.mv__card--vision::after { color: var(--turquesa-tint); }
 
 /* --- Tarjeta del equipo ------------------------------------ */
 
@@ -234,21 +223,20 @@
 
 .team__eyebrow { margin-bottom: 0.75rem; }
 .team__title { font-size: var(--step-2); }
-/* El margen inferior es lo que separa el texto de la foto: el
-   `margin-top: auto` de la foto solo reparte el aire que sobra, y cuando
-   la tarjeta va justa de alto se queda en cero y el texto queda pegado. */
+/* El margen inferior es lo que separa el texto de la foto. */
 .team__intro { margin-top: 0.85rem; margin-bottom: 1.75rem; }
 
-/* Foto de grupo del cuerpo docente, en cuadrado dentro de la tarjeta.
-   El `margin-top: auto` la empuja abajo: la tarjeta se estira hasta la
-   altura de la columna de al lado y el hueco sobrante queda arriba, no
-   partiendo la foto de los nombres. El recorte lo hace `object-fit`, así
-   que sirve cualquier foto sin reencuadrarla. */
+/* Foto de grupo del cuerpo docente. Parte de un cuadrado y crece con
+   `flex: 1` si la tarjeta se estira hasta la altura de la columna de al
+   lado: el alto sobrante se lo queda la foto y no queda hueco vacío. El
+   recorte lo hace `object-fit`, así que sirve cualquier foto sin
+   reencuadrarla. */
 .team__foto {
+  flex: 1 1 auto;
   width: 100%;
+  min-height: 0;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  margin-top: auto;
   border-radius: var(--r-md);
   box-shadow: var(--shadow-sm);
 }
@@ -350,6 +338,30 @@
 .value--turquesa { background: var(--turquesa-tint); }
 .value--mostaza  { background: var(--mostaza-tint); }
 .value--verde    { background: var(--verde-tint); }
+
+/* Algunas tarjetas van en color pleno en vez de en tinte, para que la
+   rejilla no se vea toda pálida. Sobre los dos rojos el texto va en
+   blanco; sobre los dos amarillos, oscuro. El disco del icono sigue
+   blanco, así que el icono conserva su color. */
+.value--vivo.value--rojo     { background: var(--rojo); }
+.value--vivo.value--turquesa { background: var(--turquesa); }
+.value--vivo.value--mostaza  { background: var(--mostaza); }
+.value--vivo.value--verde    { background: var(--verde); }
+
+.value--vivo.value--rojo,
+.value--vivo.value--turquesa,
+.value--vivo.value--rojo     .value__name,
+.value--vivo.value--turquesa .value__name,
+.value--vivo.value--rojo     .value__num,
+.value--vivo.value--turquesa .value__num { color: var(--surface); }
+
+.value--vivo.value--mostaza,
+.value--vivo.value--verde,
+.value--vivo.value--mostaza .value__num,
+.value--vivo.value--verde   .value__num { color: var(--ink); }
+
+.value--vivo .value__num { opacity: 0.8; }
+.value--vivo:hover { border-color: var(--ink); }
 
 .value--rojo:hover     { border-color: var(--rojo); }
 .value--turquesa:hover { border-color: var(--turquesa); }
@@ -488,11 +500,6 @@
   text-transform: uppercase;
   color: var(--muted);
 }
-
-/* El coro se repite entre estrofas: va destacado en rojo. */
-.hymn__verse--coro { border-left-color: var(--rojo); background: var(--rojo-tint); }
-.hymn__verse--coro .hymn__label { color: var(--rojo-ink); }
-.hymn__verse--coro p { color: var(--ink); font-style: normal; font-weight: 500; }
 
 /* Fotografía dentro del marco decorativo .player-frame, que se define en
    layout.css. Es el único sitio que lo usa: el reproductor de la portada
@@ -927,6 +934,11 @@
   border-radius: var(--r-full);
 }
 
+/* Variante con el filete en mostaza, para el aviso de atención
+   presencial: va sobre sección blanca, donde el amarillo sí se ve. */
+.callout--amarillo { border-color: var(--mostaza); }
+.callout--amarillo .callout__icon { color: var(--mostaza-ink); background: var(--mostaza-tint); }
+
 .callout__icon svg { width: 1.4rem; height: 1.4rem; }
 .callout h3 { font-size: var(--step-1); margin-bottom: 0.35rem; }
 .callout p { font-size: var(--step--1); }
@@ -974,23 +986,41 @@
 }
 
 .channel:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-.channel--rojo:hover     { border-color: var(--rojo); }
-.channel--verde:hover    { border-color: var(--verde); }
-.channel--turquesa:hover { border-color: var(--turquesa); }
+/* Cada tarjeta lleva su color rebajado de fondo, y ese mismo color a
+   plena intensidad en el borde, el disco del icono y el botón. --tono
+   es el color y --sobre el del texto que va encima de él: blanco sobre
+   el rojo, oscuro sobre el verde y el amarillo.
+
+   Los nombres de las clases vienen de la paleta antigua y ya no dicen
+   el color: --verde es la tarjeta de WhatsApp (verde de la aplicación),
+   --rojo la del teléfono (mostaza) y --turquesa la del correo (rojo). */
+.channel--verde    { --tono: var(--whatsapp); --sobre: var(--ink);     --mezcla: 20%; }
+.channel--rojo     { --tono: var(--mostaza);  --sobre: var(--ink);     --mezcla: 30%; }
+.channel--turquesa { --tono: var(--rojo);     --sobre: var(--surface); --mezcla: 16%; }
+
+.channel--rojo,
+.channel--verde,
+.channel--turquesa {
+  background: color-mix(in srgb, var(--tono) var(--mezcla), var(--surface));
+  border-color: color-mix(in srgb, var(--tono) 55%, var(--surface));
+}
+
+.channel--rojo:hover,
+.channel--verde:hover,
+.channel--turquesa:hover { border-color: var(--tono); }
 
 .channel__icon {
   display: grid;
   place-items: center;
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 4.75rem;
+  height: 4.75rem;
   margin-bottom: 0.4rem;
+  color: var(--sobre);
+  background: var(--tono);
   border-radius: var(--r-full);
 }
 
-.channel__icon svg { width: 1.6rem; height: 1.6rem; }
-.channel--rojo     .channel__icon { background: var(--rojo-tint);     color: var(--rojo-ink); }
-.channel--verde    .channel__icon { background: var(--verde-tint);    color: var(--verde-ink); }
-.channel--turquesa .channel__icon { background: var(--turquesa-tint); color: var(--turquesa-ink); }
+.channel__icon svg { width: 2.5rem; height: 2.5rem; }
 
 .channel__label {
   font-family: var(--font-display);
@@ -1014,6 +1044,25 @@
 /* El botón se pega abajo: con textos de distinto largo, los tres
    quedan alineados. */
 .channel .btn { margin-top: auto; }
+
+/* El botón toma el color pleno de su tarjeta. Los selectores llevan la
+   clase del canal para ganarle a .btn--claro, que es la que trae el
+   HTML. */
+.channel--rojo .btn,
+.channel--verde .btn,
+.channel--turquesa .btn {
+  color: var(--sobre);
+  background: var(--tono);
+  border-color: var(--tono);
+  box-shadow: var(--shadow-btn);
+}
+.channel--rojo .btn:hover,
+.channel--verde .btn:hover,
+.channel--turquesa .btn:hover {
+  color: var(--sobre);
+  background: color-mix(in srgb, var(--tono) 85%, var(--ink));
+  border-color: color-mix(in srgb, var(--tono) 85%, var(--ink));
+}
 
 /* ============================================================
    RESPONSIVE

@@ -419,7 +419,7 @@ a.topbar__item:hover { color: var(--surface); }
   width: 24vw; height: 24vw;
   max-width: 320px; max-height: 320px;
   bottom: -6%; right: -8%;
-  background: var(--grey);
+  background: var(--morado);
   opacity: 0.32;
 }
 
@@ -738,10 +738,13 @@ a.topbar__item:hover { color: var(--surface); }
 }
 
 .features .dot svg { width: 0.95rem; height: 0.95rem; stroke-width: 3; }
-.features .dot--rojo     { background: var(--rojo-tint);     color: var(--rojo-ink); }
-.features .dot--turquesa { background: var(--turquesa-tint); color: var(--turquesa-ink); }
-.features .dot--mostaza  { background: var(--mostaza-tint);  color: var(--mostaza-ink); }
-.features .dot--verde    { background: var(--verde-tint);    color: var(--verde-ink); }
+/* Los puntos van en color pleno, no en tinte: así se ve la alternancia
+   rojo · mostaza · vino · amarillo claro. Sobre los dos amarillos el
+   visto va oscuro; sobre los dos rojos, blanco. */
+.features .dot--rojo     { background: var(--rojo);     color: var(--surface); }
+.features .dot--turquesa { background: var(--turquesa); color: var(--surface); }
+.features .dot--mostaza  { background: var(--mostaza);  color: var(--ink); }
+.features .dot--verde    { background: var(--verde);    color: var(--ink); }
 
 .features strong { color: var(--ink); font-weight: 600; }
 
@@ -752,12 +755,20 @@ a.topbar__item:hover { color: var(--surface); }
   border-radius: var(--r-lg);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
-  background: var(--ink);
+  /* Fondo claro, no oscuro: si el video tarda en cargar o no llena la
+     caja, lo que asoma es crema y no una franja negra. */
+  background: var(--surface-2);
   aspect-ratio: 4 / 3;
 }
 
+/* En absoluto y a caja completa: el video es más apaisado que el marco
+   y, dejado en flujo, podía quedarse corto y enseñar el fondo por
+   debajo. Así siempre lo cubre entero y `object-fit` hace el recorte. */
 .player video,
 .player img {
+  position: absolute;
+  inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -910,11 +921,13 @@ a.topbar__item:hover { color: var(--surface); }
   transition: background 0.3s var(--ease);
 }
 
-.program--rojo     .program__disc { background: var(--rojo-tint); }
-.program--turquesa .program__disc { background: var(--turquesa-tint); }
-.program--mostaza  .program__disc { background: var(--mostaza-tint); }
+/* En reposo el disco ya lleva color, a media intensidad: con el tinte
+   claro las tarjetas se veían pálidas. */
+.program--rojo     .program__disc { background: color-mix(in srgb, var(--rojo) 50%, var(--surface)); }
+.program--turquesa .program__disc { background: color-mix(in srgb, var(--turquesa) 50%, var(--surface)); }
+.program--mostaza  .program__disc { background: color-mix(in srgb, var(--mostaza) 65%, var(--surface)); }
 
-/* Al pasar el cursor el disco salta del tinte al color pleno. */
+/* Al pasar el cursor el disco sube al color pleno. */
 .program--rojo:hover     .program__disc { background: var(--rojo); }
 .program--turquesa:hover .program__disc { background: var(--turquesa); }
 .program--mostaza:hover  .program__disc { background: var(--mostaza); }
@@ -1343,8 +1356,8 @@ a.topbar__item:hover { color: var(--surface); }
   border-radius: var(--r-full);
 }
 
-/* El rojo y el gris medio son oscuros: sobre ellos la etiqueta va en
-   blanco. El mostaza y el gris claro se quedan con el texto oscuro. */
+/* El rojo y el vino son oscuros: sobre ellos la etiqueta va en blanco.
+   El mostaza y el amarillo claro se quedan con el texto oscuro. */
 .collage__tag--rojo     { background: var(--rojo); color: var(--surface); }
 .collage__tag--turquesa { background: var(--turquesa); color: var(--surface); }
 .collage__tag--mostaza  { background: var(--mostaza); }
@@ -1426,6 +1439,40 @@ a.topbar__item:hover { color: var(--surface); }
   background: var(--surface);
   border: 2px solid var(--line);
   border-radius: var(--r-md);
+}
+
+/* El convenio con enlace repite la pila de marco y nombre, y avisa de
+   que se puede tocar: marco en rojo y nombre subrayado. */
+.convenio__enlace {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: inherit;
+  width: 100%;
+  text-decoration: none;
+}
+.convenio__enlace .convenio__marco {
+  border-color: var(--rojo);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.convenio__enlace .convenio__nombre {
+  color: var(--rojo-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.convenio__enlace:hover .convenio__marco {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Sustituto del logo mientras no llega el archivo: las siglas en la
+   tipografía de los titulares. */
+.convenio__provisional {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--muted);
 }
 
 .convenio__logo {
@@ -1628,7 +1675,7 @@ a.topbar__item:hover { color: var(--surface); }
   line-height: 1.2;
   text-decoration: none;
   color: var(--ink);
-  background: var(--mostaza);
+  background: var(--whatsapp);
   border: 3px solid var(--surface);
   border-radius: var(--r-full);
   box-shadow: var(--shadow-md), 0 4px 0 rgb(30 32 36 / 0.25);
@@ -1639,10 +1686,10 @@ a.topbar__item:hover { color: var(--surface); }
 }
 
 .wa-fab.is-in { opacity: 1; visibility: visible; transform: none; }
-.wa-fab:hover { transform: scale(1.05); background: #c98d12; }
+.wa-fab:hover { transform: scale(1.05); background: var(--whatsapp-hover); }
 .wa-fab svg { width: 1.6rem; height: 1.6rem; flex: none; }
 /* El rótulo es una sola palabra, así que no necesita recorte: el icono
-   verde de al lado ya dice por dónde se escribe. */
+   y el verde del botón ya dicen por dónde se escribe. */
 .wa-fab__texto { display: block; white-space: nowrap; }
 
 @media (max-width: 400px) {
