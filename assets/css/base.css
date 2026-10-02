@@ -120,6 +120,8 @@ p { text-wrap: pretty; }
 .section--verde    { background: var(--verde-tint); }
 .section--azul     { background: var(--azul-tint); }
 .section--amarillo { background: var(--amarillo-suave); }
+/* El mismo paso que --rojo-vivo, en amarillo. */
+.section--amarillo-vivo { background: color-mix(in srgb, var(--mostaza) 30%, var(--surface)); }
 
 .skip {
   position: absolute;

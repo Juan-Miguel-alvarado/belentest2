@@ -690,6 +690,7 @@ a.topbar__item:hover { color: var(--surface); }
 .wave--verde path    { fill: var(--verde-tint); }
 .wave--mostaza path  { fill: var(--mostaza-tint); }
 .wave--rojo path     { fill: var(--rojo-tint); }
+.wave--amarillo-vivo path { fill: color-mix(in srgb, var(--mostaza) 30%, var(--surface)); }
 
 /* Onda de salida: la curva blanca solo se ve si detrás queda el color de
    la sección que termina, y el div de la onda es transparente. Este
@@ -698,6 +699,7 @@ a.topbar__item:hover { color: var(--surface); }
 .wave--desde-turquesa { background: var(--turquesa-tint); }
 .wave--desde-amarillo { background: var(--amarillo-suave); }
 .wave--desde-azul     { background: var(--azul-tint); }
+.wave--desde-amarillo-vivo { background: color-mix(in srgb, var(--mostaza) 30%, var(--surface)); }
 
 /* ============================================================
    SOBRE EL COLEGIO
