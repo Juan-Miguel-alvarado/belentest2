@@ -2298,4 +2298,7 @@
 .obra__title { font-size: var(--step-4); }
 .obra__inner .lede { max-width: 42rem; }
 .obra__actions { justify-content: center; margin-top: 0.75rem; }
+/* El acceso a la página del sitio anterior va pegado a los botones
+   principales: es parte del mismo grupo, no un bloque aparte. */
+.obra__anterior { margin-top: 0; }
 .obra__volver { margin-top: 0.5rem; }
