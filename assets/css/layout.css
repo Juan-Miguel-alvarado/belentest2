@@ -190,7 +190,11 @@ a.topbar__item:hover { color: var(--surface); }
 .menu__link:hover,
 .menu__item.is-open > .menu__link { background: var(--rojo-tint-suave); color: var(--rojo-ink); }
 
-.menu__link[aria-current="page"] { color: var(--rojo-ink); font-weight: 600; }
+.menu__link[aria-current="page"] {
+  background: var(--rojo-tint-suave);
+  color: var(--rojo-ink);
+  font-weight: 600;
+}
 
 .caret {
   width: 1em;
@@ -353,6 +357,7 @@ a.topbar__item:hover { color: var(--surface); }
 .mobile-menu a[aria-current="page"]:not(.btn),
 .mobile-menu__sub a[aria-current="page"]:not(.btn),
 .mobile-menu summary[aria-current="page"] {
+  background: var(--rojo-tint-suave);
   color: var(--rojo-ink);
   font-weight: 600;
 }
