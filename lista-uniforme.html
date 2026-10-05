@@ -70,7 +70,7 @@
         Entrar a Plataforma
       </a>
       <a class="btn btn--sm" href="index.html#admisiones">
-        Pedir cupo 2027
+        Pedir cupo
         <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
       <button class="burger" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir el menú">
@@ -85,15 +85,15 @@
         <li class="menu__item"><a class="menu__link" href="index.html">Inicio</a></li>
         <!-- Página actual: se marca a mano. initScrollSpy() solo observa
              enlaces que empiezan por "#", así que no lo sobrescribe. -->
-        <li class="menu__item"><a class="menu__link" href="nosotros.html" aria-current="page">Nosotros</a></li>
+        <li class="menu__item"><a class="menu__link" href="nosotros.html">Nosotros</a></li>
         <li class="menu__item"><a class="menu__link" href="admisiones.html">Admisiones</a></li>
         <li class="menu__item menu__item--has-menu">
-          <button class="menu__link" type="button" aria-expanded="false">
+          <button class="menu__link" type="button" aria-expanded="false" aria-current="page">
             Guía escolar
             <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="dropdown">
-            <a href="lista-uniforme.html">Lista y uniforme</a>
+            <a href="lista-uniforme.html" aria-current="page">Lista y uniforme</a>
             <a href="calendario-academico.html">Calendario académico</a>
             <a href="noticias-eventos.html">Noticias y eventos</a>
             <a href="assets/docs/manual-convivencia-2026.pdf" target="_blank" rel="noopener">Manual de convivencia</a>
@@ -113,12 +113,12 @@
 
 <div class="mobile-menu" id="menu-movil">
   <a href="index.html">Inicio</a>
-  <a href="nosotros.html" aria-current="page">Nosotros</a>
+  <a href="nosotros.html">Nosotros</a>
   <a href="admisiones.html">Admisiones</a>
   <details>
-    <summary>Guía escolar</summary>
+    <summary aria-current="page">Guía escolar</summary>
     <div class="mobile-menu__sub">
-      <a href="lista-uniforme.html">Lista y uniforme</a>
+      <a href="lista-uniforme.html" aria-current="page">Lista y uniforme</a>
       <a href="calendario-academico.html">Calendario académico</a>
       <a href="noticias-eventos.html">Noticias y eventos</a>
       <a href="assets/docs/manual-convivencia-2026.pdf" target="_blank" rel="noopener">Manual de convivencia</a>

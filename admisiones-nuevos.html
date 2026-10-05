@@ -71,7 +71,7 @@
         Entrar a Plataforma
       </a>
       <a class="btn btn--sm" href="index.html#admisiones">
-        Pedir cupo 2027
+        Pedir cupo
         <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
       <button class="burger" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir el menú">
@@ -87,7 +87,7 @@
         <!-- Página actual: se marca a mano. initScrollSpy() solo observa
              enlaces que empiezan por "#", así que no lo sobrescribe. -->
         <li class="menu__item"><a class="menu__link" href="nosotros.html">Nosotros</a></li>
-        <li class="menu__item"><a class="menu__link" href="admisiones.html">Admisiones</a></li>
+        <li class="menu__item"><a class="menu__link" href="admisiones.html" aria-current="page">Admisiones</a></li>
         <li class="menu__item menu__item--has-menu">
           <button class="menu__link" type="button" aria-expanded="false">
             Guía escolar
@@ -115,7 +115,7 @@
 <div class="mobile-menu" id="menu-movil">
   <a href="index.html">Inicio</a>
   <a href="nosotros.html">Nosotros</a>
-  <a href="admisiones.html">Admisiones</a>
+  <a href="admisiones.html" aria-current="page">Admisiones</a>
   <details>
     <summary>Guía escolar</summary>
     <div class="mobile-menu__sub">
@@ -364,8 +364,7 @@
         <!-- «Contrato» a secas no dice cuál: es el mismo del paso 5. -->
         <p class="ruta__aviso">
           El contrato es el del paso 5: el de matrícula y prestación de
-          servicios del año 2027, que se firma de forma presencial en el
-          colegio.
+          servicios, que se firma de forma presencial en el colegio.
         </p>
       </div>
     </div>
