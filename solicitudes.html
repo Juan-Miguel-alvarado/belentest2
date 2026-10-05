@@ -178,14 +178,15 @@
 
 <!-- ============================================================
      LOS TRÁMITES
-     REVISAR — los enlaces de tres formularios no abren en público.
+     REVISAR — cuatro de los cinco formularios no abren en público.
      Comprobado sin sesión iniciada: inasistencias, certificados y PQRS
-     devuelven 401. Son URL del lado del editor
+     devuelven 401 porque son URL del lado del editor
      (/forms/d/<id>/viewform); la que sí funciona, la de citas, tiene la
-     forma publicada /forms/d/e/<id>/viewform. El colegio tiene que
-     sacar el enlace de «Enviar» de cada formulario —o abrir la
-     respuesta a cualquiera con el enlace— y sustituirlos aquí.
-     Al de retiro le falta la URL por completo.
+     forma publicada /forms/d/e/<id>/viewform. El de retiro ya tiene su
+     enlace corto (forms.gle), que es la forma publicada, pero también
+     devuelve 401: ese está restringido a cuentas del colegio. El
+     colegio tiene que sacar el enlace de «Enviar» de cada formulario y
+     abrir la respuesta a cualquiera con el enlace.
      ============================================================ -->
 <section class="section section--turquesa" id="tramites">
   <div class="shell">
@@ -292,17 +293,15 @@
           Si necesitas retirar al estudiante, este es el trámite: te indicamos el
           conducto regular y los documentos de cierre.
         </p>
-        <!-- REVISAR: el colegio confirma que este trámite tiene formulario,
-             pero todavía no ha pasado la URL. En cuanto llegue, se sustituye
-             el botón desactivado por el enlace. -->
         <div class="tramite__foot">
           <span class="tramite__via">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
             Formulario de Google
           </span>
-          <button class="btn btn--outline" type="button" disabled>
-            Todavía no está disponible
-          </button>
+          <a class="btn btn--outline" href="https://forms.gle/cX8URRgXAzareJEa6" target="_blank" rel="noopener">
+            Toca para llenar el formulario
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
         </div>
       </article>
     </div>

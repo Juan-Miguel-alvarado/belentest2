@@ -229,18 +229,19 @@ llevaría a ninguna parte nueva. El enlace
 del menú que corresponde a la página lleva `aria-current="page"` a mano:
 `initScrollSpy()` solo observa enlaces que empiezan por `#`, así que no lo pisa.
 
-**Solicitudes en línea.** Los cinco trámites son formularios de Google. Cuatro
-tienen enlace y el de **solicitud de retiro** todavía no: su tarjeta muestra el
-botón desactivado «Enlace pendiente».
+**Solicitudes en línea.** Los cinco trámites son formularios de Google y los
+cinco tienen ya su enlace: el de **solicitud de retiro** entró con el enlace
+corto `https://forms.gle/cX8URRgXAzareJEa6`.
 
-De los cuatro enlazados, solo el de **solicitud de citas** abre en público.
-Comprobado sin sesión iniciada: inasistencias, certificados y PQRS devuelven
-**401**. La diferencia está en la forma de la URL —las tres son del lado del
-editor, `/forms/d/<id>/viewform`, mientras que la de citas es la publicada,
-`/forms/d/e/<id>/viewform`—. El colegio tiene que sacar el enlace del botón
-**Enviar** de cada formulario, o abrir la respuesta a «cualquier persona con el
-enlace», y sustituirlos en `#tramites`. Está anotado con un `REVISAR` en la
-propia sección.
+De los cinco, solo el de **solicitud de citas** abre en público. Comprobado sin
+sesión iniciada: los otros cuatro devuelven **401**, por dos motivos distintos.
+Inasistencias, certificados y PQRS son URL del lado del editor,
+`/forms/d/<id>/viewform`, mientras que la de citas es la publicada,
+`/forms/d/e/<id>/viewform`; ahí basta con que el colegio saque el enlace del
+botón **Enviar**. El de retiro ya es la publicada —el enlace corto redirige a
+`/forms/d/e/…/viewform`— y aun así pide sesión: ese formulario está restringido
+a cuentas del colegio y hay que abrir la respuesta a «cualquier persona con el
+enlace». Está anotado con un `REVISAR` en la propia sección.
 
 **Donaciones.** Todo el texto —las cifras, la carta y el certificado de la DIAN—
 sale literal de `/donaciones/` del sitio actual. El colegio **no publica cuenta
@@ -423,8 +424,7 @@ Marcado en el código con comentarios `REVISAR` y `TODO`:
 | Erratas de la misión y la visión | `#mision-vision` de `nosotros.html` |
 | Confirmar el «8:00 a.m. – 3:00 p.m.» (choca con la lámina de horarios) | barra superior y `#faq` de `index.html` |
 | Frases de una línea de los diez valores | `#valores` de `nosotros.html` |
-| URL públicas de 3 formularios (dan 401) | `#tramites` de `solicitudes.html` |
-| URL del formulario de retiro (no existe) | `#tramites` de `solicitudes.html` |
+| URL públicas de 4 formularios (dan 401) | `#tramites` de `solicitudes.html` |
 | Datos que exige cada trámite | `#como` de `solicitudes.html` |
 | Cuenta bancaria para donar, si la habilitan | `#contacto` de `donaciones.html` |
 

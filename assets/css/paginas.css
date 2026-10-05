@@ -694,13 +694,6 @@
 .tramite--verde    .tramite__icon { background: var(--verde-tint);    color: var(--verde-ink); }
 .tramite--morado   .tramite__icon { background: var(--morado-tint);   color: var(--morado-ink); }
 
-/* Trámite cuyo formulario todavía no tiene URL publicada. */
-.btn[disabled] {
-  opacity: 0.55;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
 /* ============================================================
    PASOS  (solicitudes.html)
    ============================================================ */
