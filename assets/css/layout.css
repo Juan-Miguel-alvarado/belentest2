@@ -1476,16 +1476,6 @@ a.topbar__item:hover { color: var(--surface); }
   box-shadow: var(--shadow-md);
 }
 
-/* Sustituto del logo mientras no llega el archivo: las siglas en la
-   tipografía de los titulares. */
-.convenio__provisional {
-  font-family: var(--font-display);
-  font-size: var(--step-1);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--muted);
-}
-
 .convenio__logo {
   width: auto;
   height: auto;
