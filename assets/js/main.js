@@ -196,6 +196,9 @@
 
     btn.addEventListener("click", () => {
       video.controls = true;
+      // El institucional lleva narración: el clic es gesto del usuario, así
+      // que el navegador ya permite reproducirlo con sonido.
+      video.muted = false;
       wrap.classList.add("is-playing");
       // Safari/iOS puede rechazar la promesa; el póster queda de respaldo.
       const attempt = video.play();
@@ -400,99 +403,6 @@
     });
   }
 
-  /* Junta las láminas del calendario en un único PDF, una por hoja.
-
-     El lienzo se arma con cajas del alto exacto de la página en vez de con
-     saltos de página: html2pdf corta el lienzo por altura de hoja, así que
-     con cajas iguales cada lámina cae encuadrada en la suya. Los saltos
-     declarados fallan cuando el contenido son imágenes. */
-  function initLaminasPdf() {
-    const btn = $("[data-laminas-pdf]");
-    if (!btn) return;
-
-    const laminas = $$(".laminas img");
-    if (!laminas.length) return;
-
-    const label = $("[data-laminas-pdf-label]", btn) || btn;
-    const textoPrev = label.textContent;
-
-    btn.addEventListener("click", () => {
-      if (!window.html2pdf) return;
-
-      btn.disabled = true;
-      label.textContent = "Espera un momento…";
-
-      /* Las hojas van en un bloque normal dentro del lienzo, no colgando de
-         él: el lienzo está en position:fixed y html2canvas mide cero de alto
-         cuando se le entrega un elemento fijo. */
-      const stage = document.createElement("div");
-      stage.className = "pdf-stage";
-      const hojas = document.createElement("div");
-      stage.appendChild(hojas);
-
-      const copias = laminas.map((img) => {
-        const hoja = document.createElement("div");
-        hoja.className = "pdf-hoja";
-        const copia = new Image();
-        copia.src = img.currentSrc || img.src;
-        hoja.appendChild(copia);
-        hojas.appendChild(hoja);
-        return copia;
-      });
-
-      document.body.appendChild(stage);
-
-      const fin = () => {
-        stage.remove();
-        btn.disabled = false;
-        label.textContent = textoPrev;
-      };
-
-      /* Sin esperar a que las copias carguen, html2canvas dibujaría hojas
-         vacías. */
-      const cargadas = copias.map(
-        (img) =>
-          new Promise((listo) => {
-            if (img.complete) return listo();
-            img.addEventListener("load", listo, { once: true });
-            img.addEventListener("error", listo, { once: true });
-          })
-      );
-
-      Promise.all(cargadas)
-        .then(() => {
-          /* Las medidas salen de las copias ya cargadas: las del documento
-             llevan loading="lazy" y, mientras no se han visto, su tamaño
-             natural es cero.
-
-             La hoja se hace del tamaño de la lámina mayor para que ninguna
-             quede recortada; las más pequeñas se centran con el sobrante. */
-          const w = Math.max(...copias.map((img) => img.naturalWidth));
-          const h = Math.max(...copias.map((img) => img.naturalHeight));
-          if (!w || !h) return;
-
-          stage.style.width = w + "px";
-          copias.forEach((img) => {
-            img.parentNode.style.height = h + "px";
-          });
-
-          return generarPdf(hojas, {
-            margin: 0,
-            filename: btn.dataset.laminasPdf || "calendario.pdf",
-            image: { type: "jpeg", quality: 0.95 },
-            html2canvas: { scale: 2, backgroundColor: "#ffffff", useCORS: true },
-            jsPDF: {
-              unit: "px",
-              format: [w, h],
-              orientation: h >= w ? "portrait" : "landscape",
-              hotfixes: ["px_scaling"]
-            }
-          });
-        })
-        .then(fin, fin);
-    });
-  }
-
   /* --- 12. Sección activa en el menú -------------------------- */
   /* Resalta el enlace del menú según la sección que se está viendo. */
   function initScrollSpy() {
@@ -674,7 +584,6 @@
     initListas();
     initPeriodos();
     initViewer();
-    initLaminasPdf();
     initMisc();
     initCopiar();
   };

@@ -1403,41 +1403,6 @@
 }
 
 /* ============================================================
-   LIENZO DE GENERACIÓN DE PDF
-
-   Solo lo usa el PDF de las láminas del calendario. Las listas
-   escolares ya no pasan por aquí: son una lámina que se abre en el
-   visor y se descarga como imagen.
-   ============================================================ */
-
-/* Lienzo donde se clona el documento para generar el PDF: ancho fijo de
-   A4 a 96 ppp, así el resultado no depende del tamaño del visor.
-
-   Se esconde sacándolo del viewport, sin recortarlo. Nada de alto cero
-   con overflow: html2canvas respeta el recorte de los contenedores y el
-   PDF salía en blanco. Y nada de tocar scrollX/scrollY en sus opciones,
-   que es lo que antes descuadraba el encuadre hacia la izquierda: por
-   defecto la librería ya parte del rectángulo real del elemento. */
-.pdf-stage {
-  position: fixed;
-  top: 0;
-  left: -10000px;
-  width: 794px;
-}
-
-/* Cada lámina ocupa una hoja completa del PDF. El generador corta el lienzo
-   por altura de página, así que dando a todas las cajas el mismo alto salen
-   encuadradas sin declarar saltos de página, que con imágenes fallan. */
-.pdf-hoja {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-}
-
-.pdf-hoja img { max-width: 100%; max-height: 100%; }
-
-/* ============================================================
    VISOR (modal)
    ============================================================ */
 
@@ -1760,59 +1725,6 @@
 
 .convo__fecha { font-weight: 600; color: var(--ink); }
 .convo__grados { margin-top: 0.35rem; font-size: var(--step--1); color: var(--muted); }
-
-/* ============================================================
-   LÁMINAS DESCARGABLES
-   ============================================================ */
-
-.laminas {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
-  gap: clamp(1rem, 2vw, 1.5rem);
-}
-
-.lamina {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0;
-  font: inherit;
-  cursor: zoom-in;
-  overflow: hidden;
-  background: var(--surface);
-  border: 2px solid var(--line);
-  border-radius: var(--r-md);
-  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease),
-    box-shadow 0.3s var(--ease);
-}
-
-.lamina:hover {
-  transform: translateY(-4px);
-  border-color: var(--turquesa);
-  box-shadow: var(--shadow-md);
-}
-
-.lamina img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: top center;
-  background: var(--surface-2);
-}
-
-.lamina__name {
-  padding: 0.85rem 1rem;
-  font-size: var(--step--1);
-  font-weight: 600;
-  color: var(--ink);
-  text-align: center;
-}
-
-.laminas__pie {
-  display: flex;
-  justify-content: center;
-  margin-top: clamp(1.5rem, 3vw, 2.25rem);
-}
 
 /* ============================================================
    AVISOS
