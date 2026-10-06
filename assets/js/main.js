@@ -209,30 +209,6 @@
     video.addEventListener("play", () => wrap.classList.add("is-playing"));
   }
 
-  /* --- 7. Video del testimonio, dentro de la propia tarjeta -- */
-  function initInlineVideo() {
-    const triggers = $$("[data-inline-video]");
-    if (!triggers.length) return;
-
-    triggers.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const media = btn.closest(".testimonial__media");
-        if (!media || media.querySelector("video")) return;
-
-        const video = document.createElement("video");
-        video.className = "testimonial__video";
-        video.src = btn.dataset.inlineVideo;
-        video.controls = true;
-        video.playsInline = true;
-        media.appendChild(video);
-        media.classList.add("is-playing");
-
-        const attempt = video.play();
-        if (attempt && typeof attempt.catch === "function") attempt.catch(() => {});
-      });
-    });
-  }
-
   /* La sección «Razones por las cuales nos escogen» sustituyó al
      acordeón de las cuatro dimensiones: son tarjetas sin interacción,
      así que no hay nada que inicializar aquí. */
@@ -577,7 +553,6 @@
     initFaq();
     initHero();
     initPlayer();
-    initInlineVideo();
     initFab();
     initScrollSpy();
     initLightbox();

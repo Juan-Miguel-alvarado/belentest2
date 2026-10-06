@@ -123,8 +123,8 @@
   gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 
-/* Las dos tarjetas se estiran hasta igualar la columna del equipo, que
-   con la foto cuadrada es más alta. Con `align-content: start` se
+/* Las dos tarjetas se estiran hasta igualar la columna del equipo
+   cuando esta es más alta. Con `align-content: start` se
    quedaban arriba y dejaban un hueco vacío debajo de «Visión». */
 .purpose__cards {
   display: grid;
@@ -226,17 +226,19 @@
 /* El margen inferior es lo que separa el texto de la foto. */
 .team__intro { margin-top: 0.85rem; margin-bottom: 1.75rem; }
 
-/* Foto de grupo del cuerpo docente. Parte de un cuadrado y crece con
-   `flex: 1` si la tarjeta se estira hasta la altura de la columna de al
-   lado: el alto sobrante se lo queda la foto y no queda hueco vacío. El
-   recorte lo hace `object-fit`, así que sirve cualquier foto sin
-   reencuadrarla. */
+/* Foto de grupo del cuerpo docente. Parte de 4:3, la proporción de la
+   foto, porque en un cuadrado se cortaban los profes de los extremos; y
+   crece con `flex: 1` si la tarjeta se estira hasta la altura de la
+   columna de al lado: el alto sobrante se lo queda la foto y no queda
+   hueco vacío. Si al crecer hay que recortar, se sacrifica el techo, no
+   las caras: el encuadre va anclado abajo. */
 .team__foto {
   flex: 1 1 auto;
   width: 100%;
   min-height: 0;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  object-position: center bottom;
   border-radius: var(--r-md);
   box-shadow: var(--shadow-sm);
 }
